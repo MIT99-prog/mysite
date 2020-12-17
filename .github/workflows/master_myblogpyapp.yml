@@ -31,4 +31,4 @@ jobs:
       with:
         app-name: 'myblogpyapp'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_c6f3314e74d449a4936c52f71ac8d99b }}
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_5cce572805464443b66b335a3c67c377 }}
