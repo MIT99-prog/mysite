@@ -9,14 +9,14 @@ DEBUG = False
 
 # Configure the domain name using the environment variable
 # that Azure automatically creates for us.
-ALLOWED_HOSTS = [os.environ['WEBSITE_HOSTNAME']] if 'WEBSITE_HOSTNAME' in os.environ else []     
+ALLOWED_HOSTS = [os.environ['WEBSITE_HOSTNAME']]     
 
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'  
 # STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_ROOT = os.path.join(BASE_DIR, 'static_collected')
 
 # DBHOST is only the server name, not the full URL
-hostname = os.environ['DBHOST']
+hostname = os.environ['DBHOST'] if 'DBHOST' in os.environ else []
 
 # Configure Postgres database; the full username is username@servername,
 # which we construct using the DBHOST value.
