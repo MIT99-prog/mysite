@@ -1,6 +1,6 @@
 # settings/__init__.py
 
-from .production import *
+# from .production import *
 
 try:
     from .local import *
