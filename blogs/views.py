@@ -2,7 +2,7 @@ from django.shortcuts import render
 from .models import Blog
 
 def index(request):
-    blogs = Blog.objects.order_by('-created_datetime')
+    blogs = Blog.objects.order_by('-note_date')
     return render(request, 'blogs/index.html', {'blogs': blogs})
 
 def detail(request, blog_id):

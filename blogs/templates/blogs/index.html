@@ -9,6 +9,7 @@
         <hr />
         {% for blog in blogs %}
         <div>
+            <h3>{{blog.note_date}}</h3>
             <h3>{{blog.title}}</h3>
             <div>{{blog.text | truncatechars:100}}</div>
             <div style="text-align: right;">
