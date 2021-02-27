@@ -8,6 +8,7 @@ def user_directory_path(instance, filename):
 class Blog(models.Model):
     title = models.CharField(blank=False, null=False, max_length=150)
     text = models.TextField(blank=True)
+    tag = models.CharField(blank=True, null=True, max_lengh=100)
     # temp = models.FileField(upload_to=user_directory_path)
     # file will be saved to MEDIA_ROOT/uploads/2015/01/30
     upload = models.FileField(blank=True, upload_to='uploads/%Y/%m/%d/')
