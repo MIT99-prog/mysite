@@ -27,8 +27,13 @@
                 <a href="{% url 'blogs:detail' blog_id=blog.id %}">記事を読む</a>
             </div>
         </div>
-        <hr />
+        <!--
+        <div>
+            <li>{% if not blog.is_public %}[下書き] {% endif %}<a href="{% url 'blogs:detail' blog.id %}">{{ blog.title }}</a></li>
+        </div>
+        -->
         {% endfor %}
+        <hr />
     </div>
 </body>
 </html>

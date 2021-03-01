@@ -39,7 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blogs.apps.BlogsConfig',
+    'dbbackup',  # django-dbbackup 追加
 ]
+
+# 追加
+DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
+# BASE_DIR/backups/にバックアップファイルを保存する設定
+DBBACKUP_STORAGE_OPTIONS = {'location': os.path.join(BASE_DIR, 'backups')}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
