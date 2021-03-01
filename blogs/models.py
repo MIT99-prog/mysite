@@ -46,3 +46,7 @@ class Blog(models.Model):
 
     def __str__(self):
         return self.title
+
+class ContentImage(models.Model):
+    blog = models.ForeignKey(Blog, on_delete=models.PROTECT)
+    content_image = models.FileField(upload_to='blogs_content_images/')
