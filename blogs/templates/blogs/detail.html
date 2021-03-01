@@ -1,10 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <title>ブログアプリ</title>
 </head>
-<body>
-  <h1 style="text-align: center;">{{ blog.title }}</h1>
+<body >
+  
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'blogs/style_detail.css' %}">
+
+  <div>
+    <h1 class="mt-5 pt-5" style="text-align: center;">{{ blog.title }}</h1>
+  </div>
   <div style="width: 70%;margin: 0px auto;">
     <div>
       <div style="margin: 60px 20px;">
