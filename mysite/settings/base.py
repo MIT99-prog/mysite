@@ -48,6 +48,13 @@ DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
 # BASE_DIR/backups/にバックアップファイルを保存する設定
 DBBACKUP_STORAGE_OPTIONS = {'location': os.path.join(BASE_DIR, 'backups')}
 
+MARKDOWNX_MARKDOWN_EXTENSIONS = [
+    'fenced_code', # コードブロック
+    'tables', # テーブル
+    'toc', # 目次
+    'nl2br', # 改行
+]
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

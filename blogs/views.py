@@ -32,7 +32,7 @@ class CategoryBlogView(ListView):
     def get_queryset(self):
         category_slug = self.kwargs['category_slug']
         self.category = get_object_or_404(Category, slug=category_slug)
-        qs = super().get_queryset().filter(category=self.category)
+        qs = super().get_queryset().filter(category=self.category).order_by('-note_date')
         return qs
 
     def get_context_data(self, **kwargs):
@@ -48,7 +48,7 @@ class TagBlogView(ListView):
     def get_queryset(self):
         tag_slug = self.kwargs['tag_slug']
         self.tag = get_object_or_404(Tag, slug=tag_slug)
-        qs = super().get_queryset().filter(tags=self.tag)
+        qs = super().get_queryset().filter(tags=self.tag).order_by('-note_date')
         return qs
 
     def get_context_data(self, **kwargs):
@@ -59,7 +59,7 @@ class TagBlogView(ListView):
 class SearchPostView(ListView):
     model = Blog
     template_name = 'blogs/search_blog.html'
-    paginate_by = 3
+    paginate_by = 10  # 表示件数
 
     def get_queryset(self):
         query = self.request.GET.get('q', None)
@@ -70,7 +70,7 @@ class SearchPostView(ListView):
             Q(tags__name__icontains=query)
         )
         if query is not None:
-            qs = super().get_queryset().filter(lookups).distinct()
+            qs = super().get_queryset().filter(lookups).distinct().order_by('-note_date')
             return qs
         qs = super().get_queryset()
         return qs

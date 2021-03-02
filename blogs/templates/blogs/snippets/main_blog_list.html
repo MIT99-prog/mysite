@@ -14,7 +14,7 @@
     <a href="{% url 'blogs:detail' blog.id %}">
       <h5 class="card-title">{{ blog.title }}</h5>
     </a>
-    <p class="card-text">{{ blog.published_at|date }}</p>
+    <p class="card-text">{{ blog.note_date|date }}</p>
     <a href="{% url 'blogs:detail' blog.id %}" class="btn btn-primary">記事を読む</a>
   </div>
 </div>

@@ -6,13 +6,15 @@
 {% block description %}検索ワード「{% if query %}{{ query }}{% endif %}」での検索結果ページです。{% endblock %}
 
 {% block content %}
+{% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'blogs/style_search.css' %}">
 <div class="container">
   <div class="row">
     <main class="col-md-8">
       <h1 class="mb-4">「{% if query %}{{ query }}{% endif %}」の検索結果</h1>
       <p class="text-right">{{ page_obj.start_index }}-{{ page_obj.end_index }}件（{{ paginator.count }}件）</p>
       {% include "blogs/snippets/main_blog_list.html" %}
-      {% include "blogs/snippets/pagination.html" %}
+      {% include "blogs/snippets/pagination_g.html" %}
     </main>
     <aside class="col-md-4">
       {% include "blogs/snippets/sidebar.html" %}
