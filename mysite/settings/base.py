@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blogs.apps.BlogsConfig',
     'dbbackup',  # django-dbbackup 追加
+    'markdownx'  # マークダウン用に追加
 ]
 
 # 追加

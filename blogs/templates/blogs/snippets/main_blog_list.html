@@ -12,7 +12,7 @@
     <h5><span class="badge badge-secondary">下書き</span></h5>
     {% endif %}
     <a href="{% url 'blogs:detail' blog.id %}">
-      <h5 class="card-title">{{ post.title }}</h5>
+      <h5 class="card-title">{{ blog.title }}</h5>
     </a>
     <p class="card-text">{{ blog.published_at|date }}</p>
     <a href="{% url 'blogs:detail' blog.id %}" class="btn btn-primary">記事を読む</a>
@@ -21,5 +21,5 @@
 
 {% endif %}
 {% empty %}
-<p>まだ投稿はありません。</p>
+  <p>まだ投稿はありません。</p>
 {% endfor %}

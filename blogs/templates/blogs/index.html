@@ -15,7 +15,7 @@
         <div class="row">
             <hr />
                 <main class="col-8">
-                {% for blog in blogs %}
+                {% for blog in object_list %}
                 <div>
                     <h3>{{blog.note_date}}</h3>
                     <h3>{{blog.title}}</h3>
@@ -30,6 +30,7 @@
                 </a>
                 {% endif %}
                 {% endfor %}
+                {% include "blogs/snippets/pagination_g.html" %}
                 </main>
                 <aside class="col-4">
                     {% include "blogs/snippets/sidebar.html" %}
