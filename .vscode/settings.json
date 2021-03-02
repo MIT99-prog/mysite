@@ -1,5 +1,5 @@
 {
-    "python.pythonPath": "C:\\Users\\tango\\AppData\\Local\\Programs\\Python\\Python38\\python.exe",
+    "python.pythonPath": "f:\\Django\\env_django\\Scripts\\python.exe",
     "appService.defaultWebAppToDeploy": "/subscriptions/531ae638-717d-4748-a9f6-6f4940c67022/resourceGroups/Resource_for_blogs/providers/Microsoft.Web/sites/myblogpyapp",
     "appService.deploySubpath": ".",
     "appService.zipIgnorePattern": [

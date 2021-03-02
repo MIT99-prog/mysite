@@ -1,6 +1,8 @@
 from django.db import models
 from datetime import date
 from django.utils import timezone
+from markdownx.models import MarkdownxField
+from markdownx.utils import markdownify
 
 def user_directory_path(instance, filename):
     # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
@@ -28,7 +30,7 @@ class Blog(models.Model):
     category = models.ForeignKey(Category, on_delete=models.PROTECT)
     tags = models.ManyToManyField(Tag, blank=True)
     title = models.CharField(blank=False, null=False, max_length=150)
-    text = models.TextField(blank=True)
+    text = MarkdownxField(blank=True)
     tag = models.CharField(blank=True, null=True, max_length=100)
     # temp = models.FileField(upload_to=user_directory_path)
     # file will be saved to MEDIA_ROOT/uploads/2015/01/30
@@ -38,6 +40,9 @@ class Blog(models.Model):
     updated_datetime = models.DateTimeField(auto_now=True)
     published_at = models.DateTimeField(blank=True, null=True)
     is_public = models.BooleanField(default=False)
+
+    def formatted_markdown(self):
+        return markdownify(self.text)
 
     def save(self, *args, **kwargs):
         if self.is_public and not self.published_at:
