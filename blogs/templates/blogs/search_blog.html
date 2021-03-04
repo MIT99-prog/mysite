@@ -1,6 +1,6 @@
 <!-- blog/templates/blog/search_post.html -->
 
-{% extends "base.html" %}
+{% extends "blogs/base.html" %}
 
 {% block title %}{% if query %}{{ query }}{% endif %} | {{ block.super }}{% endblock %}
 {% block description %}検索ワード「{% if query %}{{ query }}{% endif %}」での検索結果ページです。{% endblock %}

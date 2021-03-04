@@ -18,12 +18,15 @@ class IndexView(ListView):
 
 class CategoryListView(ListView):
     queryset = Category.objects.annotate(
-        num_posts=Count('blog', filter=Q(blog__is_public=True)))
-
+        num_posts=Count('blog', filter=Q(blog__is_public=True))
+        )  # 下書き含まない件数
+    # queryset = Category.objects.annotate(num_posts=Count('blog'))  # 下書き含む件数
 
 class TagListView(ListView):
-    queryset = Tag.objects.annotate(num_posts=Count(
-        'blog', filter=Q(blog__is_public=True)))
+    queryset = Tag.objects.annotate(
+        num_posts=Count('blog', filter=Q(blog__is_public=True))
+        )  # 下書き含まない件数
+    # queryset = Tag.objects.annotate(num_posts=Count('blog'))  # 下書き含む件数
 
 class CategoryBlogView(ListView):
     model = Blog
@@ -32,7 +35,12 @@ class CategoryBlogView(ListView):
     def get_queryset(self):
         category_slug = self.kwargs['category_slug']
         self.category = get_object_or_404(Category, slug=category_slug)
-        qs = super().get_queryset().filter(category=self.category).order_by('-note_date')
+        lookups = (
+            Q(category=self.category) &
+            Q(is_public=True)
+        )
+        # qs = super().get_queryset().filter(category=self.category).order_by('-note_date')
+        qs = super().get_queryset().filter(lookups).order_by('-note_date')
         return qs
 
     def get_context_data(self, **kwargs):
@@ -48,7 +56,12 @@ class TagBlogView(ListView):
     def get_queryset(self):
         tag_slug = self.kwargs['tag_slug']
         self.tag = get_object_or_404(Tag, slug=tag_slug)
-        qs = super().get_queryset().filter(tags=self.tag).order_by('-note_date')
+        lookups = (
+            Q(tags=self.tag) &
+            Q(is_public=True)
+        )
+        # qs = super().get_queryset().filter(tags=self.tag).order_by('-note_date')
+        qs = super().get_queryset().filter(lookups).order_by('-note_date')
         return qs
 
     def get_context_data(self, **kwargs):
