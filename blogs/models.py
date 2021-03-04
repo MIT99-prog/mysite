@@ -34,7 +34,7 @@ class Blog(models.Model):
     tag = models.CharField(blank=True, null=True, max_length=100)
     # temp = models.FileField(upload_to=user_directory_path)
     # file will be saved to MEDIA_ROOT/uploads/2015/01/30
-    upload = models.FileField(blank=True, upload_to='uploads/%Y/%m/%d/')
+    upload = models.FileField(blank=True, upload_to='blogs/uploads/%Y/%m/%d/')
     note_date =  models.DateField(default=date.today)
     created_datetime = models.DateTimeField(auto_now_add=True)
     updated_datetime = models.DateTimeField(auto_now=True)
