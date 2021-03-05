@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 from .base import *
 import os
 import environ
@@ -38,7 +37,6 @@ MEDIA_URL = '/media/'
 
 STATIC＿ROOT = os.path.join(BASE_DIR, 'static_collected', 'static_root')
 STATIC_URL = '/static/'
-=======
 from .base import *
 import os
 import environ
@@ -78,5 +76,4 @@ MEDIA_URL = '/media/'
 
 STATIC＿ROOT = os.path.join(BASE_DIR, 'static_collected', 'static_root')
 STATIC_URL = '/static/'
->>>>>>> 8154ecb9c61c8520a38b73189bb748b6a0b029fe
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
