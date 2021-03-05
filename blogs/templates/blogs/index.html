@@ -2,7 +2,7 @@
 <html>
 {% extends "blogs/base.html" %}
 
-{% block title %}Python学習ブログサイト | {{ block.super }}{% endblock %}
+{% block title %}ミロンゲーロのIT作業記録 | {{ block.super }}{% endblock %}
 {% block description %}Pythonでアプリを開発する中で、記録しておいた方がよいことを書いています。{% endblock %}
 
 {% block content %}
@@ -24,11 +24,13 @@
                         <a href="{% url 'blogs:detail' blog_id=blog.id %}">記事を読む</a>
                     </div>
                 </div>
+                <!--
                 {% if blog.upload %}
                 <a href="{% url 'blogs:detail' blog.id %}">
                     <img src="{{ blog.upload.url }}" alt="{{ blog.title }}" width="240" height="126">
                 </a>
                 {% endif %}
+                -->
                 {% endfor %}
                 {% include "blogs/snippets/pagination_g.html" %}
                 </main>

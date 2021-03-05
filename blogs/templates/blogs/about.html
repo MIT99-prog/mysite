@@ -11,15 +11,18 @@
   <link rel="stylesheet" type="text/css" href="{% static 'blogs/style_detail.css' %}">
 
   <div>
-    <h1 class="mt-5 pt-5" style="text-align: center;">{{ blog.title }}</h1>
+    <h1 class="mt-5 pt-5" style="text-align: center;">このブログについて</h1>
   </div>
   <div style="width: 70%;margin: 0px auto;">
     <div>
-      <div style="margin: 60px 20px;">
-        {{ blog.formatted_markdown | safe }}
+      <div class='mt-5'>
+          このブログは、Python言語を使用して、Djangoフレームワーク上にアプリケーションを開発している（DBは、PostgreSQL）私が、
+          作業中に経験したこと、考えたこと等を記録に残しているものです。多少、表現上行き届いていない部分があることは、
+          ご容赦ください。
       </div>
-      <div style="text-align: center; margin-top: 50px">
-        {{ blog.upload }}
+      <div>
+        ちなみに、このブログアプリもPython,Django,PostgreSQLで出来ています！
+      </div>
       <div style="text-align: center; margin-top: 50px">
         <a href="{% url 'blogs:index' %}">トップページに戻る</a>
       </div>

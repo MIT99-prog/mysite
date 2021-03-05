@@ -11,6 +11,9 @@ def detail(request, blog_id):
     blog = Blog.objects.get(id=blog_id)
     return render(request, 'blogs/detail.html', {'blog': blog})
 
+def about(request):
+    return render(request, 'blogs/about.html')
+
 class IndexView(ListView):
     queryset = Blog.objects.filter(is_public__exact=True).order_by('-note_date')
     template_name = 'blogs/index.html'

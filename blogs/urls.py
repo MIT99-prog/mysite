@@ -2,7 +2,7 @@ from django.urls import path
 from django.urls.conf import include
 from django.contrib import admin
 from blogs.views import (
- detail, CategoryListView, TagListView, TagBlogView, 
+ detail, about, CategoryListView, TagListView, TagBlogView, 
  CategoryBlogView, IndexView, SearchPostView,)
 
 app_name = 'blogs'
@@ -17,4 +17,5 @@ urlpatterns = [
     path('tag/<str:tag_slug>/', TagBlogView.as_view(), name='tag_blog'),
     path('search/', SearchPostView.as_view(), name='search_post'),
     path('markdownx/', include('markdownx.urls')),
+    path('about/', about, name='about')
 ]
