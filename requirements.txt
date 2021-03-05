@@ -5,3 +5,5 @@ django-environ
 django-markdownx
 
 django-dbbackup
+
+psycopg2
