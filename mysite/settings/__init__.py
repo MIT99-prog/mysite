@@ -1,8 +1,10 @@
 # settings/__init__.py
 
-# from .production import *
+from .base import *
 
-try:
+env_name = os.getenv('ENV_NAME', 'local')
+
+if env_name == 'prod':
+    from .production import *
+else:
     from .local import *
-except:
-    pass
