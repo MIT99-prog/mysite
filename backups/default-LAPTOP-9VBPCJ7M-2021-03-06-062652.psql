@@ -61,7 +61,7 @@ ALTER TABLE ONLY public.blogs_category DROP CONSTRAINT blogs_category_slug_key;
 ALTER TABLE ONLY public.blogs_category DROP CONSTRAINT blogs_category_pkey;
 ALTER TABLE ONLY public.blogs_blog_tags DROP CONSTRAINT blogs_blog_tags_pkey;
 ALTER TABLE ONLY public.blogs_blog_tags DROP CONSTRAINT blogs_blog_tags_blog_id_tag_id_4aca5e27_uniq;
-ALTER TABLE ONLY public.blogs_blog DROP CONSTRAINT blogs_blog_pkey;
+ALTER TABLE ONLY public.blogs_blog DROP CONSTRAINT blogs_blog_pkey CASCADE;
 ALTER TABLE ONLY public.auth_user DROP CONSTRAINT auth_user_username_key;
 ALTER TABLE ONLY public.auth_user_user_permissions DROP CONSTRAINT auth_user_user_permissions_user_id_permission_id_14a6b632_uniq;
 ALTER TABLE ONLY public.auth_user_user_permissions DROP CONSTRAINT auth_user_user_permissions_pkey;
