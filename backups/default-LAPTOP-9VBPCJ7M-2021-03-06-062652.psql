@@ -125,7 +125,8 @@ DROP EXTENSION adminpack;
 -- Name: adminpack; Type: EXTENSION; Schema: -; Owner: -
 --
 
-CREATE EXTENSION IF NOT EXISTS adminpack WITH SCHEMA pg_catalog;
+-- CREATE EXTENSION IF NOT EXISTS adminpack WITH SCHEMA pg_catalog;
+CREATE EXTENSION adminpack IF NOT EXISTS adminpack WITH SCHEMA pg_catalog;
 
 
 --
