@@ -120,20 +120,20 @@ DROP SEQUENCE public.auth_group_permissions_id_seq;
 DROP TABLE public.auth_group_permissions;
 DROP SEQUENCE public.auth_group_id_seq;
 DROP TABLE public.auth_group;
-DROP EXTENSION adminpack;
+-- DROP EXTENSION adminpack;
 --
 -- Name: adminpack; Type: EXTENSION; Schema: -; Owner: -
 --
 
 -- CREATE EXTENSION IF NOT EXISTS adminpack WITH SCHEMA pg_catalog;
-CREATE EXTENSION adminpack IF NOT EXISTS adminpack WITH SCHEMA pg_catalog;
+-- CREATE EXTENSION adminpack IF NOT EXISTS adminpack WITH SCHEMA pg_catalog;
 
 
 --
 -- Name: EXTENSION adminpack; Type: COMMENT; Schema: -; Owner: 
 --
 
-COMMENT ON EXTENSION adminpack IS 'administrative functions for PostgreSQL';
+-- COMMENT ON EXTENSION adminpack IS 'administrative functions for PostgreSQL';
 
 
 SET default_tablespace = '';
