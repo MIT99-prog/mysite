@@ -22,7 +22,7 @@ from mysite import settings
 urlpatterns = [
     path('polls/', include('polls.urls')),
     path('admin/', admin.site.urls),
-    path('/', include('blogs.urls')),
+    path('', include('blogs.urls')),
 ]
 
 if settings.DEBUG:
