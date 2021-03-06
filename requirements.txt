@@ -9,3 +9,5 @@ django-dbbackup
 psycopg2
 
 gunicorn
+
+django-heroku
