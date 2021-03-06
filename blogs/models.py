@@ -27,7 +27,7 @@ class Tag(models.Model):
 
 
 class Blog(models.Model):
-    category = models.ForeignKey(Category, on_delete=models.PROTECT)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     tags = models.ManyToManyField(Tag, blank=True)
     title = models.CharField(blank=False, null=False, max_length=150)
     text = MarkdownxField(blank=True)
@@ -53,5 +53,5 @@ class Blog(models.Model):
         return self.title
 
 class ContentImage(models.Model):
-    blog = models.ForeignKey(Blog, on_delete=models.PROTECT)
+    blog = models.ForeignKey(Blog, on_delete=models.CASCADE)
     content_image = models.FileField(upload_to='blogs_content_images/')
