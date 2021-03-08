@@ -22,7 +22,7 @@ DEBUG = env('DEBUG')
 
 # ALLOWED_HOSTS = [os.environ['WEBSITE_HOSTNAME']] if 'WEBSITE_HOSTNAME' in os.environ else []
 # ALLOWED_HOSTS = env('ALLOWED_HOSTS')
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'fast-stream-84593.herokuapp.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'cryptic-lowlands-93359.herokuapp.com']
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
