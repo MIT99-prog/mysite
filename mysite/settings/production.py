@@ -3,7 +3,7 @@ import os
 import django_heroku
 print('Production Environment')
 
-# django_heroku.settings(locals())
+django_heroku.settings(locals())
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = [os.environ['SECRET_KEY']]
 
