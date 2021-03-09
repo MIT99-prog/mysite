@@ -6,5 +6,7 @@ env_name = os.environ.get('ENV_NAME',default='local')
 
 if env_name == 'prod':
     from .production import *
-else:
+    print('import production env.')
+elif env_name == 'local':
     from .local import *
+    print('import local env.')
