@@ -3,7 +3,7 @@ import os
 import django_heroku
 print('Production Environment')
 
-django_heroku.settings(locals())
+django_heroku.settings(locals())  # for connect to heroku postgresql
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = [os.environ['SECRET_KEY']]
 
@@ -14,12 +14,12 @@ DEBUG = False
 # that Azure automatically creates for us.
 ALLOWED_HOSTS = [os.environ['WEBSITE_HOSTNAME']]
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'static_collected','media_root')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'staticfiles','media_root')
 MEDIA_URL = '/media/'
 
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'  
 # STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_ROOT = os.path.join(BASE_DIR, 'static_collected', 'static_root')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles', 'static_root')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'static') ]
 
