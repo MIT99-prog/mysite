@@ -28,10 +28,12 @@ STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'static') ]
 
 # Configure Postgres database; the full username is username@servername,
 # which we construct using the DBHOST value.
+'''
 DATABASES = {
-    'default' : os.environ['DATABASE_URL']
+    'default' : os.environ['DATABASE_URL'],
+    'ENGINE': 'django.db.backends.postgresql',
 }
-
+'''
 SECURE_HSTS_SECONDS=0
 SECURE_HSTS_INCLUDE_SUBDOMAINS=False
 SECURE_HSTS_PRELOAD=False
