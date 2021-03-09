@@ -8,8 +8,10 @@ def main():
     """Run administrative tasks."""
     if os.environ.get('ENV_NAME') == 'prod':
         os.environ.setdefault('DJANGO_SETTINGS_MODULE', "mysite.settings.production")
+        print('setdefault production.py')
     else:
         os.environ.setdefault('DJANGO_SETTINGS_MODULE', "mysite.settings.local")
+        print('setdefault local.py')
     
     try:
         from django.core.management import execute_from_command_line
