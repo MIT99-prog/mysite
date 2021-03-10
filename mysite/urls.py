@@ -25,7 +25,7 @@ urlpatterns = [
     path('', include('blogs.urls')),
 ]
 
-if settings.DEBUG:
+if settings.DEBUG:  # 本番環境には適用されない。
     urlpatterns += staticfiles_urlpatterns()
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     # print(urlpatterns)
