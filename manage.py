@@ -5,6 +5,11 @@ import sys
 
 
 def main():
+    # syspath control
+    # sys.path.append('F:\Django\mysite')
+    # sys.path.append('F:\Django\mysite\mysite\\aws')
+    # print('Syspath = ',sys.path)
+
     """Run administrative tasks."""
     if os.environ.get('ENV_NAME') == 'prod':
         os.environ.setdefault('DJANGO_SETTINGS_MODULE', "mysite.settings.production")

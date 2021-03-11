@@ -12,6 +12,15 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 from ntpath import os
+import sys
+
+# sys.path.append('F:\\Django\\mysite\\')
+# sys.path.append('F:\\Django\\mysite\\mysite')
+# sys.path.append('F:\\Django\\mysite\\mysite\\s3')
+# print(sys.path)
+from mysite.s3.conf import *  # for aws s3
+
+        
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -31,7 +40,7 @@ LOCALE_PATHS = (
 # Application definition
 
 INSTALLED_APPS = [
-    'whitenoise.runserver_nostatic',
+    'whitenoise.runserver_nostatic',  # WhiteNoise
     'polls.apps.PollsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -41,7 +50,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blogs.apps.BlogsConfig',
     'dbbackup',  # django-dbbackup 追加
-    'markdownx'  # マークダウン用に追加
+    'markdownx',  # マークダウン用に追加
+    'storages',  #AWS S3用に追加
 ]
 
 # 追加
