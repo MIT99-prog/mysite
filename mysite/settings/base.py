@@ -18,7 +18,6 @@ import sys
 # sys.path.append('F:\\Django\\mysite\\mysite')
 # sys.path.append('F:\\Django\\mysite\\mysite\\s3')
 # print(sys.path)
-from mysite.s3.conf import *  # for aws s3
 
         
 
@@ -143,3 +142,5 @@ USE_TZ = True
 
 # STATIC_URL = '/static/'
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+from mysite.s3.conf import *  # for aws s3
