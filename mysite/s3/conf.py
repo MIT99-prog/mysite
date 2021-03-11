@@ -20,3 +20,5 @@ AWS_QUERYSTRING_AUTH = False  # URLからクエリパラメータを削除
 AWS_S3_URL = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 MEDIA_URL = 'https://%s/%s/' % (AWS_S3_URL, 'media')
 STATIC_URL = 'https://%s/%s/' % (AWS_S3_URL, 'static')
+print('MEDIA_URL = ',MEDIA_URL)
+print('STATIC_URL = ',STATIC_URL)
