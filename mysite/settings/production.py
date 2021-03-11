@@ -14,14 +14,14 @@ DEBUG = False
 # that Azure automatically creates for us.
 ALLOWED_HOSTS = [os.environ['WEBSITE_HOSTNAME']]
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'staticfiles','media_root')
-MEDIA_URL = '/media/'
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'staticfiles','media_root')
+# MEDIA_URL = '/media/'
 
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'  
 # STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles', 'static_root')
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'static') ]
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles', 'static_root')
+# STATIC_URL = '/static/'
+# STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'static') ]
 
 # DBHOST is only the server name, not the full URL
 # hostname = os.environ['DATABASE_URL'] if 'DATABASE_URL' in os.environ else []
