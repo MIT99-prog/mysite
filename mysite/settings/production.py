@@ -14,7 +14,7 @@ DEBUG = False
 # that Azure automatically creates for us.
 ALLOWED_HOSTS = [os.environ['WEBSITE_HOSTNAME']]
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'static_collected','media_root')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'staticfiles','media_root')
 MEDIA_URL = '/media/'
 
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'  
