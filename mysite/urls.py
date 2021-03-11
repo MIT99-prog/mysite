@@ -29,3 +29,5 @@ if settings.DEBUG:  # 本番環境には適用されない。
     urlpatterns += staticfiles_urlpatterns()
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     # print(urlpatterns)
+from blogs.views import my_customized_server_error
+handler500 = my_customized_server_error
