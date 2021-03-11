@@ -1,0 +1,7 @@
+li a {
+    color: green;
+}
+body {
+    background: white url("images/bg_01.a68419430816.jpg") repeat;
+    background-size: contain;
+}
