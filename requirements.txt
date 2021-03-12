@@ -10,10 +10,10 @@ psycopg2
 
 gunicorn
 
-django-heroku
-
 whitenoise
 
 boto3
 
 django-storages
+
+dj-database-url

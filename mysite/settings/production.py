@@ -1,9 +1,10 @@
 from .base import *
 import os
-import django_heroku
+# import django_heroku
 print('Production Environment')
 
-django_heroku.settings(locals())  # for connect to heroku postgresql
+# django_heroku.settings(locals())  # for connect to heroku postgresql
+
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = [os.environ['SECRET_KEY']]
 
@@ -28,12 +29,16 @@ ALLOWED_HOSTS = [os.environ['WEBSITE_HOSTNAME']]
 
 # Configure Postgres database; the full username is username@servername,
 # which we construct using the DBHOST value.
-'''
+
 DATABASES = {
     'default' : os.environ['DATABASE_URL'],
     'ENGINE': 'django.db.backends.postgresql',
 }
-'''
+
+import dj_database_url
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(db_from_env)
+
 SECURE_HSTS_SECONDS=0
 SECURE_HSTS_INCLUDE_SUBDOMAINS=False
 SECURE_HSTS_PRELOAD=False
