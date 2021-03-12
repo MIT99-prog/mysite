@@ -18,16 +18,18 @@ from django.urls import include, path
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf.urls.static import static
 from mysite import settings
+import os
 
 urlpatterns = [
     path('polls/', include('polls.urls')),
     path('admin/', admin.site.urls),
     path('', include('blogs.urls')),
 ]
-
-if settings.DEBUG:  # 本番環境には適用されない。
+'''
+if os.environ.get('ENV_NAME') == 'local':  # 本番環境には適用されない。
     urlpatterns += staticfiles_urlpatterns()
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     # print(urlpatterns)
+'''
 from blogs.views import my_customized_server_error
 handler500 = my_customized_server_error

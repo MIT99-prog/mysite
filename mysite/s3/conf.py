@@ -1,14 +1,30 @@
 # aws/conf.py
 
+from pathlib import Path
 import os
+import environ
 
 DEFAULT_FILE_STORAGE = 'mysite.s3.utils.MediaRootS3BotoStorage'
 # <project-name> = Django プロジェクト名
 STATICFILES_STORAGE = 'mysite.s3.utils.StaticRootS3BotoStorage'
 # <project-name> = Django プロジェクト名
 
-AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')  # 環境変数を指定
-AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')  # 環境変数を指定
+# get AWS_ACCESS_KEY and AWS_SECRET_ACCESS_KEY
+if os.environ.get('ENV_NAME') == 'local':
+    env = environ.Env()
+    READ_ENV_FILE = os.getenv('DJANGO_READ_ENV_FILE')
+    if READ_ENV_FILE:
+        env_file = os.path.join(Path(__file__).resolve().parent.parent.parent,'.env')
+        env.read_env(env_file)
+        AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')  # 環境変数を指定（ローカル）
+        AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')  # 環境変数を指定（ローカル）
+    else:
+        print('Cannot read env values DJANGO_READ_ENV_FILE= ', str(READ_ENV_FILE))
+    
+else:
+    AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')  # 環境変数を指定
+    AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')  # 環境変数を指定
+print('got AWS_ACCESS_KEY!')
 
 AWS_STORAGE_BUCKET_NAME = 'mydatabucket001'  # Amazon S3 のバケット名
 AWS_DEFAULT_ACL = 'public-read'
