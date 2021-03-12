@@ -37,7 +37,8 @@ DATABASES = {
 
 import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=600)
-DATABASES['default'].update(db_from_env)
+print(db_from_env)
+DATABASES['default']=db_from_env
 
 SECURE_HSTS_SECONDS=0
 SECURE_HSTS_INCLUDE_SUBDOMAINS=False
