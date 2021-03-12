@@ -29,15 +29,16 @@ ALLOWED_HOSTS = [os.environ['WEBSITE_HOSTNAME']]
 
 # Configure Postgres database; the full username is username@servername,
 # which we construct using the DBHOST value.
-
+'''
 DATABASES = {
     'default' : os.environ['DATABASE_URL'],
     'ENGINE': 'django.db.backends.postgresql',
 }
-
+'''
 import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=600)
 print(db_from_env)
+DATABASES = {}
 DATABASES['default']=db_from_env
 
 SECURE_HSTS_SECONDS=0
