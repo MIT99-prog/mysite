@@ -1,0 +1,2367 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 13.2
+-- Dumped by pg_dump version 13.2
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+ALTER TABLE ONLY public.polls_choice DROP CONSTRAINT polls_choice_question_id_c5b4b260_fk_polls_question_id;
+ALTER TABLE ONLY public.django_admin_log DROP CONSTRAINT django_admin_log_user_id_c564eba6_fk_auth_user_id;
+ALTER TABLE ONLY public.django_admin_log DROP CONSTRAINT django_admin_log_content_type_id_c4bce8eb_fk_django_co;
+ALTER TABLE ONLY public.blogs_blog_tags DROP CONSTRAINT blogs_blog_tags_tag_id_1c74f36f_fk_blogs_tag_id;
+ALTER TABLE ONLY public.blogs_blog_tags DROP CONSTRAINT blogs_blog_tags_blog_id_2b911827_fk_blogs_blog_id;
+ALTER TABLE ONLY public.blogs_blog DROP CONSTRAINT blogs_blog_category_id_3cfdf215_fk_blogs_category_id;
+ALTER TABLE ONLY public.auth_user_user_permissions DROP CONSTRAINT auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id;
+ALTER TABLE ONLY public.auth_user_user_permissions DROP CONSTRAINT auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm;
+ALTER TABLE ONLY public.auth_user_groups DROP CONSTRAINT auth_user_groups_user_id_6a12ed8b_fk_auth_user_id;
+ALTER TABLE ONLY public.auth_user_groups DROP CONSTRAINT auth_user_groups_group_id_97559544_fk_auth_group_id;
+ALTER TABLE ONLY public.auth_permission DROP CONSTRAINT auth_permission_content_type_id_2f476e4b_fk_django_co;
+ALTER TABLE ONLY public.auth_group_permissions DROP CONSTRAINT auth_group_permissions_group_id_b120cbf9_fk_auth_group_id;
+ALTER TABLE ONLY public.auth_group_permissions DROP CONSTRAINT auth_group_permissio_permission_id_84c5c92e_fk_auth_perm;
+DROP INDEX public.polls_choice_question_id_c5b4b260;
+DROP INDEX public.django_session_session_key_c0390e0f_like;
+DROP INDEX public.django_session_expire_date_a5c62663;
+DROP INDEX public.django_admin_log_user_id_c564eba6;
+DROP INDEX public.django_admin_log_content_type_id_c4bce8eb;
+DROP INDEX public.blogs_tag_slug_8d1308d9_like;
+DROP INDEX public.blogs_category_slug_daea88ea_like;
+DROP INDEX public.blogs_blog_tags_tag_id_1c74f36f;
+DROP INDEX public.blogs_blog_tags_blog_id_2b911827;
+DROP INDEX public.blogs_blog_category_id_3cfdf215;
+DROP INDEX public.auth_user_username_6821ab7c_like;
+DROP INDEX public.auth_user_user_permissions_user_id_a95ead1b;
+DROP INDEX public.auth_user_user_permissions_permission_id_1fbb5f2c;
+DROP INDEX public.auth_user_groups_user_id_6a12ed8b;
+DROP INDEX public.auth_user_groups_group_id_97559544;
+DROP INDEX public.auth_permission_content_type_id_2f476e4b;
+DROP INDEX public.auth_group_permissions_permission_id_84c5c92e;
+DROP INDEX public.auth_group_permissions_group_id_b120cbf9;
+DROP INDEX public.auth_group_name_a6ea08ec_like;
+ALTER TABLE ONLY public.polls_question DROP CONSTRAINT polls_question_pkey;
+ALTER TABLE ONLY public.polls_choice DROP CONSTRAINT polls_choice_pkey;
+ALTER TABLE ONLY public.django_session DROP CONSTRAINT django_session_pkey;
+ALTER TABLE ONLY public.django_migrations DROP CONSTRAINT django_migrations_pkey;
+ALTER TABLE ONLY public.django_content_type DROP CONSTRAINT django_content_type_pkey;
+ALTER TABLE ONLY public.django_content_type DROP CONSTRAINT django_content_type_app_label_model_76bd3d3b_uniq;
+ALTER TABLE ONLY public.django_admin_log DROP CONSTRAINT django_admin_log_pkey;
+ALTER TABLE ONLY public.blogs_tag DROP CONSTRAINT blogs_tag_slug_key;
+ALTER TABLE ONLY public.blogs_tag DROP CONSTRAINT blogs_tag_pkey;
+ALTER TABLE ONLY public.blogs_category DROP CONSTRAINT blogs_category_slug_key;
+ALTER TABLE ONLY public.blogs_category DROP CONSTRAINT blogs_category_pkey;
+ALTER TABLE ONLY public.blogs_blog_tags DROP CONSTRAINT blogs_blog_tags_pkey;
+ALTER TABLE ONLY public.blogs_blog_tags DROP CONSTRAINT blogs_blog_tags_blog_id_tag_id_4aca5e27_uniq;
+ALTER TABLE ONLY public.blogs_blog DROP CONSTRAINT blogs_blog_pkey;
+ALTER TABLE ONLY public.auth_user DROP CONSTRAINT auth_user_username_key;
+ALTER TABLE ONLY public.auth_user_user_permissions DROP CONSTRAINT auth_user_user_permissions_user_id_permission_id_14a6b632_uniq;
+ALTER TABLE ONLY public.auth_user_user_permissions DROP CONSTRAINT auth_user_user_permissions_pkey;
+ALTER TABLE ONLY public.auth_user DROP CONSTRAINT auth_user_pkey;
+ALTER TABLE ONLY public.auth_user_groups DROP CONSTRAINT auth_user_groups_user_id_group_id_94350c0c_uniq;
+ALTER TABLE ONLY public.auth_user_groups DROP CONSTRAINT auth_user_groups_pkey;
+ALTER TABLE ONLY public.auth_permission DROP CONSTRAINT auth_permission_pkey;
+ALTER TABLE ONLY public.auth_permission DROP CONSTRAINT auth_permission_content_type_id_codename_01ab375a_uniq;
+ALTER TABLE ONLY public.auth_group DROP CONSTRAINT auth_group_pkey;
+ALTER TABLE ONLY public.auth_group_permissions DROP CONSTRAINT auth_group_permissions_pkey;
+ALTER TABLE ONLY public.auth_group_permissions DROP CONSTRAINT auth_group_permissions_group_id_permission_id_0cd325b0_uniq;
+ALTER TABLE ONLY public.auth_group DROP CONSTRAINT auth_group_name_key;
+ALTER TABLE public.polls_question ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.polls_choice ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.django_migrations ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.django_content_type ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.django_admin_log ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.blogs_tag ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.blogs_category ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.blogs_blog_tags ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.blogs_blog ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.auth_user_user_permissions ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.auth_user_groups ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.auth_user ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.auth_permission ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.auth_group_permissions ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.auth_group ALTER COLUMN id DROP DEFAULT;
+DROP SEQUENCE public.polls_question_id_seq;
+DROP TABLE public.polls_question;
+DROP SEQUENCE public.polls_choice_id_seq;
+DROP TABLE public.polls_choice;
+DROP TABLE public.django_session;
+DROP SEQUENCE public.django_migrations_id_seq;
+DROP TABLE public.django_migrations;
+DROP SEQUENCE public.django_content_type_id_seq;
+DROP TABLE public.django_content_type;
+DROP SEQUENCE public.django_admin_log_id_seq;
+DROP TABLE public.django_admin_log;
+DROP SEQUENCE public.blogs_tag_id_seq;
+DROP TABLE public.blogs_tag;
+DROP SEQUENCE public.blogs_category_id_seq;
+DROP TABLE public.blogs_category;
+DROP SEQUENCE public.blogs_blog_tags_id_seq;
+DROP TABLE public.blogs_blog_tags;
+DROP SEQUENCE public.blogs_blog_id_seq;
+DROP TABLE public.blogs_blog;
+DROP SEQUENCE public.auth_user_user_permissions_id_seq;
+DROP TABLE public.auth_user_user_permissions;
+DROP SEQUENCE public.auth_user_id_seq;
+DROP SEQUENCE public.auth_user_groups_id_seq;
+DROP TABLE public.auth_user_groups;
+DROP TABLE public.auth_user;
+DROP SEQUENCE public.auth_permission_id_seq;
+DROP TABLE public.auth_permission;
+DROP SEQUENCE public.auth_group_permissions_id_seq;
+DROP TABLE public.auth_group_permissions;
+DROP SEQUENCE public.auth_group_id_seq;
+DROP TABLE public.auth_group;
+DROP EXTENSION adminpack;
+--
+-- Name: adminpack; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS adminpack WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION adminpack; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION adminpack IS 'administrative functions for PostgreSQL';
+
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: auth_group; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.auth_group (
+    id integer NOT NULL,
+    name character varying(150) NOT NULL
+);
+
+
+ALTER TABLE public.auth_group OWNER TO postgres;
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.auth_group_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_group_id_seq OWNER TO postgres;
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.auth_group_id_seq OWNED BY public.auth_group.id;
+
+
+--
+-- Name: auth_group_permissions; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.auth_group_permissions (
+    id integer NOT NULL,
+    group_id integer NOT NULL,
+    permission_id integer NOT NULL
+);
+
+
+ALTER TABLE public.auth_group_permissions OWNER TO postgres;
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.auth_group_permissions_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_group_permissions_id_seq OWNER TO postgres;
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.auth_group_permissions_id_seq OWNED BY public.auth_group_permissions.id;
+
+
+--
+-- Name: auth_permission; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.auth_permission (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    content_type_id integer NOT NULL,
+    codename character varying(100) NOT NULL
+);
+
+
+ALTER TABLE public.auth_permission OWNER TO postgres;
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.auth_permission_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_permission_id_seq OWNER TO postgres;
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.auth_permission_id_seq OWNED BY public.auth_permission.id;
+
+
+--
+-- Name: auth_user; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.auth_user (
+    id integer NOT NULL,
+    password character varying(128) NOT NULL,
+    last_login timestamp with time zone,
+    is_superuser boolean NOT NULL,
+    username character varying(150) NOT NULL,
+    first_name character varying(150) NOT NULL,
+    last_name character varying(150) NOT NULL,
+    email character varying(254) NOT NULL,
+    is_staff boolean NOT NULL,
+    is_active boolean NOT NULL,
+    date_joined timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.auth_user OWNER TO postgres;
+
+--
+-- Name: auth_user_groups; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.auth_user_groups (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    group_id integer NOT NULL
+);
+
+
+ALTER TABLE public.auth_user_groups OWNER TO postgres;
+
+--
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.auth_user_groups_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_user_groups_id_seq OWNER TO postgres;
+
+--
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.auth_user_groups_id_seq OWNED BY public.auth_user_groups.id;
+
+
+--
+-- Name: auth_user_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.auth_user_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_user_id_seq OWNER TO postgres;
+
+--
+-- Name: auth_user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.auth_user_id_seq OWNED BY public.auth_user.id;
+
+
+--
+-- Name: auth_user_user_permissions; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.auth_user_user_permissions (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    permission_id integer NOT NULL
+);
+
+
+ALTER TABLE public.auth_user_user_permissions OWNER TO postgres;
+
+--
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.auth_user_user_permissions_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_user_user_permissions_id_seq OWNER TO postgres;
+
+--
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.auth_user_user_permissions_id_seq OWNED BY public.auth_user_user_permissions.id;
+
+
+--
+-- Name: blogs_blog; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.blogs_blog (
+    id integer NOT NULL,
+    title character varying(150) NOT NULL,
+    text text NOT NULL,
+    created_datetime timestamp with time zone NOT NULL,
+    updated_datetime timestamp with time zone NOT NULL,
+    upload character varying(100) NOT NULL,
+    note_date date NOT NULL,
+    tag character varying(100),
+    category_id integer NOT NULL,
+    is_public boolean NOT NULL,
+    published_at timestamp with time zone
+);
+
+
+ALTER TABLE public.blogs_blog OWNER TO postgres;
+
+--
+-- Name: blogs_blog_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.blogs_blog_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.blogs_blog_id_seq OWNER TO postgres;
+
+--
+-- Name: blogs_blog_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.blogs_blog_id_seq OWNED BY public.blogs_blog.id;
+
+
+--
+-- Name: blogs_blog_tags; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.blogs_blog_tags (
+    id integer NOT NULL,
+    blog_id integer NOT NULL,
+    tag_id integer NOT NULL
+);
+
+
+ALTER TABLE public.blogs_blog_tags OWNER TO postgres;
+
+--
+-- Name: blogs_blog_tags_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.blogs_blog_tags_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.blogs_blog_tags_id_seq OWNER TO postgres;
+
+--
+-- Name: blogs_blog_tags_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.blogs_blog_tags_id_seq OWNED BY public.blogs_blog_tags.id;
+
+
+--
+-- Name: blogs_category; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.blogs_category (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    slug character varying(50) NOT NULL,
+    "timestamp" timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.blogs_category OWNER TO postgres;
+
+--
+-- Name: blogs_category_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.blogs_category_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.blogs_category_id_seq OWNER TO postgres;
+
+--
+-- Name: blogs_category_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.blogs_category_id_seq OWNED BY public.blogs_category.id;
+
+
+--
+-- Name: blogs_tag; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.blogs_tag (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    slug character varying(50) NOT NULL,
+    "timestamp" timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.blogs_tag OWNER TO postgres;
+
+--
+-- Name: blogs_tag_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.blogs_tag_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.blogs_tag_id_seq OWNER TO postgres;
+
+--
+-- Name: blogs_tag_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.blogs_tag_id_seq OWNED BY public.blogs_tag.id;
+
+
+--
+-- Name: django_admin_log; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.django_admin_log (
+    id integer NOT NULL,
+    action_time timestamp with time zone NOT NULL,
+    object_id text,
+    object_repr character varying(200) NOT NULL,
+    action_flag smallint NOT NULL,
+    change_message text NOT NULL,
+    content_type_id integer,
+    user_id integer NOT NULL,
+    CONSTRAINT django_admin_log_action_flag_check CHECK ((action_flag >= 0))
+);
+
+
+ALTER TABLE public.django_admin_log OWNER TO postgres;
+
+--
+-- Name: django_admin_log_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.django_admin_log_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.django_admin_log_id_seq OWNER TO postgres;
+
+--
+-- Name: django_admin_log_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.django_admin_log_id_seq OWNED BY public.django_admin_log.id;
+
+
+--
+-- Name: django_content_type; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.django_content_type (
+    id integer NOT NULL,
+    app_label character varying(100) NOT NULL,
+    model character varying(100) NOT NULL
+);
+
+
+ALTER TABLE public.django_content_type OWNER TO postgres;
+
+--
+-- Name: django_content_type_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.django_content_type_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.django_content_type_id_seq OWNER TO postgres;
+
+--
+-- Name: django_content_type_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.django_content_type_id_seq OWNED BY public.django_content_type.id;
+
+
+--
+-- Name: django_migrations; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.django_migrations (
+    id integer NOT NULL,
+    app character varying(255) NOT NULL,
+    name character varying(255) NOT NULL,
+    applied timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.django_migrations OWNER TO postgres;
+
+--
+-- Name: django_migrations_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.django_migrations_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.django_migrations_id_seq OWNER TO postgres;
+
+--
+-- Name: django_migrations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.django_migrations_id_seq OWNED BY public.django_migrations.id;
+
+
+--
+-- Name: django_session; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.django_session (
+    session_key character varying(40) NOT NULL,
+    session_data text NOT NULL,
+    expire_date timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.django_session OWNER TO postgres;
+
+--
+-- Name: polls_choice; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.polls_choice (
+    id integer NOT NULL,
+    choice_text character varying(200) NOT NULL,
+    votes integer NOT NULL,
+    question_id integer NOT NULL
+);
+
+
+ALTER TABLE public.polls_choice OWNER TO postgres;
+
+--
+-- Name: polls_choice_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.polls_choice_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.polls_choice_id_seq OWNER TO postgres;
+
+--
+-- Name: polls_choice_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.polls_choice_id_seq OWNED BY public.polls_choice.id;
+
+
+--
+-- Name: polls_question; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.polls_question (
+    id integer NOT NULL,
+    question_text character varying(200) NOT NULL,
+    pub_date timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.polls_question OWNER TO postgres;
+
+--
+-- Name: polls_question_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.polls_question_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.polls_question_id_seq OWNER TO postgres;
+
+--
+-- Name: polls_question_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.polls_question_id_seq OWNED BY public.polls_question.id;
+
+
+--
+-- Name: auth_group id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_group ALTER COLUMN id SET DEFAULT nextval('public.auth_group_id_seq'::regclass);
+
+
+--
+-- Name: auth_group_permissions id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_group_permissions ALTER COLUMN id SET DEFAULT nextval('public.auth_group_permissions_id_seq'::regclass);
+
+
+--
+-- Name: auth_permission id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_permission ALTER COLUMN id SET DEFAULT nextval('public.auth_permission_id_seq'::regclass);
+
+
+--
+-- Name: auth_user id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_user ALTER COLUMN id SET DEFAULT nextval('public.auth_user_id_seq'::regclass);
+
+
+--
+-- Name: auth_user_groups id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_user_groups ALTER COLUMN id SET DEFAULT nextval('public.auth_user_groups_id_seq'::regclass);
+
+
+--
+-- Name: auth_user_user_permissions id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_user_user_permissions ALTER COLUMN id SET DEFAULT nextval('public.auth_user_user_permissions_id_seq'::regclass);
+
+
+--
+-- Name: blogs_blog id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.blogs_blog ALTER COLUMN id SET DEFAULT nextval('public.blogs_blog_id_seq'::regclass);
+
+
+--
+-- Name: blogs_blog_tags id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.blogs_blog_tags ALTER COLUMN id SET DEFAULT nextval('public.blogs_blog_tags_id_seq'::regclass);
+
+
+--
+-- Name: blogs_category id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.blogs_category ALTER COLUMN id SET DEFAULT nextval('public.blogs_category_id_seq'::regclass);
+
+
+--
+-- Name: blogs_tag id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.blogs_tag ALTER COLUMN id SET DEFAULT nextval('public.blogs_tag_id_seq'::regclass);
+
+
+--
+-- Name: django_admin_log id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.django_admin_log ALTER COLUMN id SET DEFAULT nextval('public.django_admin_log_id_seq'::regclass);
+
+
+--
+-- Name: django_content_type id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.django_content_type ALTER COLUMN id SET DEFAULT nextval('public.django_content_type_id_seq'::regclass);
+
+
+--
+-- Name: django_migrations id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.django_migrations ALTER COLUMN id SET DEFAULT nextval('public.django_migrations_id_seq'::regclass);
+
+
+--
+-- Name: polls_choice id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.polls_choice ALTER COLUMN id SET DEFAULT nextval('public.polls_choice_id_seq'::regclass);
+
+
+--
+-- Name: polls_question id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.polls_question ALTER COLUMN id SET DEFAULT nextval('public.polls_question_id_seq'::regclass);
+
+
+--
+-- Data for Name: auth_group; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.auth_group (id, name) FROM stdin;
+1	owner
+2	genaral
+\.
+
+
+--
+-- Data for Name: auth_group_permissions; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.auth_group_permissions (id, group_id, permission_id) FROM stdin;
+1	1	1
+2	1	2
+3	1	3
+4	1	4
+5	1	5
+6	1	6
+7	1	7
+8	1	8
+9	1	9
+10	1	10
+11	1	11
+12	1	12
+13	1	13
+14	1	14
+15	1	15
+16	1	16
+17	1	17
+18	1	18
+19	1	19
+20	1	20
+21	1	21
+22	1	22
+23	1	23
+24	1	24
+25	1	25
+26	1	26
+27	1	27
+28	1	28
+29	1	29
+30	1	30
+31	1	31
+32	1	32
+33	1	33
+34	1	34
+35	1	35
+36	1	36
+37	1	37
+38	1	38
+39	1	39
+40	1	40
+41	1	41
+42	1	42
+43	1	43
+44	1	44
+45	1	45
+46	1	46
+47	1	47
+48	1	48
+49	2	36
+50	2	4
+51	2	40
+52	2	8
+53	2	44
+\.
+
+
+--
+-- Data for Name: auth_permission; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.auth_permission (id, name, content_type_id, codename) FROM stdin;
+1	Can add question	1	add_question
+2	Can change question	1	change_question
+3	Can delete question	1	delete_question
+4	Can view question	1	view_question
+5	Can add choice	2	add_choice
+6	Can change choice	2	change_choice
+7	Can delete choice	2	delete_choice
+8	Can view choice	2	view_choice
+9	Can add log entry	3	add_logentry
+10	Can change log entry	3	change_logentry
+11	Can delete log entry	3	delete_logentry
+12	Can view log entry	3	view_logentry
+13	Can add permission	4	add_permission
+14	Can change permission	4	change_permission
+15	Can delete permission	4	delete_permission
+16	Can view permission	4	view_permission
+17	Can add group	5	add_group
+18	Can change group	5	change_group
+19	Can delete group	5	delete_group
+20	Can view group	5	view_group
+21	Can add user	6	add_user
+22	Can change user	6	change_user
+23	Can delete user	6	delete_user
+24	Can view user	6	view_user
+25	Can add content type	7	add_contenttype
+26	Can change content type	7	change_contenttype
+27	Can delete content type	7	delete_contenttype
+28	Can view content type	7	view_contenttype
+29	Can add session	8	add_session
+30	Can change session	8	change_session
+31	Can delete session	8	delete_session
+32	Can view session	8	view_session
+33	Can add blog	9	add_blog
+34	Can change blog	9	change_blog
+35	Can delete blog	9	delete_blog
+36	Can view blog	9	view_blog
+37	Can add category	10	add_category
+38	Can change category	10	change_category
+39	Can delete category	10	delete_category
+40	Can view category	10	view_category
+41	Can add tag	11	add_tag
+42	Can change tag	11	change_tag
+43	Can delete tag	11	delete_tag
+44	Can view tag	11	view_tag
+45	Can add content image	12	add_contentimage
+46	Can change content image	12	change_contentimage
+47	Can delete content image	12	delete_contentimage
+48	Can view content image	12	view_contentimage
+\.
+
+
+--
+-- Data for Name: auth_user; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) FROM stdin;
+1	pbkdf2_sha256$120000$Y2PWblqFMCVP$utn2m+RoyULdXSlR/v9lvgMyM8FgmlU1av9MXs2RfZY=	2021-01-03 19:06:43.204214+00	t	tango			tangofun@live.jp	t	t	2020-12-30 17:46:53.346045+00
+3	pbkdf2_sha256$120000$d27xDjb3agZo$fr/Hc9Vei6G9c3D1/aHWqavwGc+reTfO1fvBvxG+xYk=	\N	f	guest				f	t	2021-03-07 14:20:27+00
+2	pbkdf2_sha256$216000$0JU7zQBh4VYy$x+uetjPjs3t+aP+YAXMruS9FTWIdtHbKsdTNXEtJRvE=	2021-03-14 18:25:48.048308+00	t	admin	Koji	Hirai	tangofun@live.jp	t	t	2021-02-21 13:46:13+00
+\.
+
+
+--
+-- Data for Name: auth_user_groups; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.auth_user_groups (id, user_id, group_id) FROM stdin;
+1	3	2
+2	2	1
+\.
+
+
+--
+-- Data for Name: auth_user_user_permissions; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.auth_user_user_permissions (id, user_id, permission_id) FROM stdin;
+1	2	1
+2	2	2
+3	2	3
+4	2	4
+5	2	5
+6	2	6
+7	2	7
+8	2	8
+9	2	9
+10	2	10
+11	2	11
+12	2	12
+13	2	13
+14	2	14
+15	2	15
+16	2	16
+17	2	17
+18	2	18
+19	2	19
+20	2	20
+21	2	21
+22	2	22
+23	2	23
+24	2	24
+25	2	25
+26	2	26
+27	2	27
+28	2	28
+29	2	29
+30	2	30
+31	2	31
+32	2	32
+33	2	33
+34	2	34
+35	2	35
+36	2	36
+37	2	37
+38	2	38
+39	2	39
+40	2	40
+41	2	41
+42	2	42
+43	2	43
+44	2	44
+45	2	45
+46	2	46
+47	2	47
+48	2	48
+\.
+
+
+--
+-- Data for Name: blogs_blog; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.blogs_blog (id, title, text, created_datetime, updated_datetime, upload, note_date, tag, category_id, is_public, published_at) FROM stdin;
+4	PythonとPyScripterを導入	今日から、気になっていたプログラミング言語Pythonの勉強を始めるため、言語と開発環境用エディターソフトをパソコンに導入した。Python3.9.0がリリース直後ということで、これを導入したが、PyScripter3.6.3.0 x64が対応していなかったので、Python3.8.6も導入した。今度は、PyScripterが認識し、導入無事完了！\r\n今後の予定は、少しプログラミングを学習し、AIに活用したいと思っている！TensorFlowというパッケージがあるらしい。	2021-02-21 13:58:48.605127+00	2021-03-13 15:27:47.45172+00		2020-10-07	#Python, #PyScripter	0	t	2021-03-01 08:27:17+00
+5	ANACONDA導入	調べてみると、開発環境用のソフトは、たくさん種類があり、とりあえずフリーで使えるPyScripterを導入したが、ブラウザー環境で、プログラムとノートが一緒に書けて結果も張り付くJupyter Notebooksというのがあるらしく、それがANACONDAというソフトから起動できるらしい。ANACONDAは、仮想環境の設定やエディター（IDE等）を複数管理できる。（ちょっと重たいけど）\r\nJupyter Notebooksを起動してみたが、ブラウザ環境での開発は、いまいちピンとこなかった。テストや機能検証にはよさそう。	2021-02-21 14:17:27.897682+00	2021-03-13 15:29:04.775593+00		2020-10-14	#ANACONDA, #Jupyter Notebooks	0	t	2021-03-01 08:26:46+00
+6	J2LOGO登録	Facebookの宣伝で見つけた！アルゼンチンのPython愛好家のコミュニティーらしい。早速登録してみた。PythonやFlaskの学習コースが用意されていて（まだ利用してないけど）、Slackというソフトでチャットもできる（全部スペイン語だけど）。情報を色々と得られそう。でも、どうやらFlaskを使用したアプリ開発会社が仕掛けているよう。	2021-02-21 14:22:18.669527+00	2021-03-13 15:30:02.399173+00		2020-10-16	#J2LOGO, #Facebook	4	t	2021-03-01 08:26:26+00
+7	Pydroid導入	前回の書き込みから少し間があいたが、その間は、統計学の復習をしていた。微分・積分、ジニ係数、標準偏差、分散、確率等。\r\nそして、ちょっと飽きたので、今日は携帯で使えるPythonということで、Pydroidというソフトを携帯に導入した。このソフト、ロシア製らしく、導入ディレクトリの名前がロシアぽかった。PCで開発中のアプリを移行して試してみたが、あまり良くなかった。理由は上手く動かない機能（input文等）があることや、PC用の画面デザインそのままでは、携帯ディスプレイにマッチしない。アプリの移行にも時間が掛かった。ホームディレクトリの使い方がよくわからなかった。	2021-02-21 14:29:38.288853+00	2021-03-13 15:31:14.414859+00		2020-10-28	#Pydroid	0	t	2021-03-01 08:25:53+00
+2	レイアウトも綺麗！	Adminのレイアウトも綺麗に表示され、満足！\r\n😊	2020-12-30 17:52:04.571259+00	2021-03-13 15:26:14.016536+00		2020-12-30	#django	0	t	2021-03-01 08:28:27+00
+8	PyScripter Tip	プロジェクトに関連付けたスクリプト（例foo.py）をインタプリターで実行するには、\r\n１．実行メニュー＞モジュールをインポート\r\n２．モジュール名（foo.main()）を＞＞＞に入力してEnter\r\n（忘れないように書いとこう！）	2021-02-21 14:36:14.956602+00	2021-03-13 15:31:47.287565+00		2020-10-28	#PyScripter	0	t	2021-03-01 08:25:13+00
+9	Qtアカウント登録	PythonでGUIアプリをサポートするパッケージPyQt5を使用するため、Qtにアカウントを作成した。\r\nそれだけ！	2021-02-21 14:38:34.146498+00	2021-03-13 15:33:16.243328+00		2020-10-28	#PyQt5 #GUI	0	t	2021-03-01 08:24:35+00
+10	Git導入	そろそろ開発中のプログラムをバージョン管理したくなったので、ネットで探して、Gitを導入した。ブランチ機能等があり、便利。（昔のJavaの開発の時よりも時代は進んでる！）	2021-02-21 14:40:44.245266+00	2021-03-13 15:33:54.866718+00		2020-11-02	#Git	0	t	2021-03-01 08:23:27+00
+11	GitHub登録	先日導入したGitのリモートリポジトリ（クラウド中）としてGitHubというのが用意されている。他のユーザーが開発したプログラムとかのクローンもできるので、登録した。タダで使用できるのは、パブリックという誰でも閲覧できてしまう場所だが、まあいいや！\r\n因みに、登録名はMIT99-prog。別に意味はない！	2021-02-21 14:44:13.465766+00	2021-03-13 15:34:49.213499+00		2020-11-07	#GitHub	0	t	2021-03-01 08:23:00+00
+14	クォンツスコア	今日は、良いものを見つけた！昨日のIntel Open Vinoの呪縛から逃れるため、ネットで株価分析のサイトを探していたら、クォンツスコアというものを見つけた。マーケットの中における指標や銘柄の特性をスコアにしてみられる。これを作成するには、ビッグデータが必要な為、自分で作成するよりは、提供されているものを使用させて頂いた方が良いと判断。投資銘柄候補をこれで見つけ、各銘柄の分析を自作する方針とする。😊	2021-02-21 15:19:01.424081+00	2021-03-13 15:41:57.840775+00		2020-11-10	#クォンツスコア	6	t	2021-03-01 08:21:26+00
+18	企業情報	今日は、B/S, P/L, C/F, Stockの各情報を取得してみる。役割としては、DataTypeというSuper Classを作成し、各データクラスに継承させる。これによりWidget(View class)がデータごとの処理を管理しなくてよくなる。	2021-02-21 16:01:13.968936+00	2021-03-13 16:08:07.500112+00		2020-11-16	#yfinance, #B/S, #P/L, #Cash Flow, #Stock #Super class	0	t	2021-03-01 08:17:57+00
+29	Djangoチュートリアル	今日は、DB接続をやろう！\r\nDBは、SQLite３（付属品）。しかし、このDBを直接いじる（コマンドラインから）ため、新規にインストールしてみる。SQLiteのチュートをやる。O/R mapperとしてSQL AlchemyやStormがあるそうです。ためになった！😊	2021-02-27 19:50:09.245995+00	2021-03-13 16:17:30.504128+00		2020-12-05	#Django, #SQLite, #O/R mapper	0	t	2021-03-01 08:11:45+00
+28	VS Code	またまたネットでVS Codeというのを見つけた。これもMSさんの製品でも無料。ということで、VS Codeを試してみることに。今DL中、あと５０分！\r\n導入完了。また、覚えないといけないーーーーーーーーーーーーー！\r\nとりあえずDjangoのチュートを始めたので、先にやる。\r\nrunserverのところで、venv（仮想環境）を起動してないといけないが、書いてない！チュート１が何とか出来たので、VS Codeを試してみる。（また１から使い方を勉強しないとーーー）ー＞なんか使えそう！！！！！！	2021-02-27 19:45:02.311497+00	2021-03-01 08:12:18.194277+00		2020-12-04	#VS Code, #Django, #venv	0	t	2021-03-01 08:12:18.194277+00
+25	MS Visual Studio	いよいよWebアプリフレームワークDjangoの勉強に入ろうと思ったが、調べてみると、今まで使っていたPyCharm Comunityバージョン（無料版）では、Djangoが、開けないことが分かった。PyCharm有料版にするか、PyScripterを使うか、いろいろ考えた。PyScripterは、仮想環境の設定がいまいちなので止める。有料版は、貧乏なので止める。ということで、MicrosoftさんのVisual Studio 2019を導入することにした。今後MSのクラウドサービスAzureを試してみようと思っているので、それもあり。導入後サインインが必要だったので、MSのIDで無事登録。	2021-02-27 19:23:43.589995+00	2021-03-13 16:14:56.154487+00		2020-12-03	#MS VS2019 #Django, #MS Azure	0	t	2021-03-01 08:13:14+00
+19	yfinanceのエラー	yfinanceのエラーの為、yfinance.base.pyの\r\ndef _get_fundamentals(self, kind=None, proxy=None):\r\n    def cleanup(data):\r\n        df=_pd.DataFrame(data).drop(columns=['maxAge']\r\nを修正。ー＞GitHubよりー＞でもエラーがでた！！！！！\r\n2987.T　この企業データが原因でエラーが起こる。もう一つのAPI　YahooFinanceを試してみたが、こちらでもエラー。\r\nyfinanceをデバッグで追いかけてみたところ、\r\n１．financialsを実行したのに、先にCashflowを処理しているー＞TickersBaseクラスの_get_fundamentals\r\n２．ようやく処理が終わってfinancialsを取得にいったらアベンドした。コンソールにコードを表示24413。ー＞プログラムは、Exception handlingでメッセージを表示し、処理を続けるようにした。\r\nマザーズ：2987，3137，3652，4014，4055，4431，4444，4490，4934，6180，6568，7039，7062，7356，7804（３３２件中）ファイナンスデータが無いことに起因。Yahooさん、もっとデータ整備してよ！	2021-02-21 16:21:20.018327+00	2021-03-13 16:09:44.011933+00		2020-11-17	#yfinance, #Error	0	t	2021-03-01 08:17:04+00
+20	データ取得	今日は、いろいろなデータを取得してみた。\r\nマザーズ市場\r\n損益計算書、株価データ、企業情報、貸借対照表\r\n前日と同じ企業コードのデータが欠落していた。	2021-02-21 16:24:01.014776+00	2021-03-13 16:10:06.620226+00		2020-11-18	#yfinance, #get data	0	t	2021-03-01 08:16:46+00
+22	企業コードの問題	東証から受け取る企業コードには、特殊株（例　優先株等）のために、５桁のコードが混じっている。これを除外するため、self.companies < 10000の条件式が使える。　サンプルコードは、34091\r\nまた、データ取得テストにおいて、市場第二部のエラー企業コードは、3377, 3944, 4386, 8508, 9127, 9307, 9313であった。	2021-02-27 19:05:47.295835+00	2021-03-13 16:12:28.045074+00		2020-11-30	#企業コード, #市場第二部エラー	0	t	2021-03-01 08:15:23+00
+23	ANACONDAクラウド	以前導入したANACONDAに付随するクラウドに、今日登録した。（でもあまり使わないかも）	2021-02-27 19:08:26.743458+00	2021-03-13 16:12:48.97897+00		2020-12-01	#ANACONDA CLAUD	0	t	2021-03-01 08:14:32+00
+24	利益率の計算の問題	営業利益、または粗利を総売り上げで割って利益率を出したいが、総売り上げがNoneという企業が有った。（3137.T）するとゼロ割が生じ答えは∞になってしまう。そこで、-999,999,999,999,999を代入し、この値で割ることにし、答えを限りなく０に近づけるようにした。	2021-02-27 19:14:57.71158+00	2021-03-13 16:13:40.228214+00		2020-12-02	#利益率の計算の問題, #devied 0	0	t	2021-03-01 08:13:54+00
+27	VSの評価	寝て起きた！\r\nいきなり今は、Djangoを使ってみているわけだが、考えてみれば、VSの使い方を全く知らなかった。そこで、まず、VS2019のチュートリアルを見つけてやってみる。VS今アップデート中！\r\n結果わかったことは、Packageの認識が不安定でIntelliSenceも遅いので、まだ開発に使える品質ではないと判断した。\r\nまた寝た！	2021-02-27 19:37:12.113057+00	2021-03-13 16:16:50.753313+00		2020-12-04	#VS2019, #IntelliSence	0	t	2021-03-01 08:12:38+00
+30	Djangoチュート（続き）	Django Adminを勉強する。まずは、Super Userを作成する。－＞OK！\r\n言語設定でハマった！\r\nsetting.pyに設定してみた。\r\nLANGUAGE_CODE es-AR, TIME_ZONE America/Argentina/Buenos Airesでエラー。言語をesやjpにしてみたが、エラー。ちなみにタイムゾーンをUTCにすると言語jpとesは、OK.\r\n状況は、https://127.0.0.1:8000/admin/を表示しようとすると、pytz.exceptions.unknownTimeZoneとなってしまう。MIDDLEWAREに'django.middleware.local.LocaleMiddleware'を追加してみたが、結果は同じだった。😱	2021-02-27 20:02:37.147944+00	2021-03-13 16:18:28.449122+00		2020-12-06	#Django Admin, #言語設定	0	t	2021-03-01 08:11:15+00
+34	重要！	GitHubのPushができず2日くらいトライしていたが、原因が判明。他のユーザー（又はリポジトリ）からGitリポジトリごとコピーすると。以前の履歴を持って来てしまうためエラーとなる。こんな時は、"git checkout -b master"と呪文を唱えてからやるとOK！😊	2021-02-28 11:20:12.810948+00	2021-03-13 16:26:25.598325+00		2020-12-12	#Git #呪文	0	t	2021-03-01 08:06:45+00
+41	PIPが壊れた！	また、PIPが壊れた。前にブログに対処法を書き残したが、消えていた～。\r\n"python -m ensurepip"で再導入。	2021-02-28 12:00:06.654504+00	2021-03-01 08:03:46.184837+00		2020-12-30	#pip	0	t	2021-03-01 08:03:46.184837+00
+36	続き	DBのセットアップにはAzure SDK for Pythonを使うらしい。\r\nコンテナを作るチュート「Python in a container」というのがある。	2021-02-28 11:30:38.302322+00	2021-03-01 08:05:32.994145+00		2020-12-15	#MS Aure	0	t	2021-03-01 08:05:32.994145+00
+33	Blog app作成	今日は、Qiitaさんにお願いして、ブログ管理サイトを作り始めた。チュート（またか！）になっているので、それを自分の環境に置き換えて作る。MS Azure DevOpsに登録してみた。でも、使ってない。	2021-02-28 11:15:31.875285+00	2021-03-13 16:25:29.842419+00		2020-12-09	#Qiita, #Blog app, #Azure DevOps	4	t	2021-03-01 08:07:52+00
+35	Azure SQL DBの演習	無料試用版　Resouce_for_blogsに、SQL DBを追加する。ー＞OK！\r\nApp：myblogpyappのアクセス制御（IAM)ー＞NGみたい。\r\n登録IDが一つしかないので、追加できなさそう。\r\ncloud-shell-strage-westeuropeというリソースグループは覚えがないので消した。\r\nDefaultResoureceGroup-CQは、何？\r\nこれすべてAzureの話。（ようわからん！）	2021-02-28 11:27:28.483993+00	2021-03-13 16:27:22.100253+00		2020-12-12	#MS Azure	0	t	2021-03-01 08:05:45+00
+37	問題発生！	今日、いきなりVS CodeからAzureに接続できなくなった。まだ、試用期間の一ヶ月経っていないのに！😡	2021-02-28 11:32:49.115421+00	2021-03-13 16:29:04.270051+00		2020-12-21	#MS Azure	0	t	2021-03-01 08:05:13+00
+38	PostgrSQL登場！	今日AzureにPostgrSQLを使用したPython Djangoアプリをデプロイする。\r\nキーポイント：\r\n１．setting.pyの中の環境変数を"az.webapp config app setting set"でAzure CLIから構成。この結果Portal上では、Web app senceの構成に名前DBHOST等で登録される。\r\n２．コンテナ上で、DjangoのDB Migrationを行う。SSHセッションを開きAzureアカウントでサインイン。Google Chromeではなぜかサインインできなかった。Operaを使用。マイグレーション完了。\r\n\r\nそう言えば、今日はクリスマスイブ。さあ、飲もう！！！！！	2021-02-28 11:41:43.563688+00	2021-03-13 16:30:18.437343+00		2020-12-24	#MS Azure, #Django, #Migration	0	t	2021-03-01 08:04:45+00
+39	DBの変更	今までSQL Server前提で、考えてきたが、追加ソフトの導入が必要とのことで、PostgreSQLに変更することにする。（結局、PostgreSQLでもDjango接続用ドライバが必要だったけど・・・）	2021-02-28 11:45:42.669588+00	2021-03-13 16:30:57.304215+00		2020-12-25	#DB, #SQL Server, #PostgreSQL	0	t	2021-03-01 08:04:19+00
+42	CircleCi	Azureの代わりを探していたが、Facebookの広告でCircleCiというのを見つけた。登録してみた。\r\nついに波乱の２０２０年が、今日で終わる。来年は良い年になりますように！（不安だらけだが・・・）	2021-02-28 12:03:10.121454+00	2021-03-13 16:33:12.946585+00		2020-12-31	#CircleCi	0	t	2021-03-01 08:03:09+00
+46	Dockerチュート完了	完了！😊	2021-02-28 12:57:40.317956+00	2021-03-13 16:35:21.901425+00		2021-01-11	#Docker	0	t	2021-03-01 07:58:29+00
+48	Remote-containers	Remote-containersという機能をVS Codeに導入し、そこでアプリを開発しようと思う。Dockerfileでのサンプルはうまくいったが、Docker-composeでは、うまくいかない。調べてみると、設定を変えないとだめそう。そこで、VS Codeのドキュメント"Developing inside a container"を読んでみる。	2021-02-28 13:12:22.933922+00	2021-03-13 16:39:29.445814+00		2021-01-23	#remote-containers, #Dockerfile, #Docker-compose	0	t	2021-03-01 07:56:40+00
+50	Docker続き	Dockerコンテナ上のPostgreSQLに外からアクセスを試していた。psql -h localhost -p 5432 -U username後、パスワードが必要となるが、PostgreSQLインストール時のパスワードで開いた。しかし、これではうまく見られなかったので、Containerを起動して、ターミナル（Python）でPythonからPostgreSQLに接続する方法を参考に、"SELECT relname AS table_name FROM pg_stat_user_table"を実行。Djangoでは、テーブル名は、ディレクトリ名＿DB名になっていることが分かった。	2021-02-28 13:32:12.111153+00	2021-03-13 16:41:37.02972+00		2021-01-26	#Docker, PostgreSQL, #psql, #SQL	0	t	2021-03-01 07:56:06+00
+49	Docker-compose	docker-composeでWeb Serviceのコンテナは、リモート接続できたが、DBコンテナが作成されない。また、Web Serviceのportが開かないので、動いたとは言えない状態。こんな時にDocker whaleを右クリックしてメニューを表示したら、消えなくなった。PC再起動。もう二度とクリックしない！😠\r\nドキュメントをよく読むとdevcontainer.jsonは、自動で追加されるらしいので、一度これを削除して、Open Containerを実行。すると、で・き・た～～～～～～～～！😊\r\n新しくdevcontainerフォルダーが作成され、devcontainer.jsonとdocker-compose.ymlが作成された。ルート上に残したdocker-compose.ymlと両方見るように設定されていた。	2021-02-28 13:23:43.359164+00	2021-03-13 16:40:45.451898+00		2021-01-24	#docker-compose, #Docker whale, #devcontainer.jdon, #docker-compose.yml	0	t	2021-03-01 07:56:19+00
+51	Djangoのユニットテスト	昨日から、Excelファイルの読み込み機能（Djangoの書き方に直した）のテストをしようとしていたが、テストコードを書かないと単体テストが出来ず、Fileffieldのテスト用データがDBに登録できず、困っている。問題は、まず、サーバーを立ち上げないとDjangoのテストができないわずらわしさ。（単体テストをやりたいのに統合テストの様。）デバッガーのためにDjangoの起動用にlounch.jsonに設定が必要。SQLで書いたものをテストする方が１００倍楽！😠	2021-02-28 13:39:57.655341+00	2021-03-13 16:42:46.143568+00		2021-02-02	#Unittest, #lounch.json	0	t	2021-03-01 07:55:49+00
+53	開発環境構築	今日とりあえず、開発環境が出来た。結果としては、案３を適用。VS Codeの"Connecting to multiple containers at onec"を参考にした。\r\n後は、migrationしてサンプルコードを入れた。	2021-02-28 14:19:10.831844+00	2021-03-13 16:44:43.914393+00		2021-02-05	#開発環境	0	t	2021-03-01 07:51:46+00
+55	不具合	今日から財務情報、株式情報等をDBに格納するプログラムを作り始めた。プログラムdbaccess.pyを編集中カーソル移動キー、バックスペースキーが使えなくなった。VS Codeのバグ？🤷‍♂️	2021-02-28 14:34:27.409521+00	2021-03-13 16:45:51.58687+00		2021-02-08	#VS Code #bug	0	t	2021-03-01 07:32:06+00
+45	チュートでも問題！	Dockerのチュート"Using Bind Mounts"が動かない問題が２日続いた。そして解決！原因は、動作環境\r\n（Real）のフォーマット形式が（FAT32）がnpmでサポートされていなかった。環境をNTFSに移動したら、動いた！このチュートでは、ワークスペース（Working dir）やCurrent dirを指定したので、それが関係しているようだ。	2021-02-28 12:56:22.454102+00	2021-03-01 08:02:13.064879+00		2021-01-08	#Docker, #FAT32, #NTFS	0	t	2021-03-01 08:02:13.064879+00
+26	GitHub	次にVSに作成した環境をGutHubにプッシュ。localhostでエラーが出たので調べたら、hstsの問題と判明。chrome://net-internals/#hstsの一番下、Delete domain security policiesにlocalhostを入力して消去したらOK。ちなみにOperaは、VPNで使っているので、さらにややこしそうなので、ディフォルトブラウザをGoogle Chromeに戻した。（Operaを導入したときに変更していたので）	2021-02-27 19:31:52.126129+00	2021-03-13 16:16:14.889231+00		2020-12-03	#GitHub, #localhost error, #hsts problem	0	t	2021-03-01 08:12:54+00
+31	言語設定わかった！	昨日の続き\r\nTimeZoneを'America/Argentina/Buenos_Aires'にしたら、日本語で表示できた。（アンダーラインの問題）しかし、言語をen-USやesにしても、日本語で表示された。調べてみると、昨日追加したミドルウェアが原因だった。この指定を削除したら、正常に切り替わった。es-ARは、サーバー起動時に切り替わったがエラーが出ていた。(translation.E004) You have provided a value the L_C setting that is not in the LANGUAGES setting.　タイムゾーンをBAに固定した場合、言語は、en-US, ja, esは、正常に切り替わった。後は、es-ARのみ！😊	2021-02-27 20:14:09.033454+00	2021-03-13 16:19:00.218347+00		2020-12-07	#言語設定	0	t	2021-03-01 08:10:56+00
+43	ネットトラブル	ついに年が明けた！昨日からネットが切れていてまだ直らない。（１５：２６）😡\r\nネットが使えないので、机上にてできることをやる。まずLinkedInのF.A.のコースのノートを見て復習。その中の様々な分析の元データは、yfinanceから取得できそう。そこで、各企業コード別に、Info, B/S, I/S, C/Fデータをデータベース化したいと思った。そして、今後入手するデータは、毎日自動追加（または更新）できるようにして、最終的には、プログラムをタイマー起動できれば手間が省ける。\r\nネット回復後、Twitterに登録\r\nERD書いてみた！\r\n![](https://mydatabucket001.s3.amazonaws.com/media_root/markdownx/c43b7661-aabb-450f-8d60-4a0fb719e744.JPG)	2021-02-28 12:10:54.838383+00	2021-03-13 16:33:42.432394+00		2021-01-01	#2021, #net切断, #机上作業, #twitter	0	t	2021-03-01 08:02:48+00
+47	Docker上にDjango環境構築	少し間があいたが、その間は、統計をやっていた。今日から開発に戻り、環境を構築する。\r\nDockerHubに"Django" Docker Official Imageを見つける。これを基にDjangoアプリを開発しよう！と思ったがPython3.4のイメージしかないので、他のHPを見つけてみることにした。3.8で作成したいので\r\n。DockerのdocumentにDjango + PostgreSQLというのがあり、それを参考に作ってみたら3.9でできた。さらに、DBのmigrationを行いsuper userまで作成した。😊	2021-02-28 13:07:38.975302+00	2021-03-13 16:36:13.342105+00		2021-01-20	#Docker, #Django, #PostggreSQL, #Python3.8, #Python3.9	0	t	2021-03-01 07:57:49+00
+54	企業コード取得	この間、ラーメンを作っていたので、進展なし。\r\n東証より１月分の企業コード一覧が出たので、ダウンロード。\r\n早速取り込もうとしたら、admin画面からパスワードエラーで、入れなかった。DBを作り直したので、スーパーユーザーを作成しなければならなかったのを忘れていた。\r\nまた、stockappをリモートでマニュアル起動したら、"port is already in use"というエラーが出た。Docker-compose.ymlでstockappのcommandにrunserverをいれたので、リモート接続すると勝手にサーバーが上がるらしい。これにより指定したポートは使用中となる。サーバーを止めるために、"ps auxw | grep runserver"でidを探し、"kill xxxx(id)"で停止したら、VS Codeが、接続が切れたと言って再接続する。テスト用ポートは別のポートを使うことに。\r\nさらに、時間指定で自動起動するプログラムをテスト。UTCのみサポートだが使えそう。\r\nお休みなさい！	2021-02-28 14:31:16.672561+00	2021-03-13 16:38:26.436125+00		2021-02-08	#企業コード, #runserver port, #Schedule	0	t	2021-03-01 07:50:09+00
+16	yfinanace	寝て起きた！\r\nQiitaさんを覗いてみると、「成功する投資：トレーディングのサイエンス」という記事を発見！この中ではYahoo Financeから各種データを取得していた。EDINETより簡単そうーーーーということで、試してみる。\r\n１．yfinance導入（0.1.55）\r\n２．バグ修正\r\n３．コンソールで遊んでみるー＞PandasDateFrameに直接入るし、早い！\r\nデータは３年、でも最初はこれで！\r\nヤフーファイナンス情報\r\n東証　.t　東京証券取引所（マザーズ、JASDAQ、外国市場を含む）\r\n名証　.n　名古屋証券取引所（セントレックスを含む）\r\n札証　.s　札幌証券取引所（アンビシャスを含む）\r\n福岡　.f　福岡証券取引所（Q-Boadを含む）\r\n外国株に市場コードは無い\r\n分析対象はJASDAQに決定（資金的な問題から）	2021-02-21 15:51:15.68816+00	2021-03-13 15:47:49.440601+00		2020-11-12	#yfinance	0	t	2021-03-01 08:19:31+00
+56	Python Package & Django manage.py	今日は、以前から気になっていた、import文における親子パッケージの指定方法、また、pythonとpython manage.py (shell)でのパッケージの検索方法の違いについて調べた。Google先生に聞いたらよくまとまったHPを教えてくれた。コンテナ内で動かす場合、絶対と相対どちらがいいのだろう？\r\n\r\n問題：historyデータをDBにセットしようとして気づいたこと。\r\nーDjangoからROMを使ってテーブルを作成する時、プライマリーキーは１つしか指定できない。（指定しないとidフィールドを勝手に作る）\r\nー直接SQLでデータをINCERTしようとするとidフィールドは、オートインクリメントしてくれない。（たぶんDjango ROMがやっている）\r\nということで、idを使う／複数フィールドをキーにする、とっちがいいのかなぁー＞オートインクリメントをstockbatchに実装した。これで、idが使える。\r\n\r\nHistoryは、４０８６社 ｘ 一年分で約１００万レコード。JASDAQ２年分で333,566レコード\r\nstart:3:02:17-end:3:21:41 約２０分。全マーケットでは、およそ１２０分かかるだろう。	2021-03-02 18:00:56.438292+00	2021-03-13 16:48:32.810958+00	2021/03/04/2020-12-09.png	2021-02-09	\N	0	t	2021-03-02 18:00:56+00
+59	バックアップ・リカバリ	データの格納方法が決まったので、DBのバックアップとリカバリについて調べた。\r\nPostgreSQLでは、３種類の方法があるらしい。\r\n今度は、Djangoのそれを調べてみる。Djangoでは、\r\nーjsonファイルを出力するそうな（dumpdataコマンド）。\r\nーdjango-dbbackupライブラリを使う方法も\r\nー（.dump ファイル）この方法だと別途メディアファイルのバックアップもできるらしい。（Djangoでは、メディアファイルをDBに格納しないので、これも重要！）でもアプリよりのバックアップの様（論理的）。\r\n当然のことだが、PostgreSQL取れるようなWAL等の実データ以外の情報のバックアップが心配。（DBは、単にデータ部だけではなくログ等の管理部があるので）\r\nーCSVにデータを出力する方法もあった。でも、戻す方法は書いてなかった。「CSVをデータのように読み込むプログラムを作れ！」ということのよう。\r\n結論は、stockapp側からは、Djangoを使いdbbackupライブラリを使用して、バックアップ。stockbatch側からはPostgreSQLのSQLによるダンプを使用してバックアップ。これでどうだぁ！\r\nてすととして、DockerからPostgreSQLを立ち上げ、CLIから"pg_dump postgres > bk_test_20210220"を実行してみた。ー＞エラー無く次のプロンプトが表示されたが、できたのだろうか？（できたのだとしたら、どこに？）＜ーpsql後に実行。\r\n今度は、CLIに直接入力。またもやエラー無く終了。\r\nどこ行った？\r\nファイルが出来た！\r\nどこに？\r\nトップディレクトリ（bin/sh?)\r\nでも、できた！😊	2021-03-02 19:15:29.451048+00	2021-03-13 16:50:11.394832+00		2021-02-20	\N	0	t	2021-03-02 19:15:29+00
+60	統計のお勉強	ここらで、統計学をお勉強。でも、基本的なところが分かっていないので、微分・積分から始める。ジニ係数とローレンツ曲線、不平等さを数値で表す。例では、国勢調査による世帯構成と年収等が出ていたが、株価に当てはめると、企業業績（総売り上げ）と株価の不平等さを業界別や企業規模別に分析すると面白そう。また、ヒストグラムを作成する際の階級幅の決定方法の一つであるスタージェスの公式に対数（log）が出てきたので、その辺をおさらい。次は、分布と標準偏差。そして確率。\r\n疲れた～	2021-03-13 17:02:05.085534+00	2021-03-13 17:02:05.085534+00		2020-10-17	\N	1	t	2021-03-13 17:02:05.085534+00
+17	クラス図	今日はクラス図書いてみた。\r\n![](https://mydatabucket001.s3.amazonaws.com/media_root/markdownx/307e469e-e027-4c15-b3a5-3c7e316df464.JPG)	2021-02-21 16:00:32.103885+00	2021-03-13 16:08:32.72144+00	2021/03/13/class_p.ccd	2020-11-14	#class diagram, #ClickCharts	0	t	2021-03-01 08:19:04+00
+57	キャンドルチャートできた！	１０日間も経っている（前回の書き込みから）！その間に、Historyデータからキャンドルチャートを表示することに成功。\r\n大きく２つの課題をクリア。\r\n１つは、マーケット選択により証券コード（企業コード）の絞り込みを行い、セレクトボックスの候補に表示する。同じページでこの処理を行うため、ajaxという新しい技を使った。\r\n![](https://mydatabucket001.s3.amazonaws.com/media_root/markdownx/346cffd4-8eaf-40c0-af6b-313786469962.jpg)\r\nもう1つは、Mplfinanceのキャンドルチャートをブラウザ上に表示すること。Matpltlibのグラフを表示する例を参考に作成。イメージをsvg化して、それをHTTPレスポンスで送り付けるのだっが、最初、ページの他のオブジェクトと一緒に送ろうとして失敗。他のオブジェクトを送った後、グラフイメージだけ送ったら成功した。\r\n![](https://mydatabucket001.s3.amazonaws.com/media_root/markdownx/7b2d36f1-25dc-43be-bb91-ad7a421716d3.jpg)\r\nちなみに４連休は、作業しないと決めていたので、その間は、プログラムに触らなかった。	2021-03-02 18:15:29.278283+00	2021-03-13 16:49:00.796981+00		2021-02-19	\N	0	t	2021-03-02 18:15:29+00
+58	Django経由のデータアプローチ	今日は、HistoryデータをDjango経由でDBセットする試みをしている。（ちょっと寄り道）Historyオブジェクトをコレクションに格納してstockapp側に送り格納しようと思う。"1788.T"のデータがないらしく、そこでエラーが出ている。\r\nちょっと休憩！\r\nエラーを解決し、stockapp側に渡すオブジェクトを作成した。しかし、どうやって渡そう？\r\n調べたところ、Docker－Compose内では通信可能。しかし、Pythonプログラム間となると、Socket通信等のプログラムが必要。ネットでさらに調べたが、app-db間の事例はたくさん有ったが、app-app間の事例は少なかった。Socketの他に、Queue, mmapというのがあるらしい。ここまで調べてみると、案は２つ考えられる。\r\n案１．オブジェクト（historyのディクショナリ）をDBに置いて、Socket通信で「できたよー！」と知らせる。stockappがDBのオブジェクトを取得してDBに書く。\r\n案２．オブジェクトをシリアライズしてSocket通信でstockappに送り付ける。すると、stockappが、デシリアライズしてDBに書き込む。\r\n![](https://mydatabucket001.s3.amazonaws.com/media_root/markdownx/0e2e8806-ada6-4f86-a1d9-a23ad9110f27.JPG)\r\nしかし、どちらの案もstockbatchから直接書く方法よりも優れているように思えない（開発、プログラム・パフォーマンス共に）。よって、コンテナを分けた以上、stockbatchから直接SQLで更新するのが最良と判断。今のところidのオートインクリメント（作ったし）以外不自由していないので。	2021-03-02 18:17:06.437571+00	2021-03-13 16:49:27.087215+00	2021/03/04/sys_a.ccd	2021-02-19	\N	0	t	2021-03-04 14:54:40+00
+52	システム構成	昨日から、システム構成について悩んでいる。\r\n当初の案は、HTMLからDjango(stockapp) を通してデータ検索、検索用データは、別途Django 外のアプリ(stockbatch)からDBに登録だった。が、以下の考慮点があるため、複数の案が考えられる。\r\n１．DBは、DjangoのO/R mappingにより、すべてmodels.pyによって管理\r\n２．Djangoは、ユニットテストが大変。（テスト用DBを自動コピーする点も含めて）\r\n３．コンテナ間で通信ができる環境\r\n４．運用上照会を止めてデータ構築を可能とする。\r\nすると、\r\n案１ラーメン屋の全部乗せみたいに、stockapp,stockbatch共にDjangoに乗せ、DBを別コンテナにする案\r\nこれは、簡単できそうだが、前提パッケージとかもすべて１つのコンテナに導入されることになり、後からメンテナンスが大変になりそう。\r\n案２案１のyfinanceを別のコンテナにする案\r\nデータアクセスは、すべてDjangoを通して行えるが、yfinanceだけを独立させることによるメリットが乏しい気がする。\r\n案３stockappをDjangoに乗せ、yfinanceとstockbatchを一つのコンテナにする案\r\nデータアクセスが２方法になるのが、デメリットだがデータ更新にはDjangoが介在しないのでテストが楽\r\n案４案３のDBを２つにする案\r\nDBの同期を取ることが課題、DBミラーリング、トリガー、ストアドプロシージャが必要になる。\r\n(-ω-;)ウーンどれにしよう？\r\n![](https://mydatabucket001.s3.amazonaws.com/media_root/markdownx/b4917e60-a900-4f3c-a321-554afb0e056d.JPG)	2021-02-28 14:06:09.607217+00	2021-03-13 16:44:03.127212+00	uploads/2021/03/02/sys.ccd	2021-02-04	#システム構成 #stockapp, #stockbatch, #yfinance, #DB, #HTML, #O/R mapping	0	t	2021-03-01 07:55:02+00
+1	DBを設定して新規一転！	このメッセージからは、ローカルに設定したPostgreSQLに格納される。ということで、データが消える心配もなくブログを使用できる。よかったー\r\n😊	2020-12-30 17:49:17.761095+00	2021-03-13 15:25:46.099709+00		2020-12-30	#blog, #db, #PostgreSQL	4	t	2021-03-01 08:29:10+00
+68	作業報告	VS CodeのProxy設定をoverrideに戻そうと思った。設定を開くとすでに戻っていた。\r\nいつ？？？？？\r\n関係ないけどスマホが勝手にバージョンアップした。\r\nデータソースのYahoo Finance USのデータとIncome照会の内容が合っていないことに気づいた。\r\nそこで、stockbatchのデータマッチングのところを順番からカラム名に変更。\r\nデータ取得　07:11:59 - 08:52:50　1時間41分　3042, 3075, 3490がエラー　Hist：15190件 Income：2560件。\r\nHistoryデータにもおかしいところがあったが、上記の修正で直った。\r\nしかし、Income Statementは、まだおかしい。\r\nyfinanceから取得したデータフレームを逆行列にするのをやめた。\r\n再度テスト。\r\n今、プログラムが終了したが、yfinanceから\r\n変なエラーが返ってきた。\r\n"Error! Type=FATAL: sorry many clients already"\r\nDBを見たら空だーーーーー！😱\r\n一休みしよう！\r\n調べたところPostgreSQLのMax-connection数を超えると出るエラーらしい。（Historyのみの時は出なかった）\r\n状況確認：Select * from pg_stat_activity;\r\nidleを消すには、Select pg_terminate_pid() from pg_stat_activity where pid <> pg_backend_pid and datname = current_database();\r\n次は、FATAL:terminating connection due to administrator commandが出た～！	2021-03-13 18:33:39.598578+00	2021-03-13 18:33:39.598578+00		2021-02-25	\N	0	t	2021-03-13 18:33:39.597577+00
+3	2021最初の投稿	大晦日から元旦にかけて約２４時間インターネットが切れていた。そのため、Movisterのモバイルデータ通信「２GB2日間」を購入８０ペソ。だが、モバイル通信も切れてはいないけどとっても遅くて２日間で２GB使いきれなかった。（残り１．８GB）どちらも詐欺のような話。この世の中は、いいことばかりじゃないことを、新年から思い知らされた。\r\n😠	2021-01-03 19:10:08.370276+00	2021-03-13 15:27:21.487772+00		2021-01-03	#internet, #Movistar, #2021	4	t	2021-03-01 08:28:01+00
+12	株価データの考察	Pythonのチュートリアルが終わったので、今後の開発テーマ（株価データ）をどのように分析するかの考察を行った。ポイントは２つ\r\n・時系列データにおける値の変化に着目して分析する場合、\r\n　ー前日データからの変動を指数化してみる。\r\n　ー当日を中心に前後の日のデータを加味する。つまり３日スパンの移動平均を使ってみる。（セントラル）\r\n・時系列データにおける値の変化を分析する場合、\r\n　－前日データからの変動指数を各々計算し、その分布から（正規分布）上位、下位、特定％を除いたトリム平均を計算してみる。\r\n（なんのこっちゃ？自分で書いておいてよくわからん！ノートを見て書き写しているので・・・）	2021-02-21 14:53:54.650059+00	2021-03-13 15:36:05.325629+00		2020-11-09	#株価データ	6	t	2021-03-01 08:22:42+00
+44	Docker導入！	まず、問題から始まった！\r\nDockerのGetting Startを実行すると、daemonが動いていないエラー。そこで、docker dコマンドを実行すると、コマンドが見つからない。そこで、sudo apt install docker.ioを実行。再度docker dを実行すると「rootから実行しろよ！」と怒られた。コマンドは認識されたらしい。でもまだ、daemonが動かない！\r\nDocker Desktop for Windowsを導入し直し、ついでにUbuntuも20.04 LTSにしてGetting Startをトライー＞動いた！\r\nシステム構成を考え始めた！\r\n![](https://mydatabucket001.s3.amazonaws.com/media_root/markdownx/c32fa547-4ab0-4d6a-aacf-3a66aa218ef7.JPG)	2021-02-28 12:50:25.207981+00	2021-03-13 16:34:36.6894+00	2021/03/04/sys.JPG	2021-01-04	#Docker	0	t	2021-03-01 08:02:28+00
+84	さらに昨日の続き	調べたら、Heorkuの推奨構成を見つけた。\r\n![](https://mydatabucket001.s3.amazonaws.com/media_root/markdownx/82d308ed-0006-46bf-9a9f-ac486bf7beaa.JPG)\r\n[Django] Heroku デプロイ方法 2018年版より\r\nhttps://qiita.com/okoppe8/items/76cdb202eb15aab566d1\r\nこれによるとstaticfileは、WhiteNoiseで管理することになっているので、heroku-djangoを使うとSTATIC_URLが、/static/になるのでは？（プログラムの何処にも設定しているところはないので）\r\nそこで、DB接続に使用しているheroku-djangoを外して、DJ-DATABASE-URLに変更してみる。ー＞成功！！！！！\r\n背景は表示された。\r\n後は、mediaのみ！\r\nブラウザのコンソールに見つからないとエラー。media_rootで探さないといけないのに、mediaになっている。ー＞ローカル環境で、一度設定した本文中のmedia情報を削除して、登録し直してみる。ー＞AWS S3のURLが正しくセットされて、AWS S3にアップロードされた。かしこいーーーーー😊\r\nでも、ローカル環境は、デバッグモードでは、動くのに、通常モードだとエラーが出る。\r\ndjango.core.exceptions ImproperlyConfigued: Set the AWS_ACCESS_KEY\r\n調べたら、.envに設定したAWS_ACCESS_KEY = xxxxxxxxxxの"="の前後にスペースがあるとダメらしい。ー＞直った。	2021-03-14 22:25:58.112843+00	2021-03-14 22:25:58.112843+00		2021-03-12	\N	0	t	2021-03-14 22:25:58.112843+00
+13	Intel Open Vino (Deep-learning)	今日は、IntelさんのDeep-learningソフトを導入しようと思った。（Facebookに宣伝があった）\r\nが、沢山の前提があった。\r\n・Windows Visual Studio導入\r\n・CMake3.18.4 Source, Binary 導入\r\n・Python 3.6.5 (add to your PATH environment variable)導入\r\n・Set the env. variables\r\n・Configure the model optimizer\r\n・Use Verification Scripts to Verify your installation\r\nようやくデモプロ実行。しかし、Cドライブにワークディレクトリが作れずエラー（権限の問題）\r\n使用ユーザーのアクセス権をフルコントロールに変更。念のために一般ユーザーを新しく作成することに（これはキャンセル）。管理者として実行してみたがNG。Batchプログラムのディレクトリ指定をC：からF：に変更したら動いた。C：はWindosシステムが入っているので、通常権限では触れないように設定しているが、管理者権限でもできないのは、なぜ？わからん！管理者でF：に作成されたIntel以下のディレクトリをC：にコピーして実行してみたが、通常コマンドプロンプトからの実行では、キャッシュ内のモデルがBadFileと判定され再度ダウンロードを試行し、Permision Errorで終了した。Administratorコマンドプロンプトから実行してみたが、結果は同じだった。Administratorモードになっていないのかな？ちょっと休憩　。*✧ヾ(｡>ㇸ<｡)ﾉﾞ✧*｡	2021-02-21 15:12:44.04526+00	2021-03-13 15:41:12.999683+00		2020-11-09	#Intel Open Vino, #Deep-learning	3	t	2021-03-01 08:21:57+00
+15	XBRL	東証のHPから企業情報（損益計算書、貸借対照表、キャッシュフロー等）がXBRLでダウンロードできるというのを見つけ、今日はそれにトライ。\r\nまず、HPを読み、ArelleのGitHubからzipをダウンロード。名称を変更し、PyCharm（あっ、既に導入していた）のプロジェクトの下に設置、PyCharmに新規プロジェクト、importXBRLを作成。import_test.pyを作成し、コードをコピー（import文３行）。from Arelleにエラー。プロジェクトとしてArelleを開き、（接続）。すると、importXBRLと同じレベルに表示。そこで、プロジェクトウィンドウ内でArelleをimportXBRL内に移動。この作業は、メモリーを食うらしく"Low Memory"のイベントが発生。そこで他のアプリ（エクスプローラー、オペラ等）を閉じて再実行したらOK。でも、from Arelleのエラーが消えず。from Arelleの部分をクリックしたら”プロジェクトをインポートする”というのが出てきたので実行させたらエラーが消えた。\r\nPyCharmでCntlr.pyを開いたら”Package requirement”が多数出たのでインストールした。ー＞エラーVisual C＋＋が必要lxml3.4.4でも動くみたい。\r\nデータ取得サンプルを動かすとIOエラー。どうやらファイル定義に問題？ー＞まずは手動でEDINETからDLしてみる。わかったことBXRLを取得するのは、PythonのCSVモジュールPandasライブラリを使い、このコードは取得後の読み込み用であった。はっはっは！また、違ったーーーーこれらはコードリストが読み込めるだけ。お目当てのモジュールは、EDINET APIらしいー＞Qiitaさんにサンプルコードがあり、DLできました。\r\n続きサンプルコードが動かないのは、どうやらEDINETタクソノミというものが無いからの様なので、EDINETサイトからDL.ー＞関係なし。\r\n結局、別のサンプルコードで試したら、ものすごーーーーく時間んが掛かって処理が正常に終わった。サンプルコードからzipの中身が見えていないみたい。疲れたーーーーーーー	2021-02-21 15:50:31.324002+00	2021-03-13 15:47:06.685838+00		2020-11-11	#XBRL, #東証	0	t	2021-03-01 08:20:09+00
+32	寝て起きて思いついたこと	AI、そして、現在学んでいるWeb Application、さらに、世の中に提供されているWeb Servicesを連携して、いろいろなオートメーションセンターを構築していく。その集合体をクラウドに形成すれば、日々の業務は、もっと自動化され、人間は、もっと創造力豊かな分野に注力できるのでは？（題して秘密基地計画！）。\r\nということで、Djangoのチュートを早く終わらせよう！チュートに出てくる「競合状態」の解決方法"Avoiding race conditions using f( )"は、後で読む。\r\nようやく入門編チュートが終わった！っと思ったら「次のステップへ」というのが出てきて「入門編の分量は、全体のドキュメントの５％にも満たない」と書いてある。うひゃぁぁぁぁぁ！一体何年かかるの？😱\r\n自分なりに次のステップを’考えた。このまま違うこと（デプロイ等）を初めてしまうと、折角やった事を忘れるだけなので、Djangoでブログを作ってみようと思います。（このブログ）	2021-02-28 11:11:47.580633+00	2021-03-13 16:24:49.04975+00		2020-12-08	#思いつき, #オートメーションセンター, #Django, #blog app	5	t	2021-03-01 08:10:35+00
+40	Azure見捨てる！	数日前からAzureの無料試用版が、VS Codeで認識されなくなりVS2019でも試してみたが、解決せず。また、Portalからのデプロイは失敗続きで、この辺りでAzureに見切りを付けようと思う。（どうせ１月８日までしか、無料では使えないので）\r\nそこで、これからの方針を考えた。今まで学習してきたことを利用して、株価アプリ（yfinane, matplotlib, scikit-learn等の学習用に作ったアプリ）をDjangoにのせて。バックエンドにPostgreSQLを設置したアプリに作り上げようと思う。そのアプリをDockerコンテナに格納すればどこかのクラウド環境にデプロイ可能となるだろう。\r\nとりあえず、今日からは、\r\n１．PostgreSQL導入（ローカル環境）\r\n２．Docker導入\r\n３．フロントエンドをDjango化\r\nという手順で進める。\r\nPostgreSQL導入は、完了！	2021-02-28 11:57:32.342202+00	2021-03-13 16:32:28.887937+00		2020-12-29	#株価アプリ, #Docker	0	t	2021-03-01 08:03:57+00
+21	Tickersの内容	１．Tickersは、Tickerオブジェクトのコレクション。データを取得する際は、企業コード（9999.T）を渡してまずTickerオブジェクトを取得する。\r\n２．取得したTickerオブジェクトを渡して、欲しいデータを取得する。しかし、この時欲しいか欲しくないかに関わらず、指定企業のすべてのデータを取ってきている。そこから欲しいデータを指示すると渡してくれる。\r\nデータの種類は、actions, balance_sheet, calendar, cashflow, dividends(Pandas.Series), earnings, financials, history, info(dict), major_holders, options(str), quartery_balance_sheet, quartery_cashflow, quartery_earnings, quartery_financials, splits(Pandas.Series)　　型の指定のないものは全てPandas.DataFrame\r\n３．企業コードは、symbolに入っている。\r\n４．Historyは、tickerに持っておらず、プログラムで合成しているらしい。\r\n5．シリアライズ時にTickerクラスは、そのままではDumpできないので、ディクショナリに企業コードをキーにして格納した。\r\nこれで、企業毎のデータ分析はできるが、マーケット別や業種別、企業規模別の分析のためには、\r\n科目／企業／年月日のデータが欲しくなる。ネットで見つけてPandasのSeriesやDataFrameで使えるix, iloc, loc等の関数について勉強したが、２次元までの配列なので、追加に関しては、List等に入れることになる。\r\nー＞ネットで、Python xrayなるものを発見！これは多次元配列が扱えるらしい！早速、xrayを導入、配列のモデルを考える。ー＞xrayは、xarrayに名前が変更されていた。\r\nまず、xarrayオブジェクトが、シリアライズできるか試してみる。Infoの型は、dictなので、扱いずらいので、DataFrameに変換してxarrayへ\r\nxarrayオブジェクトは、問題無くシリアライズされたので、CollectionWriteクラスに組み込み、分析作業のレスポンスを確保することにする（とりあえず）。ー＞やめたー＞Read側（デシリアライズ後）に実装する。\r\n理由は、B/S, P/Lは、会社によって決算日が違うので、同じインデックスにするとデータが空の部分が多く出来てしまう。よって、後で変更する場合、Read側の方が影響が少ない。xarrayに取り込むデータは、先に平均値（または合計値）を計算し日付を次元のキーから外すことにより決算日の問題を回避することにする。\r\n（今日は、沢山働いた！）(-_-;)	2021-02-27 18:59:16.462636+00	2021-03-13 17:06:29.043193+00		2020-11-24	#yfinance, #Ticker, #財務データ, #xarray, #決算日問題	0	t	2021-03-01 08:16:09+00
+61	テストアプリ開発完了！	Pythonやその他のパッケージスタディ用のてすとアプリが大体できた。\r\nIDEは、PyCarm。ローカル環境で、PyQt5のGUIを使い、Matplotlib, Mplfinanceのグラフ表示、またScikit-Learnの分析を試してみた。DBは使わずに、データをシリアライズして、ローカルディスクに保管するようにした。\r\nクラス図を上げておこうっと！\r\n![](https://mydatabucket001.s3.amazonaws.com/media_root/markdownx/eb5e57fb-d070-4a41-98a0-280449904420.JPG)	2021-03-13 17:15:40.444016+00	2021-03-13 17:15:40.444016+00		2020-12-02	\N	0	t	2021-03-13 17:15:40.444016+00
+62	Financial Accountingのコース	LinkedinのLearningコースにFinancial Accounting 1と2というのを見つけた。1ヶ月間の無料お試しということで、受けてみた。１は、財務諸表等の読み方で簿記の基本。２は、財務分析という感じ。何とか期間内に終わらせることができた。テストにも合格！😊	2021-03-13 17:24:35.878743+00	2021-03-13 17:24:35.878743+00		2020-09-07	\N	2	t	2021-03-13 17:24:35.877745+00
+63	新しいボールペンを入手！	今日は、History照会を綺麗にして、Income Statementデータの取り込みに着手。\r\nここで問題発生！\r\nyfinanceには、バグがあり、そのままでは、財務諸表データが読み込めない。（直せバグ！😠）\r\nとなるとrequirement.txtにyfinanceをのせてpip installすると毎回バグ付きのプログラムが導入されてしまう。\r\nということで、yfinanceを自分のGithubにクローンして、バグ修正版を作り、そこから導入するようにしないと、あかん！\r\nだが、バグの場所は、一か所なので、pip install後にバグ修正版(base.py)を、Dockerfile内にCopyコマンドで記述して、コピーすることにした。\r\nそのためには、yfinanceの導入先（コンテナ内）を見つける必要がある。\r\n数時間経過\r\nようやく見つけた～！\r\n("python -m pip show yfinance")の呪文で、/USR/local/lib/python3.8/site-packages/の下にあった～	2021-03-13 17:35:52.084486+00	2021-03-13 17:35:52.084486+00		2021-02-22	\N	0	t	2021-03-13 17:35:52.084486+00
+64	vmmemの問題	あまりにPCの動きが遅くなったので、プロセスをチェックしたら、vmmemというプロセスが3.9GB（８GB中）も使っていた。Google先生に訊いてみたら、WSL2のバグらしい（直せバグ！😠）。\r\n暫定的にユーザー／ユーザー名に.wsconfigファイルを作り、Max２GBに設定した。これで、直るかなぁ？	2021-03-13 17:41:18.057174+00	2021-03-13 17:41:18.058138+00		2021-02-22	\N	0	t	2021-03-13 17:41:18.057174+00
+65	DevContainreで問題発生！	stockbatchがDevContainreで上がらなくなった。（昨日からおかしかった）\r\n状況は、DevContainreを上げると上がるが、Pylanceが導入されていない。と怒られ、intellicenceでエラー。Zip colapsedと言ってリモート接続が切れてしまう。\r\nDevContainreが上がったら、すぐにPylanceをインストール。その後collection.pyを開いたらOKだった。devcontainer.jsonにPylanceを指定しているのにインストールされないのはおかしい！\r\nようやっとcollection.pyのテストが出来た。\r\n15:02:56 - 17:15:32 History：14119件　Income：2657件で２時間13分は、かかりすぎ～😠\r\nHistoryデータのみ：333566件で20分\r\nHistory14119件＋Income：2657件で2時間13分　どうしてだろう？APIプログラムの品質の問題か？\r\nもう1回テスト。\r\nStart 17:56:46 - 18:11:25 15分\r\nHist：14086件＋Income：2748件\r\nネットの状況でこんなに変わるのか？\r\n因みにエラー企業コード１２件	2021-03-13 17:55:30.646684+00	2021-03-13 17:55:30.646684+00		2021-02-23	\N	0	t	2021-03-13 17:55:30.645685+00
+66	昨日と同じエラー	昨日のPylanceのエラーが今日も出た～\r\n調べたところ、Proxyに関するVSCodeのバグらしい（直せよバグ！😠3回目）\r\n設定からプロキシをOffにしてみたー＞リモート環境にPylanceがインストールされないので、リモートで開発できない。ローカルからPylanceをアンインストール後再インストールすると.vsixをローカルから読み込めるようになり、ローカルにダウンロードしたpylance.vsixを指定するとインストールできた。	2021-03-13 18:01:58.404241+00	2021-03-13 18:01:58.404241+00		2021-02-24	\N	0	t	2021-03-13 18:01:58.404241+00
+67	Income Statementの照会ができた～！	stockappをリモート環境でデバッグしたら固まった！\r\nリモート接続が切れたので、再接続しようとしたら、Dockerの処理が途中で止まった。\r\nタスクマネージャーで見たら、メモリ９X％、ディスク１００％と表示された。でもエクスプローラーで見ると、どのドライブも余裕があった。\r\nしばらく待ったが、動かないので、VSCを終わらせ、PC再起動。大丈夫かなぁ\r\nPCは立ち上がったが、vmmemがメモリを消費（1.8GBくらい）。そこで、例の.wslconfigのメモリ＝2GBから1.5GBに変更。さらにPC再起動。vmmemは、増加中、メモリは、６１％、ディスクは相変わらず１００％、これはIO使用率のようだ。vmmemは、1.828GB、メモリ７６％。\r\nVSCを上げてみる。前回リモート接続中だったので（覚えてなくていいのに）、起動時に自動でリモート接続にいった。今回は、正しく接続！\r\nデバッグモードでサーバーを起動。\r\nそして・・・\r\nIncome Statementの照会が完成した！😊\r\n![](https://mydatabucket001.s3.amazonaws.com/media_root/markdownx/606e85e0-a878-4774-a0e0-43e9d2d3b85c.jpg)	2021-03-13 18:14:13.588461+00	2021-03-13 18:14:13.588461+00		2021-02-24	\N	0	t	2021-03-13 18:14:13.588461+00
+69	昨日の続き	さて、今日はもう一度、落ち着いてPostggreSQLにチャレンジ！\r\nと思ったのに、\r\nDockerが上がらないよ～\r\nPC再起動して、VSC上げて、リモートオープン。\r\nようやっと今日の作業が始められる。（ここまで約一時間のロス）\r\nまず、dbaccessプログラムの単体テストが出来るようにmain()を書いた。テストしてみたところ、バグが見つかった。これを修正したところ、正常にDBに書き込まれるようになった。どうやら、PostgreSQLのSQLカーソルを数レコード毎にオープンしていた。その中でエラーが起こると、カーソルが正常なアイドル状態に戻れず、スタックしていくらしい。そのスタックが限界に到達するとFATALエラーとなるらしい。今回は、私のプログラムミス（すみません）。\r\nしかし、当初の問題（表示される数値が合わない）は、解決していない。\r\n調べてみると、DBに書き込まれた数値が既におかしい（照会側ではなく）。どうやらINCERT文でずれて入っている様子。そこで、INCERT文にフィールド名を指定してみたら直った！！！！！\r\n順番は信用ならぬ！！\r\n\r\nここでノートが替わった。\r\n\r\nデータ取得テストの結果\r\nstart 見るの忘れた！end 20:13:40　2時間半くらい。\r\nHistory：14832件　Income：2748件\r\nエラー１１件	2021-03-13 18:48:23.973193+00	2021-03-13 18:48:23.973193+00		2021-02-26	\N	0	t	2021-03-13 18:48:23.972187+00
+70	ブログの更新	昨日、今日と開発ブログを更新（土日は、アプリ開発を休むことに。結構ストレスが溜まるので）。\r\n本文TextFieldの改行が反映されないので、HTMLを修正（linebreaksbr）。\r\n背景に写真を入れた。Bootstrapでタイトル、本文の位置を調整。\r\n結局プログラムいじってるわけです。	2021-03-13 18:54:43.044265+00	2021-03-13 18:54:43.044265+00		2021-02-28	\N	0	t	2021-03-13 18:54:43.044265+00
+71	ブログアプリを続ける	ブログアプリをいじっていたので、少し続けてみよう。\r\nカテゴリーやらを追加したので、migrationしたいけど、入力したデータが消えるのが怖いので、バックアップを使ってみる。\r\n今回は、データが対象なので、Djangoのdbbackupを使ってみる。\r\nまず、インストール、3.3.0が入った。\r\nあっ、間違ってローカルに入れてしまった。\r\n仮想環境に入れなおす。\r\npython manage.py dbbackupでバックアップが取れた！\r\n\r\nブログの機能アップをしていたら、VSCがハングった！😱	2021-03-13 19:00:33.505057+00	2021-03-13 19:00:33.505057+00		2021-03-01	\N	0	t	2021-03-13 19:00:33.504073+00
+72	Markdownx	ブログにいろいろな機能を追加してきたが、どうしても本文にイメージを挿入したいので、調べたらMarkdownxなるものを発見。\r\n手順は、\r\n１，pip install django-markdownx\r\n２，諸々修正　setting.py urls.py models.py admin.py templates\r\n３，最後のテンプレートの中{{ blog.formatted_markdown | safe }}では、models.pyのdef formatted_markdownが呼ばれる。そこで、この関数は、引数（self）で全フィールドを持っていくが、返す時は、フォーマットするフィールド（この場合Text）を渡すようにする。\r\nこれで、表示したら、Text内の改行が消えた（以前追加したlinebreaksbrを消したため）。\r\nそこで、{{ blog.formatted_markdown | safe |linebreaksbr }}にしたら文章の最初に<p>、最後に</p>のタグが表示された。\r\n調べてみたら、Markdownxの拡張機能に、nl2br（改行）というのがあったので、セットしてlinebreaksbrを消してみたら、なおった。最終的に{{ blog.formatted_markdown | safe }}に落ち着いた。	2021-03-13 19:15:11.195172+00	2021-03-13 19:20:11.201619+00		2021-03-02	\N	0	t	2021-03-13 19:15:11+00
+73	Adminが開けない！	今日ブログアプリの/adminが開かなくなった。\r\n（前にもindexではないページからadminに入ろうとしたらエラーになったことはあったが、ついにどこからも入れなくなった）\r\nエラーは写真に撮った。\r\n![](https://mydatabucket001.s3.amazonaws.com/media_root/markdownx/545090fd-0150-4dc5-bcf7-bb3cb949226a.jpg)\r\n原因は、adminのテンプレートをカスタマイズすることにあるらしい。ルート上のカスタマイズ用フォルダーtemplates/adminを名前変更したら解消した。\r\nなんだこれ？	2021-03-13 19:21:00.923671+00	2021-03-13 19:32:18.132384+00		2021-03-03	\N	0	t	2021-03-13 19:32:18.132384+00
+74	ブログアプリのバグ	カテゴリやタグの絞り込みで一覧表示されると「下書き」が「投稿がありません」と表示されるバグ。「下書き」は表示しないように修正（views.py）。下書きは下書きだから！	2021-03-13 19:35:40.049969+00	2021-03-13 19:35:40.049969+00		2021-03-04	\N	0	t	2021-03-13 19:35:40.04896+00
+75	問題再発！	adminが、また開けなくなった。さくじつの回復手順を実行したが、今度は開いてくれない。\r\n色々調べてみた結果、ブラウザに"127.0.0.1:8000/static"と入力するとF:/Django/<appname>/uploads/staticとuploads（メディア用）が入っていた。これを修正するため、いろいろと試したところ、urls.pyに追加したurlpatterns += static(setting.MEDIA_URL, document_root=setting.MEDIA_ROOT)（MEDIA_ROOTにはuploadsが入っている）が原因と判明。これをコメントアウトしたら、adminが開いた。（要するに静的ファイルが見つからずエラーとなっていた）\r\nただ、これを外すと取り込んだイメージが見られなくなった（予想通り）\r\nそこで、staticとmediaを整理した。\r\n\r\nuploadsは消して、static_collectedの下に、static_rootとmedia_rootを作成。\r\n\r\n次に環境変数について勉強した。\r\npip install django-environ\r\n設定を完了するのに結構時間が掛かった。\r\nsettings/__init__.pyを変更。\r\nALLOWED_HOSTSにlocalhostを設定しても認識してくれない。とりあえず['*']で逃げた！	2021-03-13 19:49:46.657691+00	2021-03-13 19:49:46.657691+00		2021-03-04	\N	0	t	2021-03-13 19:49:46.657691+00
+76	無料クラウドアプリケーションプラットフォーム	無料クラウドアプリケーションプラットフォームを探してみた。\r\nHeroku, AWS, Google Cloud, IBM Cloud, Oracle Cloud, MongoDB Atlas, Cloudflare, Google App Engine, Fujitsu Cloud Service, Alibaba Cloud, App Cloud(Sales force), Open Shift Online (Red Hat)等々。\r\nここで、日本語変換がおかしくなった（VS）。バックスペースが使えない。変換もできない。再起動\r\n\r\nDBがPostgreSQLということもあり、Herokuに無料アカウントを作成した。	2021-03-13 19:57:31.219861+00	2021-03-13 19:57:31.219861+00		2021-03-05	\N	0	t	2021-03-13 19:57:31.219861+00
+77	早速デプロイ	ブログアプリはGitHubにすでに入っていたので、そこからHerokuにデプロイ。\r\nアプリ作成：heroku create\r\nデプロイ：git push heroku main\r\nここでエラー　error:src refspec main does not match any \r\nGitHubのタグはmainではなくmasterなので、git push keroku masterで実行\r\nでも今度は違うエラー\r\nModuleNot Found Error '<project name>.settings.local' Error whitch running '$python manage.py collectstatic --noinput'\r\nsetting.local.pyは、GitHubに入っていなかった。そこで、Add Fileで追加して、git pull、それからgit push heroku master\r\nまたエラー、psycopg2をrqiurements.txtに入れてなかった。\r\n追加してデプロイ。\r\n完了！\r\nでも動かない。（そう簡単にはいかない）\r\nアプリがwebと認識されていない。\r\n調べたらProcfileと言うのが必要とのことで追加。\r\nログを見るとgunicornが見つからないと言っている。 rqiurements.txtに追加。それだけでは直らなかったので、localにpip install。そして、pip freeze > requirements.txt。\r\nもっと設定が必要なのかと思いHPに載っていたサンプルアプリを調査。\r\nーProfile.windows\r\nーapp.json\r\nーruntime.txt\r\nを見つけて追加。\r\ngitのreadmeにheroku run python manage.py migrateを見つけた。そこに、dbreloadを使えば・・・\r\npython manage.py dbrestore -i <backup file name>.psql\r\n実行キー押したけど・・・5時37分ごろ\r\n実行されてなかったーーーーーー！\r\nもう一度押した。\r\nエラーが出た。migrateしてからかも？\r\nmigrateは、うっまくいった。\r\nもう一度、今度は、python manage.py dbrestore -i ファイル名を指定しないで実行。最後のバックアップを探してリストアに入ったが、blogs.blog.pkeyがDropできないと怒られた。理由は、public.blogs_contentimageで使ってるから。Drop・・・CASCADEにしろとのお達し。models.pyの内容を変更。\r\n再実行。\r\nでもダメ。ローカルで試すとリストアされるーーーーーー。\r\nバックアップのpsqlファイルのDrop Constraint blogs_blog_pkeyを見つけた（64行目）。CASCADEを付けてみた。ー＞違う\r\nエラーが出た。extension "adminpack" does not exist.\r\n今度は、128行目 Create extensionの後に、adminpackを入れてみた。ー＞変わらず\r\nHeroku CLIから割り当てのDB（PostgreSQL）の情報が見られる\r\nコマンド：heroku pg:credentials:url --app <app name>\r\nコマンド：heroku pg:psqlでDBに接続。Create Extension adminpackを実行したところ、「Superuserでないと実行できないよー」と言われた。\r\nということは、adminpackについては、psqlでいじれない。そこで、DROP EXTENSION adminpackとCREATE EXTENSION ... COMMENT on EXTENSIONをコメントアウト。\r\n実行したら、Error：must be member of role "postgres"だって。\r\nRoleの問題。このロールは、スーパーユーザーしか与えられないので、この方法はここまで。\r\n現状復帰\r\nmodels.pyのCASCADEをPROTECTに戻す。	2021-03-13 20:38:46.388307+00	2021-03-13 20:38:46.388307+00		2021-03-05	\N	0	t	2021-03-13 20:38:46.388307+00
+85	ブログアプリ完成！	ブログアプリはほぼ完成した。\r\n後は、HTTPSの設定をして。テストアプリ名（URL）を本番用にして、ブログ内容を修正・追加。これで運用モードになる。\r\nそこで、まず、HTTPSをテストー＞問題ない。\r\n次は、データバックアップ（Herokuで）ー＞マニュアルバックアップ（タダなので）ー＞OK！\r\nテスト用アプリを削除。\r\n本番用アプリ作成、デプロイー＞エラー\r\nlocal.py not found（見つけなくていいんだけど・・・）\r\nアプリを消したら環境変数も消えていた！\r\nとりあえず設定。（ENV_NAME, AWS_ACCESS_KEY, AWS_SECRET_ACCESS_KEY, WEBSITE_HOSTNAME, あっ、あとDISABLE_COLLECTSTATIC）\r\nテストアプリ消したらバックアップも消えちゃったぁ～😢	2021-03-14 22:35:54.231855+00	2021-03-14 22:35:54.231855+00		2021-03-13	\N	0	t	2021-03-14 22:35:54.231855+00
+78	データ移行	クラウドにアプリが入りデータベース上にテーブルができたので、ローカルのデータを移行しようと考えた。\r\n昨日dbbackupは、使えないことが分かった。\r\n今日は、別の方法を試してみる。\r\n1、pg:pushを使う\r\nheroku pg:reset DATABASE_URL --app <app name>\r\nPGUSER=<user name> heroku pg:push <local DB> DATABASE_URL --app <app name>\r\nDATABASE_URLは、heroku pg:infoで分かる。\r\nでも説明にある形式ではない。\r\nappは、heroku infoで。\r\npg:pushを試したが、ローカルＤＢのユーザ名がmicrosoftのユーザー名（ユーザー/<user name>と一緒）\r\nそこで、PGUSER=<user name>を入れたが、"PGUSER"は認識できないと怒られた。嘘つき～！！\r\nローカルのPostgreSQLにロール（MS User）を追加した。\r\nalter role <user name> with creatual superuserを実行したところ、encodingがUTF8とWIN1252で違うと怒られた。\r\n\\encoding UTF8を実行。\r\n今度は、creaturalのところでエラー、でもメッセージは文字化けして読めない。そこでcreaturalを削除したら何とか出来た。\r\nこれでPostgreSQLに<ms user>というSuperuserができたので'PGUSER'を指定せずに実行できる。\r\nいったーーーーーーー！！\r\nheroku open\r\nまたエラーだ！\r\nデータ無の時は、表示はされたのに。adminを試したら、ユーザーエラー。Superuserが出来ていない。（authもコピーしたはずなのに）\r\nファイルの中身を確認したら、すべて何も入っていないーーー😢	2021-03-13 20:59:00.187822+00	2021-03-13 20:59:00.187822+00		2021-03-06	\N	0	t	2021-03-13 20:59:00.187822+00
+79	データ移行（続き）	昨日の続き。\r\nデータが入らない原因として、「ローカルDBからデータが取得できないのではないか」という推論を立て、調査する。VSCでは、仮想環境を立ち上げてDBにアクセスしている。でも、DBはlocalhostで接続している。この辺りをもう一度明確にしようと思い、pgAdmin4（PostgreSQLのクライアント）を立ち上げた。しかし、いつまで経ってもロード中。Google先生に訊いてみた。レジストリを修正するように言われた。\r\n\\HKEY_CLASSES_ROOT\\.js\\Content TypeのContent Typeをtext/plainからtext/javascriptに変更。\r\nPC再起動pgAdminを実行。ー＞The pgAdmin 4 Server could not be contacted.だってー！\r\nサービスを確認後（postgresql-x64-13-PostgreSQL Server 13は、実行中）、もう一度起動。今度は、来たーーーーーー！\r\nパスワードを設定。\r\n左のServers（１）をドリルダウンPostgreSQL 13のRole 'postgres'のパスワードを入力ー＞開いた！\r\n確認したところlocalhost：5432で動いていた。\r\nHeorkuにログイン。pg:resetとpg:pushを実行。pgAdminを見るとDBsessions 1（未使用時は0だったので）繋がっているようす。\r\nということで、推論は否定。\r\nCLIの表示、pg-restore:error:unrecognized data bloc type (0) while searching archive events. js:287\r\nthrow er; //Unhandled 'error' event...\r\n![](https://mydatabucket001.s3.amazonaws.com/media_root/markdownx/12a93fd7-a621-4e6a-82f4-81355c68cec5.jpg)\r\nこのエラーについてGoogle先生に訊いてみたら、\r\n1、ローカルとHerokuのPostgreSQLのバージョンが違うのでは？\r\nローカル：V13.1　Heroku：v13.2　念のためローカルをv13.2に上げた（アップグレードしてもデータは残っていた。）\r\n2、ファイルサイズが大きすぎる？\r\n9.29MB　問題無し\r\n3、メモリー不足？\r\n利用可能2.6GB　問題無し\r\n気づいたこと、エラーが起こる場所は、public.auth-group、そこでDjangoの認証と権限について学習し、ユーザー、ユーザーグループを作成してみた。auth_xxxのテーブルにデータが入った。もう一度pg:pushー＞結果は同じエラー\r\nそろそろこの方法も諦める。\r\n次にDumpを作成し、Amazon S3を利用する方法だが、Amazon S3が有料なので（この時点では１２か月無料で使えることを知らなかった）、最後に検討する。\r\nそうすると次は、psqlからインポート。これがCSVにしてインポートする方法。よく読んでみると、テーブル毎にコピーし、その後インデックスをマニュアルで張らなければならない。これは、量的に無理。\r\n結果Amazon S3をを検討することに。調べてみたら１２か月は無料で使えるらしい。😊\r\n早速AWSユーザー登録（まずはルートユーザー）ー＞完了\r\nローカルDBでダンプを作成。\r\nPGPASSWORD=mypassword pg_dump -Fc --no-acl --no-owner -h localhost -U myuser mydb > mydb.dump\r\nAmazon S3にバケットを作成、ダンプをコピー。\r\nサイン済みURLを取得。\r\naws s3 presign s3://your-bucket-address/your-object\r\nHerokuリストア。\r\nheroku pg:backups:restore '<SIGNED URL>' DATABASE_URL\r\nー＞エラーCould not initialize transfer\r\n調べたら、AWSでアクセスキーを作成して、Herokuにセットしないといけないらしい。ー＞エラー\r\nバケットをカルフォルニアからバージニアに作り直す。でも、エラー\r\nHerokuさんのマニュアルをよく読んだら、サイン済みURLは、”　”（ダブルクォーテーションで囲まないとダメ（Windowsクライアントの場合）ということで、原因が判明！\r\nようやっとデータが移行できたーーーーーー！😊	2021-03-14 19:21:32.055174+00	2021-03-14 19:21:32.055174+00		2021-03-07	\N	0	t	2021-03-14 19:21:32.055174+00
+80	ブログアプリ調整	Djangoの設定で、DEBUG=Tureで、デプロイしてしまったので、アプリを再作成し、デプロイしたら、折角移行したデータが消えた。😱\r\n移行後Herokuで修正したデータがぁ～😢\r\nということで、一応データを入れなおして、調整を終わらせてから、データの整備をすることにした。\r\nこんなことをしていたら、\r\nなんと・・・\r\nGitHubが、大変なことにーーーー！\r\nAzureのworkflowを消すのを忘れていたら、いままでの変更をAzureに更新しようとしていた！（もう、Azure使えないから無理なんだよ～）\r\nと思ったら、AzureだけでなくテストしてみたCircleCiもだぁ😱😱\r\nこのせいかGitとVSCのコンビネーションがおかしくなった。VSCで更新したファイルが変更されていないようす。GitHubで対象ファイルを削除して、ローカルからプッシュしようとしたら、同時に（いや時間的には一瞬早く）ローカルへのプル（ファイル削除の情報）が行われ、ローカルのっファイルが消失！\r\nこれは、怖い！\r\nGitHubのworkflowのエラーすべてキレイにして、VSCからセッティングファイルの内容を変更して、リモートへプッシュ。その後、Herokuにデプロイしてみたが、変更が反映されていない。（バグじゃね？）Heroku上のセッティングファイルを消してもう一度デプロイしてみる。（その前に、セッティングファイルがルート上にあったので、これも削除）\r\nC：のGitの中は、更新されているのにHerokuサーバーの中は、置き換わらない。さらにまた、ルート上にセッティングファイルが現れる。\r\nもう、頭の中っが真っ白（ぶっ壊れたーー）😱😱😱\r\nこれは明らかにGitの問題と仮定し、ローカルのGitを初期化してみた。\r\nC:のアプリをGitHubからクローンし直した。ー＞変わらず。\r\nHerokuのアプリをすべて削除してやり直した。ー＞でも、ダメ。しつこいぞ、Gitの亡霊！！！！！\r\n水を飲んで、落ち着いて\r\nローカルのセッティングファイルを見たら、中身が２度書きされていた。（1度目の方を修正したので、２度目の設定で、元に戻るという現象。\r\nたぶんGitHubでセッティングファイルを削除したときに、マージをクリックしてしまったようだ（私のミス・・・）😢\r\nこの2度書きを直してようやく脱出成功！\r\n\r\nデータは、ローカルで作ることに。また、デプロイし直すかもしれないし。\r\n\r\n私のブログアプリ開発環境\r\n![git](https://mydatabucket001.s3.amazonaws.com/media_root/markdownx/eafb032e-4893-4108-87e3-fe1532e78d28.JPG)	2021-03-14 20:00:11.782538+00	2021-03-14 20:00:11.782538+00	2021/03/14/git.ccd	2021-03-08	\N	0	t	2021-03-14 20:00:10.745218+00
+81	デプロイ調整	今日は、デプロイ前にチェックできるオマジナイ"python manage.py check --deploy"をやってみた（すでにデプロイしてしまったが）。\r\nすると８件の警告が出てきた。\r\nそこで、settingsをlocalとproductionに分け（既に分けていたが、リモートもlocalをつかっていたので）、ちゃんと設定することにした。\r\nlocal.pyは、設定、チェックOK！\r\nproduction.pyは、環境変数を読んでいるので、変数をリストアップ\r\nーSECRET_KEY\r\nーWEBSITE_HOSTNEME\r\nーENV_NAME\r\nーDJANGO-SETTING-MODULE（これは、デプロイ時に必要らしく、これがないとcollectistaticがコケル）\r\nそこで、ENV_NAMEを使ってsettingsの情報をlocalとproductionで切り替えるようにmanage.pyにプログラム。ところが、ローカルもリモートも動かなくなった。\r\nとりあえずローカルから調べる。ターミナルに、code400, message Bad request version(....) You`re accessing the development server over HTTPS, but it only supports HTTPというメッセージが表示。\r\nGoogle先生に訊いてみると、「Google Chromeの履歴を消せ！」ということなので、消したら直った。アドレスバーにlocalhostを入れると自動的にhttps://になっていた。履歴を消したら、http://になった。Django開発用サーバーは、HTTPしかサポートしていない。でも、デプロイチェックで「SECUREにしろ！」という。なんと理不尽な！\r\nブログアプリは、それほど高いセキュリティはいらないのでそのままHTTPで設定。\r\n次は、リモート。\r\nGoogle先生に訊いたところsettingsに\r\nimport django_heroku\r\ndjango_heroku.settings(locals())\r\nを入れろということなので、入れてみたけど変わらなかった。元々はENV_NAMEでsettingsを分けたことによる問題なので、その辺から調べる。\r\nHerokuでは、add-oneによってPostgreSQLを指定するので、settingsからDATABASESの記述を削除してみた。ー＞デプロイは成功した。アプリも動いた。しかし、staticデータが読み込まれない。\r\napp\\static_collectedにデータは、入っている。\r\nログを確認したところ、production envを読んだ後、local envを読んでいる。そこで、DJANGO_READ_ENV_FILE（これは、.envファイルを読むかどうかのフラグで、ローカルの場合のみ読むように設定）が無いと怒っている（Herokuさんが）。\r\nlocalは、.gitignoreに入れることにする。ー＞止めた。\r\nmanage.py, settings.__initt__.py,asgi.py, wagi.pyを修正、ENV_NAME変数でハンドリング。ー＞localは、使われなくなった。\r\nでも、Server Error (500)が出たーーーー\r\nproduction.pyに、django_heroku.settings(locals())を追加。ー＞背景（static）が表示された！！！！！\r\n多分これが、PostgreSQLに接続してくれる。\r\nでも、media（本文中のイメージ）が、表示されない。\r\nこちらの原因は、markdownxか？\r\n調べてみると、そうではなく、どうやらHerokuでは、「mediaファイルは、ASW S3に置いておけ」と言っている。「アプリケーションのslugに含まれないすべてのファイルが失われる。」と書いてある。	2021-03-14 20:48:23.198312+00	2021-03-14 20:48:23.198312+00		2021-03-09	\N	0	t	2021-03-14 20:48:23.198312+00
+82	media情報の表示の問題	mediaが表示されない理由は、urls.pyの設定がDEBUG=Tureだからと推測。\r\nurlpatterns += staticfiles_urlpatterns()\r\n    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)\r\nこれが、productionでは、実行されない。\r\nそこで、productionでは、AWS S3又は、WhiteNoiseを使うらしい。\r\nでも、その前にGitHubに上げているセキュリティ情報を消すことにする。\r\n.env, loacl.py, sqlite.dbは、消した。\r\nそれでは、AWS S3から試そうー＞調べたら、WhiteNoiseの方が簡単そうなので、こちらからー＞設定はできた。ローカルではちゃんと動いた。でも、リモートは、ダメ。😢\r\nWhiteNoiseのHPのAdditional Noteに「mediafilesは、アプリと同じ場所に置くのは適切ではないので、それをサーブするのは、WhiteNoiseには向いていない」と書いてあった。\r\nがっくし😞AWS S3をリコメンドされてしまった。早く言って😠\r\n気を取り直して。\r\nAWS S3にIAMユーザーを作成。\r\nAWS CORSを設定。\r\nDjangoプロジェクトにboto3, django-strageをインストール。\r\nここで、エラー発生。\r\n![](https://mydatabucket001.s3.amazonaws.com/media_root/markdownx/e469ab40-c060-4aff-92d7-e55a472d036a.jpg)\r\nでも、導入できてるみたいだから無視！\r\n設定を終わらせてpython manage.py collectstatic実行！\r\nエラー発生！「モジュールawsがみつからない。」と怒られた。\r\n調べてみると、sys.pathに検索ディレクトリを追加すればいいらしいので、追加してみたら、awsが\\x07wsになってしまう。これは、コードの問題のよう。\r\n![](https://mydatabucket001.s3.amazonaws.com/media_root/markdownx/a7efc27b-b9dd-46ec-b413-d7f181e42a7b.jpg)\r\n今日は、ここまで！	2021-03-14 21:19:48.223834+00	2021-03-14 21:19:48.223834+00		2021-03-10	\N	0	t	2021-03-14 21:19:48.222835+00
+83	昨日の続き	設定ー＞時間と地域ー＞地域ー＞システムロケールの変更で、\r\nベータ：ワールドワイド言語サポートでUTF-８を使用にチェックを入れてみる。\r\nPC再起動ー＞変わらず\r\nさらに調べてみると、ASCIIのエスケープ文字として\\a（16進では、\\x07）意味は、警告音を鳴らす（警告されていたらしい）を見つけた。\r\n\\awsを\\\\awsにしたら直った。\r\nしかし、ModuleNotFoundエラーは、依然変わらず。\r\nそこで、フォルダー名をawsからs3に変更した。ー＞上手くいった！！！！！\r\nいろいろとテストで設定したパスを消しても、問題なし。\r\nawsは、呪われているらしい😱（なんてね）\r\nローカルの動きを確認。\r\ngit pullでCドライブに。環境変数S3_BUKET_NAME, DISABLE_COLLECTSTATIC=1をセット。\r\ngit push heroku masterー＞OK！\r\nheroku run python manage.py migrateー＞OK！\r\nheroku openー＞Server Error(500)😢\r\nGoogle先生にエラー内容を表示させる方法を伝授頂き、Value Errorと判明。アイコンイメージファイルが、見つからないらしい。\r\nどうもAWS S3に接続出来ていないらしい。\r\nAWS S3のパブリックアクセスブロックを変更ー＞変化なし。\r\nログを調査したところ、WhiteNoiseがエラーを出している。app/staticfiles not found.（DISABLE_COLLECTSTATIC=1)にしたので、WhiteNoiseがお怒りになった。ー＞WhiteNoiseを外してみる。\r\nまず、ローカルを動かしてみた。ー＞media情報は表示されるが、背景が表示されない。ー＞AWS S3にstatic情報が無いから。\r\nとりあえず、リモートも立ち上げてみたけれど、変わらず。\r\nAWS S3にstatic情報をアップロードして再度試してみる。ー＞変化なし。\r\nそうも、AWS S3にアクセスできないのでは？base.pyに設定したfrom <projet name>.s3.conf import * （AWS S3に接続するためのモジュール）をファイルの最下部に移したら、ローカルでインデックスが表示された。\r\nリモートは変わらず。\r\nちょっと休憩！\r\n再開！\r\nまずローカルを何とかしよう！\r\nブラウザのコンソールを見ると、AWS S3からデータが取得出来ていないことが分かった。（media情報は、ローカルから取得していたので、表示された。）\r\n調べてみると、もしかするとIAMユーザーでデータをアップロードしていないので、オーナーが違うと怒られているのかも・・・（ルートユーザーでアップロードしてしまった！）\r\nAWS S3のstatic情報をいったん削除し、ローカル環境からpython manage.py collectstaticを実行したら、static情報がAWS S3にアップロードされた（IAMユーザー）。ローカルを立ち上げたら背景が表示された。\r\nでも、collectstaticコマンドでは、media情報は、アップロードされない。ー＞media情報は、本来FileFieldに設定してアップロードされるため、移行はDjango内では考えられていない。\r\nそこで、IAMユーザーにコンソールアクセス権を与える。バケット一覧表示する権限などいろいろな権限を指示通りに与え、IAMユーザーでmedia情報をアップロード。\r\nリモートでテストー＞エラー\r\nブラウザのコンソールを見ると、STATIC_URLが、/static/になっている。😢\r\n今日はここまで。	2021-03-14 22:00:51.651322+00	2021-03-14 22:00:51.651322+00		2021-03-11	\N	0	t	2021-03-14 22:00:51.651322+00
+86	ブログ内容作成	今日は、ブログの内容を今日までアップデート。\r\nこれで、ダンプを作って、アップロード、リストアで完成！\r\nローカルでしっかりバックアップ取っとこう！	2021-03-14 22:38:29.729781+00	2021-03-14 22:38:29.729781+00		2021-03-14	\N	0	t	2021-03-14 22:38:29.728782+00
+\.
+
+
+--
+-- Data for Name: blogs_blog_tags; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.blogs_blog_tags (id, blog_id, tag_id) FROM stdin;
+1	54	1
+2	55	5
+3	53	1
+4	52	8
+5	52	1
+6	52	9
+7	53	8
+8	51	1
+9	50	3
+10	49	3
+11	48	3
+12	48	5
+13	47	1
+14	47	3
+15	46	3
+16	45	3
+17	44	3
+18	42	4
+19	41	10
+20	40	4
+21	39	2
+22	39	7
+23	38	2
+24	37	4
+25	37	5
+26	36	4
+27	35	4
+28	34	11
+29	33	1
+30	32	1
+31	31	1
+32	30	1
+33	29	1
+34	28	5
+35	27	6
+36	26	11
+37	25	6
+38	24	10
+39	23	12
+40	22	13
+41	54	13
+42	21	9
+43	20	13
+44	19	9
+46	18	13
+47	17	14
+48	16	9
+49	15	15
+50	12	13
+51	11	11
+52	10	11
+53	9	16
+54	9	10
+55	8	17
+56	7	18
+57	5	12
+58	4	17
+59	4	10
+60	3	19
+61	2	1
+62	56	1
+63	56	10
+64	57	20
+65	57	21
+66	58	8
+67	58	1
+68	58	13
+69	59	1
+70	59	2
+71	59	13
+72	6	10
+73	6	22
+74	1	2
+75	1	23
+76	1	13
+77	2	23
+78	3	25
+79	5	26
+80	6	27
+81	13	28
+82	13	22
+83	14	19
+84	15	29
+85	20	9
+86	18	24
+87	18	9
+88	17	24
+89	19	24
+90	20	24
+91	21	24
+92	22	24
+93	24	24
+94	26	30
+95	32	31
+96	38	23
+97	39	23
+98	40	24
+100	42	22
+101	44	24
+102	54	24
+103	54	32
+104	48	24
+105	49	24
+106	50	24
+107	50	1
+108	52	24
+109	55	24
+110	56	24
+111	57	24
+112	58	24
+113	21	33
+114	61	24
+115	62	34
+116	63	24
+117	63	9
+118	64	8
+119	64	3
+120	65	24
+121	65	3
+122	65	5
+123	67	24
+124	68	24
+125	68	5
+126	69	2
+127	70	23
+128	71	1
+129	71	23
+130	72	35
+131	72	19
+132	72	23
+133	73	1
+134	73	23
+135	74	23
+136	75	1
+137	75	23
+138	76	31
+139	76	23
+140	77	36
+141	77	23
+142	78	36
+143	78	13
+144	78	23
+145	79	2
+146	79	36
+147	79	5
+148	79	23
+149	80	1
+150	80	36
+151	80	23
+152	81	1
+153	81	36
+154	81	23
+155	82	36
+156	82	37
+157	82	23
+158	83	36
+159	83	37
+160	83	23
+161	84	36
+162	84	37
+163	84	23
+164	85	23
+165	86	23
+\.
+
+
+--
+-- Data for Name: blogs_category; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.blogs_category (id, name, slug, "timestamp") FROM stdin;
+0	アプリ開発関連	application	2021-03-01 00:00:00+00
+1	統計関連	statistics	2021-03-01 07:42:57.881476+00
+2	財務関連	financials	2021-03-01 07:43:33.444535+00
+3	AI関連	ai	2021-03-01 07:44:00.116639+00
+4	その他	others	2021-03-01 07:44:25.117575+00
+5	思いつき	idea	2021-03-01 08:09:39.494816+00
+6	株価関連	stock	2021-03-01 08:21:06.738823+00
+\.
+
+
+--
+-- Data for Name: blogs_tag; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.blogs_tag (id, name, slug, "timestamp") FROM stdin;
+2	PostgreSQL	postgresql	2021-03-01 07:45:55.497425+00
+3	Docker	docker	2021-03-01 07:46:10.194678+00
+4	MS Azure	azure	2021-03-01 07:46:24.881171+00
+5	MS Visual Studio Code	vscode	2021-03-01 07:47:23.086125+00
+6	MS Visual Studio 2019	vs2019	2021-03-01 07:48:09.585062+00
+7	MS SQL Server	sqlserver	2021-03-01 07:48:33.996211+00
+8	System Configuration	systemconfig	2021-03-01 07:53:12.144982+00
+9	YFinance API	yfinance	2021-03-01 07:54:00.086363+00
+10	Python	python	2021-03-01 08:03:40.214965+00
+11	Git/GitHub	github	2021-03-01 08:06:34.861829+00
+12	ANACONDA	anaconda	2021-03-01 08:14:22.614206+00
+14	Class Diagram	classdiagram	2021-03-01 08:18:51.03965+00
+15	XBRL API	xbrl	2021-03-01 08:20:03.290471+00
+16	PyQt5	pyqt5	2021-03-01 08:24:12.111724+00
+17	PyScripter	pyscripter	2021-03-01 08:25:04.689844+00
+18	PyDroid	pydroid	2021-03-01 08:25:42.045042+00
+19	Internet	internet	2021-03-01 08:27:54.898455+00
+13	Data	data	2021-03-01 08:15:15.871667+00
+1	Django	djangoproject	2021-03-01 07:45:02.436533+00
+20	ajax	ajax	2021-03-02 18:02:13.088443+00
+21	Mplfinance	mplfinance	2021-03-02 18:02:36.420401+00
+22	Facebook	facebook	2021-03-13 15:22:56.860488+00
+23	Blog Application	blogapp	2021-03-13 15:24:42.631662+00
+24	Stock Application	stockapp	2021-03-13 15:25:04.550688+00
+25	Movister	movistar	2021-03-13 15:27:13.795576+00
+26	Jupyter Notebook	jupyter_notebook	2021-03-13 15:28:56.56148+00
+27	Flask	flask	2021-03-13 15:29:49.772639+00
+28	Intel Open Vino	intel_open_vino	2021-03-13 15:37:13.555435+00
+29	日本取引所グループ	jpx	2021-03-13 15:46:01.451756+00
+30	Google Chrome	google_chrome	2021-03-13 16:15:53.463981+00
+31	Cloud Services	cloud_services	2021-03-13 16:20:55.753159+00
+32	Schedule	schedule	2021-03-13 16:38:20.523343+00
+33	xarray	xarray	2021-03-13 17:06:13.900228+00
+34	LinkedIn	linkedin	2021-03-13 17:18:51.325396+00
+35	Markdownｘ	markdownx	2021-03-13 19:01:36.378002+00
+36	Heroku	heroku	2021-03-13 19:57:56.918579+00
+37	Amazon S3	amazon_s3	2021-03-14 20:50:44.235865+00
+\.
+
+
+--
+-- Data for Name: django_admin_log; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) FROM stdin;
+1	2020-12-30 17:49:17.786693+00	1	DBを	1	[{"added": {}}]	9	1
+2	2020-12-30 17:51:05.242277+00	1	DBを設定して新規一転！	2	[{"changed": {"fields": ["title", "text"]}}]	9	1
+3	2020-12-30 17:52:04.572256+00	2	レイアウトも綺麗！	1	[{"added": {}}]	9	1
+4	2021-01-03 19:10:08.546748+00	3	2021最初の投稿	1	[{"added": {}}]	9	1
+5	2021-02-21 13:48:07.93862+00	1	DBを設定して新規一転！	2	[{"changed": {"fields": ["note_date"]}}]	9	2
+6	2021-02-21 13:48:29.248322+00	2	レイアウトも綺麗！	2	[{"changed": {"fields": ["note_date"]}}]	9	2
+7	2021-02-21 13:48:43.274971+00	3	2021最初の投稿	2	[{"changed": {"fields": ["note_date"]}}]	9	2
+8	2021-02-21 13:58:48.94146+00	4	PythonとPyScripterを導入	1	[{"added": {}}]	9	2
+9	2021-02-21 14:17:28.353182+00	5	ANACONDA導入	1	[{"added": {}}]	9	2
+10	2021-02-21 14:22:18.671528+00	6	J2LOGO登録	1	[{"added": {}}]	9	2
+11	2021-02-21 14:29:38.312853+00	7	Pydroid導入	1	[{"added": {}}]	9	2
+12	2021-02-21 14:31:09.049121+00	7	Pydroid導入	2	[{"changed": {"fields": ["text"]}}]	9	2
+13	2021-02-21 14:36:14.994578+00	8	PyScripter Tip	1	[{"added": {}}]	9	2
+14	2021-02-21 14:38:34.179564+00	9	Qtアカウント登録	1	[{"added": {}}]	9	2
+15	2021-02-21 14:40:44.325161+00	10	Git導入	1	[{"added": {}}]	9	2
+16	2021-02-21 14:44:13.467769+00	11	GitHub登録	1	[{"added": {}}]	9	2
+17	2021-02-21 14:45:28.509258+00	11	GitHub登録	2	[{"changed": {"fields": ["text"]}}]	9	2
+18	2021-02-21 14:53:54.663022+00	12	株価データの考察	1	[{"added": {}}]	9	2
+19	2021-02-21 15:12:44.046219+00	13	Intel Open Vino (Deep-learning)	1	[{"added": {}}]	9	2
+20	2021-02-21 15:19:01.46304+00	14	クォンツスコア	1	[{"added": {}}]	9	2
+21	2021-02-21 15:50:31.363003+00	15	XBRL	1	[{"added": {}}]	9	2
+22	2021-02-21 15:51:15.69016+00	16	yfinanace	1	[{"added": {}}]	9	2
+23	2021-02-21 15:51:26.338548+00	15	XBRL	2	[{"changed": {"fields": ["note_date"]}}]	9	2
+24	2021-02-21 15:58:32.3898+00	16	yfinanace	2	[{"changed": {"fields": ["text"]}}]	9	2
+25	2021-02-21 16:00:32.108877+00	17	クラス図	1	[{"added": {}}]	9	2
+26	2021-02-21 16:01:13.970921+00	18	企業情報	1	[{"added": {}}]	9	2
+27	2021-02-21 16:04:28.420362+00	18	企業情報	2	[{"changed": {"fields": ["text", "note_date"]}}]	9	2
+28	2021-02-21 16:21:20.04393+00	19	yfinanceのエラー	1	[{"added": {}}]	9	2
+29	2021-02-21 16:24:01.060804+00	20	データ取得	1	[{"added": {}}]	9	2
+30	2021-02-27 18:04:53.114652+00	1	DBを設定して新規一転！	2	[{"changed": {"fields": ["tag"]}}]	9	2
+31	2021-02-27 18:05:18.423057+00	2	レイアウトも綺麗！	2	[{"changed": {"fields": ["tag"]}}]	9	2
+32	2021-02-27 18:06:23.850429+00	3	2021最初の投稿	2	[{"changed": {"fields": ["tag"]}}]	9	2
+33	2021-02-27 18:07:01.394031+00	4	PythonとPyScripterを導入	2	[{"changed": {"fields": ["tag"]}}]	9	2
+34	2021-02-27 18:07:41.21819+00	5	ANACONDA導入	2	[{"changed": {"fields": ["tag"]}}]	9	2
+35	2021-02-27 18:08:12.507855+00	6	J2LOGO登録	2	[{"changed": {"fields": ["tag"]}}]	9	2
+36	2021-02-27 18:08:43.289979+00	7	Pydroid導入	2	[{"changed": {"fields": ["tag"]}}]	9	2
+37	2021-02-27 18:09:06.162477+00	8	PyScripter Tip	2	[{"changed": {"fields": ["tag"]}}]	9	2
+38	2021-02-27 18:09:38.894237+00	9	Qtアカウント登録	2	[{"changed": {"fields": ["tag"]}}]	9	2
+39	2021-02-27 18:09:56.585723+00	10	Git導入	2	[{"changed": {"fields": ["tag"]}}]	9	2
+40	2021-02-27 18:10:13.210059+00	11	GitHub登録	2	[{"changed": {"fields": ["tag"]}}]	9	2
+41	2021-02-27 18:10:36.627273+00	12	株価データの考察	2	[{"changed": {"fields": ["tag"]}}]	9	2
+42	2021-02-27 18:11:15.092331+00	13	Intel Open Vino (Deep-learning)	2	[{"changed": {"fields": ["tag"]}}]	9	2
+43	2021-02-27 18:11:45.242643+00	14	クォンツスコア	2	[{"changed": {"fields": ["tag"]}}]	9	2
+44	2021-02-27 18:12:34.881694+00	15	XBRL	2	[{"changed": {"fields": ["tag"]}}]	9	2
+45	2021-02-27 18:12:54.970456+00	16	yfinanace	2	[{"changed": {"fields": ["tag"]}}]	9	2
+46	2021-02-27 18:14:39.739037+00	17	クラス図	2	[{"changed": {"fields": ["tag"]}}]	9	2
+47	2021-02-27 18:15:57.293157+00	18	企業情報	2	[{"changed": {"fields": ["tag"]}}]	9	2
+48	2021-02-27 18:16:05.378262+00	18	企業情報	2	[]	9	2
+49	2021-02-27 18:16:52.106984+00	19	yfinanceのエラー	2	[{"changed": {"fields": ["tag"]}}]	9	2
+50	2021-02-27 18:17:38.427423+00	20	データ取得	2	[{"changed": {"fields": ["tag"]}}]	9	2
+51	2021-02-27 18:59:16.502846+00	21	Tickersの内容	1	[{"added": {}}]	9	2
+52	2021-02-27 18:59:45.698441+00	21	Tickersの内容	2	[{"changed": {"fields": ["note_date"]}}]	9	2
+53	2021-02-27 19:05:47.295835+00	22	企業コードの問題	1	[{"added": {}}]	9	2
+54	2021-02-27 19:08:26.746416+00	23	ANACONDAクラウド	1	[{"added": {}}]	9	2
+55	2021-02-27 19:14:57.713579+00	24	利益率の計算の問題	1	[{"added": {}}]	9	2
+56	2021-02-27 19:15:13.978025+00	23	ANACONDAクラウド	2	[{"changed": {"fields": ["note_date"]}}]	9	2
+57	2021-02-27 19:23:43.591949+00	25	MS Visual Studio	1	[{"added": {}}]	9	2
+58	2021-02-27 19:31:52.128111+00	26	GitHub	1	[{"added": {}}]	9	2
+59	2021-02-27 19:37:12.116062+00	27	VSの評価	1	[{"added": {}}]	9	2
+60	2021-02-27 19:37:30.017038+00	27	VSの評価	2	[{"changed": {"fields": ["note_date"]}}]	9	2
+61	2021-02-27 19:45:02.313499+00	28	VS Code	1	[{"added": {}}]	9	2
+62	2021-02-27 19:50:09.247995+00	29	Djangoチュートリアル	1	[{"added": {}}]	9	2
+63	2021-02-27 20:02:37.149894+00	30	Djangoチュート（続き）	1	[{"added": {}}]	9	2
+64	2021-02-27 20:14:09.035414+00	31	言語設定わかった！	1	[{"added": {}}]	9	2
+65	2021-02-28 11:11:47.588632+00	32	寝て起きて思いついたこと	1	[{"added": {}}]	9	2
+66	2021-02-28 11:15:31.875285+00	33	Blog app作成	1	[{"added": {}}]	9	2
+67	2021-02-28 11:20:12.810948+00	34	重要！	1	[{"added": {}}]	9	2
+68	2021-02-28 11:27:28.483993+00	35	Azure SQL DBの演習	1	[{"added": {}}]	9	2
+69	2021-02-28 11:30:38.302322+00	36	続き	1	[{"added": {}}]	9	2
+70	2021-02-28 11:32:49.123421+00	37	問題発生！	1	[{"added": {}}]	9	2
+71	2021-02-28 11:33:09.395428+00	37	問題発生！	2	[{"changed": {"fields": ["tag"]}}]	9	2
+72	2021-02-28 11:41:43.563688+00	38	PostgrSQL登場！	1	[{"added": {}}]	9	2
+73	2021-02-28 11:45:42.67159+00	39	DBの変更	1	[{"added": {}}]	9	2
+74	2021-02-28 11:57:32.344203+00	40	Azure見捨てる！	1	[{"added": {}}]	9	2
+75	2021-02-28 12:00:06.65649+00	41	PIPが壊れた！	1	[{"added": {}}]	9	2
+76	2021-02-28 12:03:10.123453+00	42	CircleCi	1	[{"added": {}}]	9	2
+77	2021-02-28 12:10:54.840385+00	43	ネットトラブル	1	[{"added": {}}]	9	2
+78	2021-02-28 12:12:09.697271+00	43	ネットトラブル	2	[{"changed": {"fields": ["text", "tag"]}}]	9	2
+79	2021-02-28 12:50:25.426995+00	44	Docker導入！	1	[{"added": {}}]	9	2
+80	2021-02-28 12:56:22.456102+00	45	チュートでも問題！	1	[{"added": {}}]	9	2
+81	2021-02-28 12:57:40.319958+00	46	Dockerチュート完了	1	[{"added": {}}]	9	2
+82	2021-02-28 12:57:57.408034+00	46	Dockerチュート完了	2	[{"changed": {"fields": ["note_date"]}}]	9	2
+83	2021-02-28 13:07:38.978299+00	47	Docker上にDjango環境構築	1	[{"added": {}}]	9	2
+84	2021-02-28 13:07:49.435388+00	47	Docker上にDjango環境構築	2	[{"changed": {"fields": ["note_date"]}}]	9	2
+85	2021-02-28 13:12:22.936241+00	48	Remote-containers	1	[{"added": {}}]	9	2
+86	2021-02-28 13:23:43.361163+00	49	Docker-compose	1	[{"added": {}}]	9	2
+87	2021-02-28 13:32:12.113197+00	50	Docker続き	1	[{"added": {}}]	9	2
+88	2021-02-28 13:39:57.657301+00	51	Djangoのユニットテスト	1	[{"added": {}}]	9	2
+89	2021-02-28 14:06:09.610217+00	52	システム構成	1	[{"added": {}}]	9	2
+90	2021-02-28 14:13:55.302005+00	52	システム構成	2	[{"changed": {"fields": ["text"]}}]	9	2
+91	2021-02-28 14:19:10.833836+00	53	開発環境構築	1	[{"added": {}}]	9	2
+92	2021-02-28 14:31:16.674519+00	54	企業コード取得	1	[{"added": {}}]	9	2
+93	2021-02-28 14:34:27.411521+00	55	不具合	1	[{"added": {}}]	9	2
+94	2021-02-28 16:56:44.773118+00	55	不具合	2	[{"changed": {"fields": ["text"]}}]	9	2
+95	2021-03-01 07:32:06.111559+00	55	不具合	2	[{"changed": {"fields": ["is_public"]}}]	9	2
+96	2021-03-01 07:37:06.565311+00	0	application	2	[]	10	2
+97	2021-03-01 07:42:01.943694+00	0	アプリ開発関連	2	[{"changed": {"fields": ["name"]}}]	10	2
+98	2021-03-01 07:42:57.882477+00	1	統計関連	1	[{"added": {}}]	10	2
+99	2021-03-01 07:43:33.445537+00	2	財務関連	1	[{"added": {}}]	10	2
+100	2021-03-01 07:44:00.117638+00	3	AI関連	1	[{"added": {}}]	10	2
+101	2021-03-01 07:44:25.118577+00	4	その他	1	[{"added": {}}]	10	2
+102	2021-03-01 07:45:02.437535+00	1	#Dango	1	[{"added": {}}]	11	2
+103	2021-03-01 07:45:32.256209+00	1	Dango	2	[{"changed": {"fields": ["name"]}}]	11	2
+104	2021-03-01 07:45:55.498429+00	2	PostgreSQL	1	[{"added": {}}]	11	2
+105	2021-03-01 07:46:10.195678+00	3	Docker	1	[{"added": {}}]	11	2
+106	2021-03-01 07:46:24.882172+00	4	MS Azure	1	[{"added": {}}]	11	2
+107	2021-03-01 07:47:23.087126+00	5	MS Visual Studio Code	1	[{"added": {}}]	11	2
+108	2021-03-01 07:48:09.586063+00	6	MS Visual Studio 2019	1	[{"added": {}}]	11	2
+109	2021-03-01 07:48:33.997211+00	7	MS SQL Server	1	[{"added": {}}]	11	2
+110	2021-03-01 07:50:09.81283+00	54	企業コード取得	2	[{"changed": {"fields": ["tags", "is_public"]}}]	9	2
+111	2021-03-01 07:50:31.614953+00	55	不具合	2	[{"changed": {"fields": ["tags"]}}]	9	2
+112	2021-03-01 07:51:46.861353+00	53	開発環境構築	2	[{"changed": {"fields": ["tags", "is_public"]}}]	9	2
+113	2021-03-01 07:53:12.145982+00	8	System Configuration	1	[{"added": {}}]	11	2
+114	2021-03-01 07:54:00.087362+00	9	YFinance API	1	[{"added": {}}]	11	2
+115	2021-03-01 07:55:02.706917+00	52	システム構成	2	[{"changed": {"fields": ["tags", "is_public"]}}]	9	2
+116	2021-03-01 07:55:17.140842+00	53	開発環境構築	2	[{"changed": {"fields": ["tags"]}}]	9	2
+117	2021-03-01 07:55:49.705943+00	51	Djangoのユニットテスト	2	[{"changed": {"fields": ["tags", "is_public"]}}]	9	2
+118	2021-03-01 07:56:06.467841+00	50	Docker続き	2	[{"changed": {"fields": ["tags", "is_public"]}}]	9	2
+119	2021-03-01 07:56:19.196901+00	49	Docker-compose	2	[{"changed": {"fields": ["tags", "is_public"]}}]	9	2
+120	2021-03-01 07:56:40.5735+00	48	Remote-containers	2	[{"changed": {"fields": ["tags", "is_public"]}}]	9	2
+121	2021-03-01 07:57:49.554408+00	47	Docker上にDjango環境構築	2	[{"changed": {"fields": ["tags", "is_public"]}}]	9	2
+122	2021-03-01 07:58:09.963517+00	1	Django	2	[{"changed": {"fields": ["name"]}}]	11	2
+123	2021-03-01 07:58:29.308623+00	46	Dockerチュート完了	2	[{"changed": {"fields": ["tags", "is_public"]}}]	9	2
+124	2021-03-01 08:01:46.726158+00	46	Dockerチュート完了	2	[]	9	2
+125	2021-03-01 08:02:13.069879+00	45	チュートでも問題！	2	[{"changed": {"fields": ["tags", "is_public"]}}]	9	2
+126	2021-03-01 08:02:28.48127+00	44	Docker導入！	2	[{"changed": {"fields": ["tags", "is_public"]}}]	9	2
+127	2021-03-01 08:02:48.632339+00	43	ネットトラブル	2	[{"changed": {"fields": ["is_public"]}}]	9	2
+128	2021-03-01 08:03:09.43833+00	42	CircleCi	2	[{"changed": {"fields": ["tags", "is_public"]}}]	9	2
+129	2021-03-01 08:03:40.214965+00	10	Python	1	[{"added": {}}]	11	2
+130	2021-03-01 08:03:46.189794+00	41	PIPが壊れた！	2	[{"changed": {"fields": ["tags", "is_public"]}}]	9	2
+131	2021-03-01 08:03:57.637536+00	40	Azure見捨てる！	2	[{"changed": {"fields": ["tags", "is_public"]}}]	9	2
+132	2021-03-01 08:04:19.010511+00	39	DBの変更	2	[{"changed": {"fields": ["tags", "is_public"]}}]	9	2
+133	2021-03-01 08:04:45.845453+00	38	PostgrSQL登場！	2	[{"changed": {"fields": ["tags", "is_public"]}}]	9	2
+134	2021-03-01 08:05:13.600471+00	37	問題発生！	2	[{"changed": {"fields": ["tags", "is_public"]}}]	9	2
+135	2021-03-01 08:05:33.001148+00	36	続き	2	[{"changed": {"fields": ["tags", "is_public"]}}]	9	2
+136	2021-03-01 08:05:45.683573+00	35	Azure SQL DBの演習	2	[{"changed": {"fields": ["tags", "is_public"]}}]	9	2
+137	2021-03-01 08:06:34.861829+00	11	Git/GitHub	1	[{"added": {}}]	11	2
+138	2021-03-01 08:06:45.871421+00	34	重要！	2	[{"changed": {"fields": ["tags", "is_public"]}}]	9	2
+139	2021-03-01 08:07:52.585668+00	33	Blog app作成	2	[{"changed": {"fields": ["category", "tags", "is_public"]}}]	9	2
+140	2021-03-01 08:09:39.496813+00	5	思いつき	1	[{"added": {}}]	10	2
+141	2021-03-01 08:09:50.579917+00	5	思いつき	2	[{"changed": {"fields": ["slug"]}}]	10	2
+142	2021-03-01 08:10:35.112653+00	32	寝て起きて思いついたこと	2	[{"changed": {"fields": ["category", "tags", "is_public"]}}]	9	2
+143	2021-03-01 08:10:56.844413+00	31	言語設定わかった！	2	[{"changed": {"fields": ["tags", "is_public"]}}]	9	2
+144	2021-03-01 08:11:15.360518+00	30	Djangoチュート（続き）	2	[{"changed": {"fields": ["tags", "is_public"]}}]	9	2
+145	2021-03-01 08:11:45.077429+00	29	Djangoチュートリアル	2	[{"changed": {"fields": ["tags", "is_public"]}}]	9	2
+146	2021-03-01 08:12:18.198277+00	28	VS Code	2	[{"changed": {"fields": ["tags", "is_public"]}}]	9	2
+147	2021-03-01 08:12:38.402348+00	27	VSの評価	2	[{"changed": {"fields": ["tags", "is_public"]}}]	9	2
+148	2021-03-01 08:12:54.427785+00	26	GitHub	2	[{"changed": {"fields": ["tags", "is_public"]}}]	9	2
+149	2021-03-01 08:13:14.300659+00	25	MS Visual Studio	2	[{"changed": {"fields": ["tags", "is_public"]}}]	9	2
+150	2021-03-01 08:13:54.74361+00	24	利益率の計算の問題	2	[{"changed": {"fields": ["tags", "is_public"]}}]	9	2
+151	2021-03-01 08:14:22.615205+00	12	ANACONDA	1	[{"added": {}}]	11	2
+152	2021-03-01 08:14:32.429802+00	23	ANACONDAクラウド	2	[{"changed": {"fields": ["tags", "is_public"]}}]	9	2
+153	2021-03-01 08:15:15.872712+00	13	data	1	[{"added": {}}]	11	2
+154	2021-03-01 08:15:23.864872+00	22	企業コードの問題	2	[{"changed": {"fields": ["tags", "is_public"]}}]	9	2
+155	2021-03-01 08:15:42.225529+00	54	企業コード取得	2	[{"changed": {"fields": ["tags"]}}]	9	2
+156	2021-03-01 08:16:09.721217+00	21	Tickersの内容	2	[{"changed": {"fields": ["tags", "is_public"]}}]	9	2
+157	2021-03-01 08:16:46.746769+00	20	データ取得	2	[{"changed": {"fields": ["tags", "is_public"]}}]	9	2
+158	2021-03-01 08:17:04.354391+00	19	yfinanceのエラー	2	[{"changed": {"fields": ["tags", "is_public"]}}]	9	2
+159	2021-03-01 08:17:57.52629+00	18	企業情報	2	[{"changed": {"fields": ["tags", "is_public"]}}]	9	2
+160	2021-03-01 08:18:51.040653+00	14	Class Diagram	1	[{"added": {}}]	11	2
+161	2021-03-01 08:19:04.830563+00	17	クラス図	2	[{"changed": {"fields": ["tags", "is_public"]}}]	9	2
+162	2021-03-01 08:19:31.018079+00	16	yfinanace	2	[{"changed": {"fields": ["tags", "is_public"]}}]	9	2
+163	2021-03-01 08:20:03.290471+00	15	XBRL API	1	[{"added": {}}]	11	2
+164	2021-03-01 08:20:09.742869+00	15	XBRL	2	[{"changed": {"fields": ["tags", "is_public"]}}]	9	2
+165	2021-03-01 08:21:06.739823+00	6	株価関連	1	[{"added": {}}]	10	2
+166	2021-03-01 08:21:26.933444+00	14	クォンツスコア	2	[{"changed": {"fields": ["category", "is_public"]}}]	9	2
+167	2021-03-01 08:21:57.523164+00	13	Intel Open Vino (Deep-learning)	2	[{"changed": {"fields": ["category", "is_public"]}}]	9	2
+168	2021-03-01 08:22:42.425874+00	12	株価データの考察	2	[{"changed": {"fields": ["category", "tags", "is_public"]}}]	9	2
+169	2021-03-01 08:23:00.472716+00	11	GitHub登録	2	[{"changed": {"fields": ["tags", "is_public"]}}]	9	2
+170	2021-03-01 08:23:27.660893+00	10	Git導入	2	[{"changed": {"fields": ["tags", "is_public"]}}]	9	2
+171	2021-03-01 08:24:12.112723+00	16	PyQt5	1	[{"added": {}}]	11	2
+172	2021-03-01 08:24:35.298925+00	9	Qtアカウント登録	2	[{"changed": {"fields": ["tags", "is_public"]}}]	9	2
+173	2021-03-01 08:25:04.690841+00	17	PyScripter	1	[{"added": {}}]	11	2
+174	2021-03-01 08:25:13.425921+00	8	PyScripter Tip	2	[{"changed": {"fields": ["tags", "is_public"]}}]	9	2
+175	2021-03-01 08:25:42.04604+00	18	PyDroid	1	[{"added": {}}]	11	2
+176	2021-03-01 08:25:53.046203+00	7	Pydroid導入	2	[{"changed": {"fields": ["tags", "is_public"]}}]	9	2
+177	2021-03-01 08:26:26.407598+00	6	J2LOGO登録	2	[{"changed": {"fields": ["category", "is_public"]}}]	9	2
+178	2021-03-01 08:26:46.349653+00	5	ANACONDA導入	2	[{"changed": {"fields": ["tags", "is_public"]}}]	9	2
+179	2021-03-01 08:27:17.417874+00	4	PythonとPyScripterを導入	2	[{"changed": {"fields": ["tags", "is_public"]}}]	9	2
+180	2021-03-01 08:27:54.899453+00	19	Internet	1	[{"added": {}}]	11	2
+181	2021-03-01 08:28:01.294858+00	3	2021最初の投稿	2	[{"changed": {"fields": ["category", "tags", "is_public"]}}]	9	2
+182	2021-03-01 08:28:27.446911+00	2	レイアウトも綺麗！	2	[{"changed": {"fields": ["tags", "is_public"]}}]	9	2
+183	2021-03-01 08:29:10.162554+00	1	DBを設定して新規一転！	2	[{"changed": {"fields": ["category", "is_public"]}}]	9	2
+184	2021-03-01 08:29:43.123003+00	13	Data	2	[{"changed": {"fields": ["name"]}}]	11	2
+185	2021-03-01 08:31:27.870361+00	1	Django	2	[{"changed": {"fields": ["slug"]}}]	11	2
+186	2021-03-01 10:30:29.647542+00	33	Blog app作成	2	[{"changed": {"fields": ["upload"]}}]	9	2
+187	2021-03-01 11:13:00.046898+00	33	Blog app作成	2	[{"added": {"name": "content image", "object": "ContentImage object (1)"}}]	9	2
+188	2021-03-01 11:46:20.157722+00	33	Blog app作成	2	[{"deleted": {"name": "content image", "object": "ContentImage object (None)"}}]	9	2
+189	2021-03-01 11:47:17.718911+00	33	Blog app作成	2	[{"added": {"name": "content image", "object": "ContentImage object (2)"}}]	9	2
+190	2021-03-02 09:12:57.571685+00	17	クラス図	2	[{"changed": {"fields": ["text"]}}]	9	2
+191	2021-03-02 16:39:19.412314+00	43	ネットトラブル	2	[{"changed": {"fields": ["text"]}}]	9	2
+192	2021-03-02 16:39:40.632066+00	17	クラス図	2	[{"changed": {"fields": ["upload"]}}]	9	2
+193	2021-03-02 16:40:16.243983+00	17	クラス図	2	[{"changed": {"fields": ["upload"]}}]	9	2
+194	2021-03-02 16:55:27.196512+00	44	Docker導入！	2	[{"changed": {"fields": ["text"]}}]	9	2
+195	2021-03-02 16:56:31.205051+00	44	Docker導入！	2	[{"changed": {"fields": ["upload"]}}]	9	2
+196	2021-03-02 17:42:40.727693+00	52	システム構成	2	[{"changed": {"fields": ["text", "upload"]}}]	9	2
+197	2021-03-02 18:00:56.446292+00	56	Python Package & Django manage.py	1	[{"added": {}}]	9	2
+198	2021-03-02 18:02:13.089444+00	20	ajax	1	[{"added": {}}]	11	2
+199	2021-03-02 18:02:36.421403+00	21	Mplfinance	1	[{"added": {}}]	11	2
+200	2021-03-02 18:15:29.287284+00	57	キャンドルチャートできた！	1	[{"added": {}}]	9	2
+201	2021-03-02 18:17:06.44561+00	58	Django経由のデータアプローチ	1	[{"added": {}}]	9	2
+202	2021-03-02 18:17:34.235551+00	56	Python Package & Django manage.py	2	[{"changed": {"fields": ["note_date"]}}]	9	2
+203	2021-03-02 18:26:21.879203+00	58	Django経由のデータアプローチ	2	[{"changed": {"fields": ["text"]}}]	9	2
+204	2021-03-02 18:53:52.144206+00	58	Django経由のデータアプローチ	2	[{"changed": {"fields": ["text", "upload"]}}]	9	2
+205	2021-03-02 19:15:29.457047+00	59	バックアップ・リカバリ	1	[{"added": {}}]	9	2
+206	2021-03-02 19:24:17.562772+00	57	キャンドルチャートできた！	2	[{"changed": {"fields": ["text"]}}]	9	2
+207	2021-03-02 23:54:06.463601+00	57	キャンドルチャートできた！	2	[{"changed": {"fields": ["text"]}}]	9	2
+208	2021-03-03 00:01:30.560176+00	13	Intel Open Vino (Deep-learning)	2	[{"changed": {"fields": ["text"]}}]	9	2
+209	2021-03-04 14:54:40.501306+00	58	Django経由のデータアプローチ	2	[{"changed": {"fields": ["is_public"]}}]	9	2
+210	2021-03-04 16:39:24.535272+00	58	Django経由のデータアプローチ	2	[{"changed": {"fields": ["upload"]}}]	9	2
+211	2021-03-04 16:39:55.55659+00	58	Django経由のデータアプローチ	2	[{"changed": {"fields": ["upload"]}}]	9	2
+212	2021-03-04 17:04:17.693083+00	58	Django経由のデータアプローチ	2	[{"changed": {"fields": ["upload"]}}]	9	2
+213	2021-03-04 17:07:19.25794+00	58	Django経由のデータアプローチ	2	[{"changed": {"fields": ["upload"]}}]	9	2
+214	2021-03-04 17:10:51.229783+00	58	Django経由のデータアプローチ	2	[{"changed": {"fields": ["upload"]}}]	9	2
+215	2021-03-04 17:11:03.683602+00	58	Django経由のデータアプローチ	2	[{"changed": {"fields": ["upload"]}}]	9	2
+216	2021-03-04 17:12:40.266246+00	58	Django経由のデータアプローチ	2	[{"changed": {"fields": ["upload"]}}]	9	2
+217	2021-03-04 17:13:22.242669+00	58	Django経由のデータアプローチ	2	[{"changed": {"fields": ["upload"]}}]	9	2
+218	2021-03-04 17:18:37.750728+00	58	Django経由のデータアプローチ	2	[{"changed": {"fields": ["text"]}}]	9	2
+219	2021-03-04 17:19:00.129357+00	57	キャンドルチャートできた！	2	[{"changed": {"fields": ["text"]}}]	9	2
+220	2021-03-04 17:19:36.013828+00	57	キャンドルチャートできた！	2	[{"changed": {"fields": ["text"]}}]	9	2
+221	2021-03-04 17:20:04.893874+00	52	システム構成	2	[{"changed": {"fields": ["text"]}}]	9	2
+222	2021-03-04 17:21:42.408363+00	17	クラス図	2	[{"changed": {"fields": ["text"]}}]	9	2
+223	2021-03-04 17:24:04.898563+00	33	Blog app作成	2	[{"changed": {"fields": ["upload"]}}]	9	2
+224	2021-03-04 17:24:21.456166+00	56	Python Package & Django manage.py	2	[{"changed": {"fields": ["upload"]}}]	9	2
+225	2021-03-04 17:25:09.333974+00	43	ネットトラブル	2	[{"changed": {"fields": ["text"]}}]	9	2
+226	2021-03-04 17:31:04.448972+00	44	Docker導入！	2	[{"changed": {"fields": ["text"]}}]	9	2
+227	2021-03-04 17:32:45.390676+00	44	Docker導入！	2	[{"changed": {"fields": ["upload"]}}]	9	2
+228	2021-03-04 17:35:58.803538+00	44	Docker導入！	2	[{"changed": {"fields": ["upload"]}}]	9	2
+229	2021-03-04 17:38:06.711015+00	17	クラス図	2	[{"changed": {"fields": ["upload"]}}]	9	2
+230	2021-03-04 17:38:51.498037+00	17	クラス図	2	[{"changed": {"fields": ["upload"]}}]	9	2
+231	2021-03-07 13:43:03.337361+00	1	今夜は、何を食べますか？	1	[{"added": {}}, {"added": {"name": "choice", "object": "\\u8089\\u6599\\u7406"}}, {"added": {"name": "choice", "object": "\\u9b5a\\u6599\\u7406"}}, {"added": {"name": "choice", "object": "\\u91ce\\u83dc\\u6599\\u7406"}}]	1	2
+232	2021-03-07 14:14:06.310389+00	1	owner	1	[{"added": {}}]	5	2
+233	2021-03-07 14:16:07.844395+00	2	genaral	1	[{"added": {}}]	5	2
+234	2021-03-07 14:20:27.630891+00	3	guest	1	[{"added": {}}]	6	2
+235	2021-03-07 14:21:47.12981+00	3	guest	2	[{"changed": {"fields": ["groups"]}}]	6	2
+236	2021-03-07 14:28:30.372048+00	2	admin	2	[{"changed": {"fields": ["first_name", "last_name", "groups", "user_permissions"]}}]	6	2
+237	2021-03-12 14:09:17.719204+00	17	クラス図	2	[{"changed": {"fields": ["Text"]}}]	9	2
+238	2021-03-12 14:11:55.85416+00	17	クラス図	2	[{"changed": {"fields": ["Text"]}}]	9	2
+239	2021-03-12 14:13:16.735551+00	17	クラス図	2	[{"changed": {"fields": ["Text"]}}]	9	2
+240	2021-03-12 15:10:17.056203+00	17	クラス図	2	[{"changed": {"fields": ["Text"]}}]	9	2
+241	2021-03-12 15:22:32.978662+00	58	Django経由のデータアプローチ	2	[{"changed": {"fields": ["Text"]}}]	9	2
+242	2021-03-12 15:23:33.726354+00	57	キャンドルチャートできた！	2	[{"changed": {"fields": ["Text"]}}]	9	2
+243	2021-03-12 15:24:51.805092+00	52	システム構成	2	[{"changed": {"fields": ["Text"]}}]	9	2
+244	2021-03-12 15:26:16.99126+00	43	ネットトラブル	2	[{"changed": {"fields": ["Text"]}}]	9	2
+245	2021-03-12 15:27:19.949158+00	44	Docker導入！	2	[{"changed": {"fields": ["Text"]}}]	9	2
+246	2021-03-13 15:12:11.438367+00	1	DBを設定して新規一転！	2	[{"changed": {"fields": ["Text"]}}]	9	2
+247	2021-03-13 15:13:01.832449+00	2	レイアウトも綺麗！	2	[{"changed": {"fields": ["Text"]}}]	9	2
+248	2021-03-13 15:15:06.839811+00	3	2021最初の投稿	2	[{"changed": {"fields": ["Text"]}}]	9	2
+249	2021-03-13 15:16:30.331645+00	4	PythonとPyScripterを導入	2	[{"changed": {"fields": ["Text"]}}]	9	2
+250	2021-03-13 15:18:12.530903+00	5	ANACONDA導入	2	[{"changed": {"fields": ["Text"]}}]	9	2
+251	2021-03-13 15:22:56.96323+00	22	Facebook	1	[{"added": {}}]	11	2
+252	2021-03-13 15:23:42.972544+00	6	J2LOGO登録	2	[{"changed": {"fields": ["Tags"]}}]	9	2
+253	2021-03-13 15:24:42.632618+00	23	Blog Application	1	[{"added": {}}]	11	2
+254	2021-03-13 15:25:04.551727+00	24	Stock Application	1	[{"added": {}}]	11	2
+255	2021-03-13 15:25:24.790407+00	1	DBを設定して新規一転！	2	[{"changed": {"fields": ["Tags"]}}]	9	2
+256	2021-03-13 15:25:46.103699+00	1	DBを設定して新規一転！	2	[{"changed": {"fields": ["Tags"]}}]	9	2
+257	2021-03-13 15:26:14.019535+00	2	レイアウトも綺麗！	2	[{"changed": {"fields": ["Tags"]}}]	9	2
+258	2021-03-13 15:26:36.374534+00	3	2021最初の投稿	2	[]	9	2
+259	2021-03-13 15:27:13.796578+00	25	Movister	1	[{"added": {}}]	11	2
+260	2021-03-13 15:27:21.491774+00	3	2021最初の投稿	2	[{"changed": {"fields": ["Tags"]}}]	9	2
+261	2021-03-13 15:27:47.453771+00	4	PythonとPyScripterを導入	2	[]	9	2
+262	2021-03-13 15:28:56.562482+00	26	Jupyter Notebook	1	[{"added": {}}]	11	2
+263	2021-03-13 15:29:04.778594+00	5	ANACONDA導入	2	[{"changed": {"fields": ["Tags"]}}]	9	2
+264	2021-03-13 15:29:49.773595+00	27	Flask	1	[{"added": {}}]	11	2
+265	2021-03-13 15:30:02.403364+00	6	J2LOGO登録	2	[{"changed": {"fields": ["Tags"]}}]	9	2
+266	2021-03-13 15:31:14.417857+00	7	Pydroid導入	2	[{"changed": {"fields": ["Text"]}}]	9	2
+267	2021-03-13 15:31:47.290565+00	8	PyScripter Tip	2	[]	9	2
+268	2021-03-13 15:33:16.246047+00	9	Qtアカウント登録	2	[]	9	2
+269	2021-03-13 15:33:54.869717+00	10	Git導入	2	[{"changed": {"fields": ["Text"]}}]	9	2
+270	2021-03-13 15:34:49.21647+00	11	GitHub登録	2	[]	9	2
+271	2021-03-13 15:36:05.328629+00	12	株価データの考察	2	[{"changed": {"fields": ["Text"]}}]	9	2
+272	2021-03-13 15:37:13.556438+00	28	Intel Open Vino	1	[{"added": {}}]	11	2
+273	2021-03-13 15:38:33.617396+00	13	Intel Open Vino (Deep-learning)	2	[{"changed": {"fields": ["Tags"]}}]	9	2
+274	2021-03-13 15:41:13.002683+00	13	Intel Open Vino (Deep-learning)	2	[{"changed": {"fields": ["Text"]}}]	9	2
+275	2021-03-13 15:41:57.844776+00	14	クォンツスコア	2	[{"changed": {"fields": ["Tags", "Text"]}}]	9	2
+276	2021-03-13 15:46:01.452757+00	29	日本取引所グループ	1	[{"added": {}}]	11	2
+277	2021-03-13 15:47:06.69284+00	15	XBRL	2	[{"changed": {"fields": ["Tags", "Text"]}}]	9	2
+278	2021-03-13 15:47:49.442601+00	16	yfinanace	2	[]	9	2
+279	2021-03-13 15:48:30.049281+00	20	データ取得	2	[{"changed": {"fields": ["Tags"]}}]	9	2
+280	2021-03-13 16:05:23.181959+00	17	クラス図	2	[{"changed": {"fields": ["Text", "Upload"]}}]	9	2
+281	2021-03-13 16:05:51.652276+00	17	クラス図	2	[{"changed": {"fields": ["Upload"]}}]	9	2
+282	2021-03-13 16:08:07.504109+00	18	企業情報	2	[{"changed": {"fields": ["Tags"]}}]	9	2
+283	2021-03-13 16:08:32.72444+00	17	クラス図	2	[{"changed": {"fields": ["Tags"]}}]	9	2
+284	2021-03-13 16:09:44.014931+00	19	yfinanceのエラー	2	[{"changed": {"fields": ["Tags"]}}]	9	2
+285	2021-03-13 16:10:06.624228+00	20	データ取得	2	[{"changed": {"fields": ["Tags"]}}]	9	2
+286	2021-03-13 16:11:55.428074+00	21	Tickersの内容	2	[{"changed": {"fields": ["Tags", "Text"]}}]	9	2
+287	2021-03-13 16:12:28.049075+00	22	企業コードの問題	2	[{"changed": {"fields": ["Tags"]}}]	9	2
+288	2021-03-13 16:12:48.981971+00	23	ANACONDAクラウド	2	[]	9	2
+289	2021-03-13 16:13:40.232228+00	24	利益率の計算の問題	2	[{"changed": {"fields": ["Tags"]}}]	9	2
+290	2021-03-13 16:14:56.157487+00	25	MS Visual Studio	2	[{"changed": {"fields": ["Text"]}}]	9	2
+291	2021-03-13 16:15:53.464983+00	30	Google Chrome	1	[{"added": {}}]	11	2
+292	2021-03-13 16:16:14.894227+00	26	GitHub	2	[{"changed": {"fields": ["Tags"]}}]	9	2
+293	2021-03-13 16:16:50.756317+00	27	VSの評価	2	[]	9	2
+294	2021-03-13 16:17:30.509131+00	29	Djangoチュートリアル	2	[{"changed": {"fields": ["Text"]}}]	9	2
+295	2021-03-13 16:18:28.452123+00	30	Djangoチュート（続き）	2	[{"changed": {"fields": ["Text"]}}]	9	2
+296	2021-03-13 16:19:00.22335+00	31	言語設定わかった！	2	[{"changed": {"fields": ["Text"]}}]	9	2
+297	2021-03-13 16:20:55.754159+00	31	Cloud Services	1	[{"added": {}}]	11	2
+298	2021-03-13 16:23:51.58536+00	32	寝て起きて思いついたこと	2	[{"changed": {"fields": ["Tags", "Text"]}}]	9	2
+299	2021-03-13 16:24:49.053748+00	32	寝て起きて思いついたこと	2	[{"changed": {"fields": ["Text"]}}]	9	2
+300	2021-03-13 16:25:29.845426+00	33	Blog app作成	2	[]	9	2
+301	2021-03-13 16:26:25.600324+00	34	重要！	2	[{"changed": {"fields": ["Text"]}}]	9	2
+302	2021-03-13 16:27:22.102254+00	35	Azure SQL DBの演習	2	[{"changed": {"fields": ["Text"]}}]	9	2
+303	2021-03-13 16:29:04.273003+00	37	問題発生！	2	[{"changed": {"fields": ["Text"]}}]	9	2
+304	2021-03-13 16:30:18.440346+00	38	PostgrSQL登場！	2	[{"changed": {"fields": ["Tags"]}}]	9	2
+305	2021-03-13 16:30:57.308215+00	39	DBの変更	2	[{"changed": {"fields": ["Tags"]}}]	9	2
+306	2021-03-13 16:31:52.509929+00	40	Azure見捨てる！	2	[{"changed": {"fields": ["Tags"]}}]	9	2
+307	2021-03-13 16:32:28.89394+00	40	Azure見捨てる！	2	[{"changed": {"fields": ["Tags"]}}]	9	2
+308	2021-03-13 16:33:12.950583+00	42	CircleCi	2	[{"changed": {"fields": ["Tags"]}}]	9	2
+309	2021-03-13 16:33:42.435393+00	43	ネットトラブル	2	[{"changed": {"fields": ["Text"]}}]	9	2
+310	2021-03-13 16:34:36.694631+00	44	Docker導入！	2	[{"changed": {"fields": ["Tags"]}}]	9	2
+311	2021-03-13 16:35:21.904376+00	46	Dockerチュート完了	2	[{"changed": {"fields": ["Text"]}}]	9	2
+312	2021-03-13 16:36:13.347091+00	47	Docker上にDjango環境構築	2	[{"changed": {"fields": ["Text"]}}]	9	2
+313	2021-03-13 16:38:20.525346+00	32	Schedule	1	[{"added": {}}]	11	2
+314	2021-03-13 16:38:26.440085+00	54	企業コード取得	2	[{"changed": {"fields": ["Tags", "Text"]}}]	9	2
+315	2021-03-13 16:39:29.44986+00	48	Remote-containers	2	[{"changed": {"fields": ["Tags"]}}]	9	2
+316	2021-03-13 16:40:23.902362+00	49	Docker-compose	2	[{"changed": {"fields": ["Text"]}}]	9	2
+317	2021-03-13 16:40:45.454908+00	49	Docker-compose	2	[{"changed": {"fields": ["Tags"]}}]	9	2
+318	2021-03-13 16:41:37.03372+00	50	Docker続き	2	[{"changed": {"fields": ["Tags"]}}]	9	2
+319	2021-03-13 16:42:46.147564+00	51	Djangoのユニットテスト	2	[{"changed": {"fields": ["Text"]}}]	9	2
+320	2021-03-13 16:44:03.131215+00	52	システム構成	2	[{"changed": {"fields": ["Tags"]}}]	9	2
+321	2021-03-13 16:44:43.916392+00	53	開発環境構築	2	[{"changed": {"fields": ["Text"]}}]	9	2
+322	2021-03-13 16:45:51.589868+00	55	不具合	2	[{"changed": {"fields": ["Tags"]}}]	9	2
+323	2021-03-13 16:48:12.21688+00	56	Python Package & Django manage.py	2	[{"changed": {"fields": ["Text"]}}]	9	2
+324	2021-03-13 16:48:32.814001+00	56	Python Package & Django manage.py	2	[{"changed": {"fields": ["Tags"]}}]	9	2
+325	2021-03-13 16:49:00.80298+00	57	キャンドルチャートできた！	2	[{"changed": {"fields": ["Tags"]}}]	9	2
+326	2021-03-13 16:49:27.090215+00	58	Django経由のデータアプローチ	2	[{"changed": {"fields": ["Tags"]}}]	9	2
+327	2021-03-13 16:50:11.398782+00	59	バックアップ・リカバリ	2	[{"changed": {"fields": ["Text"]}}]	9	2
+328	2021-03-13 17:02:05.120537+00	60	統計のお勉強	1	[{"added": {}}]	9	2
+329	2021-03-13 17:06:13.901273+00	33	xarray	1	[{"added": {}}]	11	2
+330	2021-03-13 17:06:29.048192+00	21	Tickersの内容	2	[{"changed": {"fields": ["Tags"]}}]	9	2
+331	2021-03-13 17:15:40.452016+00	61	テストアプリ開発完了！	1	[{"added": {}}]	9	2
+332	2021-03-13 17:18:51.326397+00	34	LinkedIn	1	[{"added": {}}]	11	2
+333	2021-03-13 17:24:35.886669+00	62	Financial Accountingのコース	1	[{"added": {}}]	9	2
+334	2021-03-13 17:35:52.093381+00	63	新しいボールペンを入手！	1	[{"added": {}}]	9	2
+335	2021-03-13 17:41:18.065622+00	64	vmmemの問題	1	[{"added": {}}]	9	2
+336	2021-03-13 17:55:30.655686+00	65	DevContainreで問題発生！	1	[{"added": {}}]	9	2
+337	2021-03-13 18:01:58.413457+00	66	昨日と同じエラー	1	[{"added": {}}]	9	2
+338	2021-03-13 18:14:13.595773+00	67	Income Statementの照会ができた～！	1	[{"added": {}}]	9	2
+339	2021-03-13 18:33:39.605968+00	68	作業報告	1	[{"added": {}}]	9	2
+340	2021-03-13 18:48:23.981551+00	69	昨日の続き	1	[{"added": {}}]	9	2
+341	2021-03-13 18:54:43.052262+00	70	ブログの更新	1	[{"added": {}}]	9	2
+342	2021-03-13 19:00:33.512057+00	71	ブログアプリを続ける	1	[{"added": {}}]	9	2
+343	2021-03-13 19:01:36.379049+00	35	Markdownｘ	1	[{"added": {}}]	11	2
+344	2021-03-13 19:15:11.204173+00	72	Markdownx	1	[{"added": {}}]	9	2
+345	2021-03-13 19:20:11.20445+00	72	Markdownx	2	[{"changed": {"fields": ["Note date"]}}]	9	2
+346	2021-03-13 19:21:00.934669+00	73	Adminが開けない！	1	[{"added": {}}]	9	2
+347	2021-03-13 19:32:18.135384+00	73	Adminが開けない！	2	[{"changed": {"fields": ["Text", "Note date", "Is public"]}}]	9	2
+348	2021-03-13 19:35:40.058379+00	74	ブログアプリのバグ	1	[{"added": {}}]	9	2
+349	2021-03-13 19:49:46.665688+00	75	問題再発！	1	[{"added": {}}]	9	2
+350	2021-03-13 19:57:31.231858+00	76	無料クラウドアプリケーションプラットフォーム	1	[{"added": {}}]	9	2
+351	2021-03-13 19:57:56.919579+00	36	Heroku	1	[{"added": {}}]	11	2
+352	2021-03-13 20:38:46.429343+00	77	早速デプロイ	1	[{"added": {}}]	9	2
+353	2021-03-13 20:59:00.196823+00	78	データ移行	1	[{"added": {}}]	9	2
+354	2021-03-14 19:21:32.215138+00	79	データ移行（続き）	1	[{"added": {}}]	9	2
+355	2021-03-14 20:00:11.814552+00	80	ブログアプリ調整	1	[{"added": {}}]	9	2
+356	2021-03-14 20:48:23.206312+00	81	デプロイ調整	1	[{"added": {}}]	9	2
+357	2021-03-14 20:50:44.243832+00	37	Amazon S3	1	[{"added": {}}]	11	2
+358	2021-03-14 21:19:48.23321+00	82	media情報の表示の問題	1	[{"added": {}}]	9	2
+359	2021-03-14 22:00:51.659603+00	83	昨日の続き	1	[{"added": {}}]	9	2
+360	2021-03-14 22:25:58.121556+00	84	さらに昨日の続き	1	[{"added": {}}]	9	2
+361	2021-03-14 22:35:54.239612+00	85	ブログアプリ完成！	1	[{"added": {}}]	9	2
+362	2021-03-14 22:38:29.737147+00	86	ブログ内容作成	1	[{"added": {}}]	9	2
+\.
+
+
+--
+-- Data for Name: django_content_type; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.django_content_type (id, app_label, model) FROM stdin;
+1	polls	question
+2	polls	choice
+3	admin	logentry
+4	auth	permission
+5	auth	group
+6	auth	user
+7	contenttypes	contenttype
+8	sessions	session
+9	blogs	blog
+10	blogs	category
+11	blogs	tag
+12	blogs	contentimage
+\.
+
+
+--
+-- Data for Name: django_migrations; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.django_migrations (id, app, name, applied) FROM stdin;
+1	contenttypes	0001_initial	2020-12-30 17:42:17.521319+00
+2	auth	0001_initial	2020-12-30 17:42:18.540865+00
+3	admin	0001_initial	2020-12-30 17:42:18.855574+00
+4	admin	0002_logentry_remove_auto_add	2020-12-30 17:42:18.891456+00
+5	admin	0003_logentry_add_action_flag_choices	2020-12-30 17:42:18.903895+00
+6	contenttypes	0002_remove_content_type_name	2020-12-30 17:42:19.113982+00
+7	auth	0002_alter_permission_name_max_length	2020-12-30 17:42:19.143149+00
+8	auth	0003_alter_user_email_max_length	2020-12-30 17:42:19.1653+00
+9	auth	0004_alter_user_username_opts	2020-12-30 17:42:19.175179+00
+10	auth	0005_alter_user_last_login_null	2020-12-30 17:42:19.206386+00
+11	auth	0006_require_contenttypes_0002	2020-12-30 17:42:19.212369+00
+12	auth	0007_alter_validators_add_error_messages	2020-12-30 17:42:19.219777+00
+13	auth	0008_alter_user_username_max_length	2020-12-30 17:42:19.305202+00
+14	auth	0009_alter_user_last_name_max_length	2020-12-30 17:42:19.308493+00
+15	blogs	0001_initial	2020-12-30 17:42:19.397619+00
+16	blogs	0002_blog_temp	2020-12-30 17:42:19.403463+00
+17	blogs	0003_auto_20201209_0613	2020-12-30 17:42:19.488508+00
+18	blogs	0004_auto_20201209_0626	2020-12-30 17:42:19.518034+00
+19	blogs	0005_auto_20201209_0803	2020-12-30 17:42:19.524164+00
+20	polls	0001_initial	2020-12-30 17:42:19.714702+00
+21	sessions	0001_initial	2020-12-30 17:42:19.902586+00
+22	blogs	0006_blog_note_date	2021-02-21 13:35:12.666699+00
+23	blogs	0007_blog_tag	2021-02-27 18:00:13.489463+00
+24	blogs	0008_auto_20210301_0308	2021-03-01 06:19:47.48015+00
+25	blogs	0009_auto_20210301_0401	2021-03-01 07:01:54.950734+00
+26	blogs	0010_contentimage	2021-03-01 11:07:38.800384+00
+27	blogs	0011_auto_20210302_0555	2021-03-02 08:56:02.679889+00
+28	blogs	0012_auto_20210304_1316	2021-03-04 16:16:33.827623+00
+29	blogs	0013_auto_20210304_1337	2021-03-04 16:37:59.579678+00
+30	blogs	0014_auto_20210304_1406	2021-03-04 17:06:21.342497+00
+31	blogs	0015_auto_20210304_1410	2021-03-04 17:10:07.490755+00
+32	blogs	0016_auto_20210306_0626	2021-03-06 09:26:30.211279+00
+33	blogs	0017_auto_20210306_0914	2021-03-06 12:14:38.580403+00
+34	auth	0010_alter_group_name_max_length	2021-03-10 18:54:05.983608+00
+35	auth	0011_update_proxy_permissions	2021-03-10 18:54:06.248079+00
+36	auth	0012_alter_user_first_name_max_length	2021-03-10 18:54:06.296143+00
+\.
+
+
+--
+-- Data for Name: django_session; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.django_session (session_key, session_data, expire_date) FROM stdin;
+k2c1ti7lbip9ggwidr0z6ji1sdmf3rzv	MmFjODdjNjU1YmM4MmE3NDVkNDZlZjUwYTVlY2M5N2VlZTI2YTM3Mjp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI0OGZmMWY2MjJiZTFmYTM3MWU5ZGU2MzhkMjQ3ZGMxZjEwMmE1NDU0In0=	2021-01-13 17:48:57.084393+00
+sn7fouxu5blm15i3gtpyrcur405yj40y	MmFjODdjNjU1YmM4MmE3NDVkNDZlZjUwYTVlY2M5N2VlZTI2YTM3Mjp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI0OGZmMWY2MjJiZTFmYTM3MWU5ZGU2MzhkMjQ3ZGMxZjEwMmE1NDU0In0=	2021-01-17 19:06:43.395748+00
+zf0u7zsj099req6y1if173tlf1cg3k5n	ZjY3YzEyZjRkZGJjMDQyZDRjNGM4Y2QzNjRlNDk3Y2UwYWVmNzBkYTp7Il9hdXRoX3VzZXJfaWQiOiIyIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJjZjhmMWI2YmU0MWJiOTdkOGExNTdhZGZjMzJmOWY2MmYzNWIwODQ5In0=	2021-03-14 10:58:09.330232+00
+f4fq0fa9i330qqtic9g3e7u12udjtuq4	ZjY3YzEyZjRkZGJjMDQyZDRjNGM4Y2QzNjRlNDk3Y2UwYWVmNzBkYTp7Il9hdXRoX3VzZXJfaWQiOiIyIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJjZjhmMWI2YmU0MWJiOTdkOGExNTdhZGZjMzJmOWY2MmYzNWIwODQ5In0=	2021-03-15 06:22:05.19152+00
+vqtk9hr2yltwwuz7fj69qhjkz354byx0	ZjY3YzEyZjRkZGJjMDQyZDRjNGM4Y2QzNjRlNDk3Y2UwYWVmNzBkYTp7Il9hdXRoX3VzZXJfaWQiOiIyIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJjZjhmMWI2YmU0MWJiOTdkOGExNTdhZGZjMzJmOWY2MmYzNWIwODQ5In0=	2021-03-15 10:43:22.074134+00
+k23wokm03akijkdvohq9b8j1t5mjtrru	ZjY3YzEyZjRkZGJjMDQyZDRjNGM4Y2QzNjRlNDk3Y2UwYWVmNzBkYTp7Il9hdXRoX3VzZXJfaWQiOiIyIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJjZjhmMWI2YmU0MWJiOTdkOGExNTdhZGZjMzJmOWY2MmYzNWIwODQ5In0=	2021-03-15 11:08:44.15345+00
+xv81w63k4nbq1kswi7emlz4o4p54cj27	ZjY3YzEyZjRkZGJjMDQyZDRjNGM4Y2QzNjRlNDk3Y2UwYWVmNzBkYTp7Il9hdXRoX3VzZXJfaWQiOiIyIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJjZjhmMWI2YmU0MWJiOTdkOGExNTdhZGZjMzJmOWY2MmYzNWIwODQ5In0=	2021-03-16 09:07:10.909816+00
+q4qv3l6ctbrkyolx0vocmdbh4iuac555	ZjY3YzEyZjRkZGJjMDQyZDRjNGM4Y2QzNjRlNDk3Y2UwYWVmNzBkYTp7Il9hdXRoX3VzZXJfaWQiOiIyIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJjZjhmMWI2YmU0MWJiOTdkOGExNTdhZGZjMzJmOWY2MmYzNWIwODQ5In0=	2021-03-16 16:53:43.190488+00
+muagdtxxhw9l6njz20ir1o12mnhp7lb1	ZjY3YzEyZjRkZGJjMDQyZDRjNGM4Y2QzNjRlNDk3Y2UwYWVmNzBkYTp7Il9hdXRoX3VzZXJfaWQiOiIyIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJjZjhmMWI2YmU0MWJiOTdkOGExNTdhZGZjMzJmOWY2MmYzNWIwODQ5In0=	2021-03-18 14:54:17.72272+00
+pi2bgr1eut8egxn61ct344yv8mj2ufip	ZjY3YzEyZjRkZGJjMDQyZDRjNGM4Y2QzNjRlNDk3Y2UwYWVmNzBkYTp7Il9hdXRoX3VzZXJfaWQiOiIyIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJjZjhmMWI2YmU0MWJiOTdkOGExNTdhZGZjMzJmOWY2MmYzNWIwODQ5In0=	2021-03-18 17:07:03.738071+00
+7wlc3mjkli7blm01t0dlpg8pz9w1bvbn	ZjY3YzEyZjRkZGJjMDQyZDRjNGM4Y2QzNjRlNDk3Y2UwYWVmNzBkYTp7Il9hdXRoX3VzZXJfaWQiOiIyIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJjZjhmMWI2YmU0MWJiOTdkOGExNTdhZGZjMzJmOWY2MmYzNWIwODQ5In0=	2021-03-18 17:10:40.9415+00
+wg9vwdgwizjxcjrdllyqd4tcfpnfgbh5	.eJxVjMEOwiAQRP-FsyGFgIBH734D2WUXqRpISntq_Hcl6UHnOO_N7CLCtpa4dV7iTOIitDj9dgjpyXUAekC9N5laXZcZ5VDkQbu8NeLX9XD_Dgr08l3bjN7RZCcgpYNHBwa0UiZ4dimRBnL5bHRAVGkkG8tsrTVICAhZvD_2kzlF:1lKiTB:-IONgbNL2AxLuGOdvKVO3GTvHEOxu95sP1GXW9QVx7Y	2021-03-26 14:08:49.425422+00
+\.
+
+
+--
+-- Data for Name: polls_choice; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.polls_choice (id, choice_text, votes, question_id) FROM stdin;
+2	魚料理	0	1
+3	野菜料理	0	1
+1	肉料理	1	1
+\.
+
+
+--
+-- Data for Name: polls_question; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.polls_question (id, question_text, pub_date) FROM stdin;
+1	今夜は、何を食べますか？	2021-03-07 13:43:00+00
+\.
+
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.auth_group_id_seq', 2, true);
+
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.auth_group_permissions_id_seq', 53, true);
+
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.auth_permission_id_seq', 48, true);
+
+
+--
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.auth_user_groups_id_seq', 2, true);
+
+
+--
+-- Name: auth_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.auth_user_id_seq', 3, true);
+
+
+--
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.auth_user_user_permissions_id_seq', 48, true);
+
+
+--
+-- Name: blogs_blog_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.blogs_blog_id_seq', 86, true);
+
+
+--
+-- Name: blogs_blog_tags_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.blogs_blog_tags_id_seq', 165, true);
+
+
+--
+-- Name: blogs_category_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.blogs_category_id_seq', 6, true);
+
+
+--
+-- Name: blogs_tag_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.blogs_tag_id_seq', 37, true);
+
+
+--
+-- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.django_admin_log_id_seq', 362, true);
+
+
+--
+-- Name: django_content_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.django_content_type_id_seq', 12, true);
+
+
+--
+-- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.django_migrations_id_seq', 36, true);
+
+
+--
+-- Name: polls_choice_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.polls_choice_id_seq', 3, true);
+
+
+--
+-- Name: polls_question_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.polls_question_id_seq', 1, true);
+
+
+--
+-- Name: auth_group auth_group_name_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_group
+    ADD CONSTRAINT auth_group_name_key UNIQUE (name);
+
+
+--
+-- Name: auth_group_permissions auth_group_permissions_group_id_permission_id_0cd325b0_uniq; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_group_id_permission_id_0cd325b0_uniq UNIQUE (group_id, permission_id);
+
+
+--
+-- Name: auth_group_permissions auth_group_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_group auth_group_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_group
+    ADD CONSTRAINT auth_group_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_permission auth_permission_content_type_id_codename_01ab375a_uniq; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_permission
+    ADD CONSTRAINT auth_permission_content_type_id_codename_01ab375a_uniq UNIQUE (content_type_id, codename);
+
+
+--
+-- Name: auth_permission auth_permission_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_permission
+    ADD CONSTRAINT auth_permission_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_groups auth_user_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_user_groups
+    ADD CONSTRAINT auth_user_groups_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_groups auth_user_groups_user_id_group_id_94350c0c_uniq; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_user_groups
+    ADD CONSTRAINT auth_user_groups_user_id_group_id_94350c0c_uniq UNIQUE (user_id, group_id);
+
+
+--
+-- Name: auth_user auth_user_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_user
+    ADD CONSTRAINT auth_user_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_user_permissions auth_user_user_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permissions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_user_permissions auth_user_user_permissions_user_id_permission_id_14a6b632_uniq; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permissions_user_id_permission_id_14a6b632_uniq UNIQUE (user_id, permission_id);
+
+
+--
+-- Name: auth_user auth_user_username_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_user
+    ADD CONSTRAINT auth_user_username_key UNIQUE (username);
+
+
+--
+-- Name: blogs_blog blogs_blog_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.blogs_blog
+    ADD CONSTRAINT blogs_blog_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: blogs_blog_tags blogs_blog_tags_blog_id_tag_id_4aca5e27_uniq; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.blogs_blog_tags
+    ADD CONSTRAINT blogs_blog_tags_blog_id_tag_id_4aca5e27_uniq UNIQUE (blog_id, tag_id);
+
+
+--
+-- Name: blogs_blog_tags blogs_blog_tags_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.blogs_blog_tags
+    ADD CONSTRAINT blogs_blog_tags_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: blogs_category blogs_category_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.blogs_category
+    ADD CONSTRAINT blogs_category_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: blogs_category blogs_category_slug_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.blogs_category
+    ADD CONSTRAINT blogs_category_slug_key UNIQUE (slug);
+
+
+--
+-- Name: blogs_tag blogs_tag_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.blogs_tag
+    ADD CONSTRAINT blogs_tag_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: blogs_tag blogs_tag_slug_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.blogs_tag
+    ADD CONSTRAINT blogs_tag_slug_key UNIQUE (slug);
+
+
+--
+-- Name: django_admin_log django_admin_log_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.django_admin_log
+    ADD CONSTRAINT django_admin_log_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_content_type django_content_type_app_label_model_76bd3d3b_uniq; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.django_content_type
+    ADD CONSTRAINT django_content_type_app_label_model_76bd3d3b_uniq UNIQUE (app_label, model);
+
+
+--
+-- Name: django_content_type django_content_type_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.django_content_type
+    ADD CONSTRAINT django_content_type_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_migrations django_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.django_migrations
+    ADD CONSTRAINT django_migrations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_session django_session_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.django_session
+    ADD CONSTRAINT django_session_pkey PRIMARY KEY (session_key);
+
+
+--
+-- Name: polls_choice polls_choice_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.polls_choice
+    ADD CONSTRAINT polls_choice_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: polls_question polls_question_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.polls_question
+    ADD CONSTRAINT polls_question_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_group_name_a6ea08ec_like; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX auth_group_name_a6ea08ec_like ON public.auth_group USING btree (name varchar_pattern_ops);
+
+
+--
+-- Name: auth_group_permissions_group_id_b120cbf9; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX auth_group_permissions_group_id_b120cbf9 ON public.auth_group_permissions USING btree (group_id);
+
+
+--
+-- Name: auth_group_permissions_permission_id_84c5c92e; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX auth_group_permissions_permission_id_84c5c92e ON public.auth_group_permissions USING btree (permission_id);
+
+
+--
+-- Name: auth_permission_content_type_id_2f476e4b; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX auth_permission_content_type_id_2f476e4b ON public.auth_permission USING btree (content_type_id);
+
+
+--
+-- Name: auth_user_groups_group_id_97559544; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX auth_user_groups_group_id_97559544 ON public.auth_user_groups USING btree (group_id);
+
+
+--
+-- Name: auth_user_groups_user_id_6a12ed8b; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX auth_user_groups_user_id_6a12ed8b ON public.auth_user_groups USING btree (user_id);
+
+
+--
+-- Name: auth_user_user_permissions_permission_id_1fbb5f2c; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX auth_user_user_permissions_permission_id_1fbb5f2c ON public.auth_user_user_permissions USING btree (permission_id);
+
+
+--
+-- Name: auth_user_user_permissions_user_id_a95ead1b; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX auth_user_user_permissions_user_id_a95ead1b ON public.auth_user_user_permissions USING btree (user_id);
+
+
+--
+-- Name: auth_user_username_6821ab7c_like; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX auth_user_username_6821ab7c_like ON public.auth_user USING btree (username varchar_pattern_ops);
+
+
+--
+-- Name: blogs_blog_category_id_3cfdf215; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX blogs_blog_category_id_3cfdf215 ON public.blogs_blog USING btree (category_id);
+
+
+--
+-- Name: blogs_blog_tags_blog_id_2b911827; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX blogs_blog_tags_blog_id_2b911827 ON public.blogs_blog_tags USING btree (blog_id);
+
+
+--
+-- Name: blogs_blog_tags_tag_id_1c74f36f; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX blogs_blog_tags_tag_id_1c74f36f ON public.blogs_blog_tags USING btree (tag_id);
+
+
+--
+-- Name: blogs_category_slug_daea88ea_like; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX blogs_category_slug_daea88ea_like ON public.blogs_category USING btree (slug varchar_pattern_ops);
+
+
+--
+-- Name: blogs_tag_slug_8d1308d9_like; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX blogs_tag_slug_8d1308d9_like ON public.blogs_tag USING btree (slug varchar_pattern_ops);
+
+
+--
+-- Name: django_admin_log_content_type_id_c4bce8eb; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX django_admin_log_content_type_id_c4bce8eb ON public.django_admin_log USING btree (content_type_id);
+
+
+--
+-- Name: django_admin_log_user_id_c564eba6; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX django_admin_log_user_id_c564eba6 ON public.django_admin_log USING btree (user_id);
+
+
+--
+-- Name: django_session_expire_date_a5c62663; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX django_session_expire_date_a5c62663 ON public.django_session USING btree (expire_date);
+
+
+--
+-- Name: django_session_session_key_c0390e0f_like; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX django_session_session_key_c0390e0f_like ON public.django_session USING btree (session_key varchar_pattern_ops);
+
+
+--
+-- Name: polls_choice_question_id_c5b4b260; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX polls_choice_question_id_c5b4b260 ON public.polls_choice USING btree (question_id);
+
+
+--
+-- Name: auth_group_permissions auth_group_permissio_permission_id_84c5c92e_fk_auth_perm; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permissio_permission_id_84c5c92e_fk_auth_perm FOREIGN KEY (permission_id) REFERENCES public.auth_permission(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_group_permissions auth_group_permissions_group_id_b120cbf9_fk_auth_group_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_group_id_b120cbf9_fk_auth_group_id FOREIGN KEY (group_id) REFERENCES public.auth_group(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_permission auth_permission_content_type_id_2f476e4b_fk_django_co; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_permission
+    ADD CONSTRAINT auth_permission_content_type_id_2f476e4b_fk_django_co FOREIGN KEY (content_type_id) REFERENCES public.django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user_groups auth_user_groups_group_id_97559544_fk_auth_group_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_user_groups
+    ADD CONSTRAINT auth_user_groups_group_id_97559544_fk_auth_group_id FOREIGN KEY (group_id) REFERENCES public.auth_group(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user_groups auth_user_groups_user_id_6a12ed8b_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_user_groups
+    ADD CONSTRAINT auth_user_groups_user_id_6a12ed8b_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user_user_permissions auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm FOREIGN KEY (permission_id) REFERENCES public.auth_permission(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user_user_permissions auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: blogs_blog blogs_blog_category_id_3cfdf215_fk_blogs_category_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.blogs_blog
+    ADD CONSTRAINT blogs_blog_category_id_3cfdf215_fk_blogs_category_id FOREIGN KEY (category_id) REFERENCES public.blogs_category(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: blogs_blog_tags blogs_blog_tags_blog_id_2b911827_fk_blogs_blog_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.blogs_blog_tags
+    ADD CONSTRAINT blogs_blog_tags_blog_id_2b911827_fk_blogs_blog_id FOREIGN KEY (blog_id) REFERENCES public.blogs_blog(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: blogs_blog_tags blogs_blog_tags_tag_id_1c74f36f_fk_blogs_tag_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.blogs_blog_tags
+    ADD CONSTRAINT blogs_blog_tags_tag_id_1c74f36f_fk_blogs_tag_id FOREIGN KEY (tag_id) REFERENCES public.blogs_tag(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: django_admin_log django_admin_log_content_type_id_c4bce8eb_fk_django_co; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.django_admin_log
+    ADD CONSTRAINT django_admin_log_content_type_id_c4bce8eb_fk_django_co FOREIGN KEY (content_type_id) REFERENCES public.django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: django_admin_log django_admin_log_user_id_c564eba6_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.django_admin_log
+    ADD CONSTRAINT django_admin_log_user_id_c564eba6_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: polls_choice polls_choice_question_id_c5b4b260_fk_polls_question_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.polls_choice
+    ADD CONSTRAINT polls_choice_question_id_c5b4b260_fk_polls_question_id FOREIGN KEY (question_id) REFERENCES public.polls_question(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- PostgreSQL database dump complete
+--
+

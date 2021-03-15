@@ -10,8 +10,6 @@ psycopg2
 
 gunicorn
 
-whitenoise
-
 boto3
 
 django-storages
