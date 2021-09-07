@@ -4,9 +4,9 @@ from pathlib import Path
 import os
 import environ
 
-DEFAULT_FILE_STORAGE = 'mysite.s3.utils.MediaRootS3BotoStorage'
+# DEFAULT_FILE_STORAGE = 'mysite.s3.utils.MediaRootS3BotoStorage'
 # <project-name> = Django プロジェクト名
-STATICFILES_STORAGE = 'mysite.s3.utils.StaticRootS3BotoStorage'
+# STATICFILES_STORAGE = 'mysite.s3.utils.StaticRootS3BotoStorage'
 # <project-name> = Django プロジェクト名
 
 # get AWS_ACCESS_KEY and AWS_SECRET_ACCESS_KEY
@@ -34,7 +34,7 @@ AWS_S3_OBJECT_PARAMETERS = {
 AWS_QUERYSTRING_AUTH = False  # URLからクエリパラメータを削除
 
 AWS_S3_URL = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
-MEDIA_URL = 'https://%s/%s/' % (AWS_S3_URL, 'media')
-STATIC_URL = 'https://%s/%s/' % (AWS_S3_URL, 'static')
-print('MEDIA_URL = ',MEDIA_URL)
-print('STATIC_URL = ',STATIC_URL)
+# MEDIA_URL = 'https://%s/%s/' % (AWS_S3_URL, 'media')
+# STATIC_URL = 'https://%s/%s/' % (AWS_S3_URL, 'static')
+# print('MEDIA_URL = ',MEDIA_URL)
+# print('STATIC_URL = ',STATIC_URL)

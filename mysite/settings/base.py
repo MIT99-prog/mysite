@@ -144,4 +144,4 @@ USE_TZ = True
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # for s3
-from mysite.s3.conf import *  # for aws s3
+# from mysite.s3.conf import *  # for aws s3
